@@ -1,0 +1,231 @@
+{
+  "images": [
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-20-12-11.png",
+      "caption": "tree",
+      "quartierId": 1,
+      "x": 1981.9599609375,
+      "y": 598.6339721679688,
+      "scale": 0.3625184226320716,
+      "zIndex": 1348
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-20-12-43.png",
+      "caption": "bike",
+      "quartierId": 1,
+      "x": 0,
+      "y": 0,
+      "scale": 0.2945747346494386,
+      "zIndex": 1119
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-20-23-05.png",
+      "caption": "trashcan",
+      "quartierId": 1,
+      "x": 1612.1300048828125,
+      "y": 536.3200073242188,
+      "scale": 0.6476332228001553,
+      "zIndex": 1557
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-20-24-03.png",
+      "caption": "trashcan",
+      "quartierId": 1,
+      "x": 0,
+      "y": 0,
+      "scale": 0.4546562276086773,
+      "zIndex": 1100
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-20-30-16.png",
+      "caption": "building",
+      "quartierId": 1,
+      "x": 1192.949951171875,
+      "y": 298.9219970703125,
+      "scale": 0.3,
+      "zIndex": 1568
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-20-38-19.png",
+      "caption": "bicycle",
+      "quartierId": 1,
+      "x": 477.3689880371094,
+      "y": 113.0999984741211,
+      "scale": 2.831069215669196,
+      "zIndex": 1567
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-20-42-50.png",
+      "caption": "bicycle",
+      "quartierId": 1,
+      "x": 1902.8699951171875,
+      "y": 298.91400146484375,
+      "scale": 1.0313346110415365,
+      "zIndex": 1558
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-05-11-09-13.png",
+      "caption": "tree",
+      "quartierId": 1,
+      "x": 656.8670043945312,
+      "y": 621.9359741210938,
+      "scale": 1.3985626161312668,
+      "zIndex": 1559,
+      "gps": {
+        "lat": 47.555011,
+        "lon": 7.589794
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-21-59-23.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 662.2860107421875,
+      "y": 492.62298583984375,
+      "scale": 3.4353170821575003,
+      "zIndex": 1450
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-22-00-02.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 969.2479858398438,
+      "y": 14.371600151062012,
+      "scale": 0.8680830938044419,
+      "zIndex": 1461
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-22-02-43.png",
+      "caption": "laptop",
+      "quartierId": 20,
+      "x": 505.72698974609375,
+      "y": 86.402099609375,
+      "scale": 2.582927861523918,
+      "zIndex": 1469
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-22-35-05.png",
+      "caption": "woman",
+      "quartierId": 20,
+      "x": 1804.780029296875,
+      "y": 344.552001953125,
+      "scale": 2.8193664279674535,
+      "zIndex": 1517
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-04-22-35-58.png",
+      "caption": "vehicle",
+      "quartierId": 20,
+      "x": 1209.25,
+      "y": 603.5869750976562,
+      "scale": 1.8177863848539233,
+      "zIndex": 1520
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-05-10-58-57.png",
+      "caption": "woman",
+      "quartierId": 20,
+      "x": 471.947998046875,
+      "y": 611.7000122070312,
+      "scale": 1.3907745899144637,
+      "zIndex": 1533,
+      "gps": {
+        "lat": 46.429103,
+        "lon": 8.168028
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-05-11-11-07.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 1166.6800537109375,
+      "y": 559.4429931640625,
+      "scale": 0.3772947479628791,
+      "zIndex": 1615
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-05-11-15-55.png",
+      "caption": "people",
+      "quartierId": 20,
+      "x": 1457.6099853515625,
+      "y": 233.68600463867188,
+      "scale": 1.0078046336488733,
+      "zIndex": 1601
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-05-11-18-44.png",
+      "caption": "can",
+      "quartierId": 20,
+      "x": 1669.3499755859375,
+      "y": 507.06298828125,
+      "scale": 0.9784400809043634,
+      "zIndex": 1603
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-05-11-20-31.png",
+      "caption": "braid",
+      "quartierId": 20,
+      "x": 1088.1600341796875,
+      "y": 461.14801025390625,
+      "scale": 0.8423599162346137,
+      "zIndex": 1616
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-05-11-21-19.png",
+      "caption": "croissant",
+      "quartierId": 20,
+      "x": 795.6110229492188,
+      "y": 716.8369750976562,
+      "scale": 0.8608093178151649,
+      "zIndex": 1614
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-05-13-02-54.png",
+      "caption": "bin",
+      "quartierId": 1,
+      "x": 1294.97998046875,
+      "y": 611.3389892578125,
+      "scale": 2.1175666957152797,
+      "zIndex": 1569,
+      "gps": {
+        "lat": 47.555014,
+        "lon": 7.589828
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-05-13-08-19.png",
+      "caption": "van",
+      "quartierId": 20,
+      "x": 510.8110046386719,
+      "y": 427.4129943847656,
+      "scale": 1.1802833396154144,
+      "zIndex": 1609,
+      "gps": {
+        "lat": 47.516392,
+        "lon": 7.554839
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-05-13-10-40.png",
+      "caption": "fondue",
+      "quartierId": 20,
+      "x": 603.4879760742188,
+      "y": 626.4749755859375,
+      "scale": 0.9040580629697731,
+      "zIndex": 1612,
+      "gps": {
+        "lat": 47.516389,
+        "lon": 7.554833
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-05-13-13-12.png",
+      "caption": "ramen",
+      "quartierId": 20,
+      "x": 843.7839965820312,
+      "y": 139.4340057373047,
+      "scale": 1.0134819028752762,
+      "zIndex": 1593
+    }
+  ]
+}
