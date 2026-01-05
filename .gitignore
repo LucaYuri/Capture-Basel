@@ -1,1 +1,6 @@
 .env
+node_modules/
+uploads/*
+gen-images/*
+ref-images/*
+.DS_Store
