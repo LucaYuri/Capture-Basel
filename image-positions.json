@@ -6,7 +6,7 @@
       "quartierId": 1,
       "x": 1981.9599609375,
       "y": 598.6339721679688,
-      "scale": 0.3625184226320716,
+      "scale": 1,
       "zIndex": 1348
     },
     {
@@ -15,7 +15,7 @@
       "quartierId": 1,
       "x": 0,
       "y": 0,
-      "scale": 0.2945747346494386,
+      "scale": 1,
       "zIndex": 1119
     },
     {
@@ -24,7 +24,7 @@
       "quartierId": 1,
       "x": 1612.1300048828125,
       "y": 536.3200073242188,
-      "scale": 0.6476332228001553,
+      "scale": 1,
       "zIndex": 1557
     },
     {
@@ -33,26 +33,26 @@
       "quartierId": 1,
       "x": 0,
       "y": 0,
-      "scale": 0.4546562276086773,
+      "scale": 1,
       "zIndex": 1100
     },
     {
       "imageUrl": "/gen-images/generated-26-01-04-20-30-16.png",
       "caption": "building",
       "quartierId": 1,
-      "x": 1192.949951171875,
-      "y": 298.9219970703125,
-      "scale": 0.3,
-      "zIndex": 1568
+      "x": 1021.3499755859375,
+      "y": 14.244400024414062,
+      "scale": 1,
+      "zIndex": 1608
     },
     {
       "imageUrl": "/gen-images/generated-26-01-04-20-38-19.png",
       "caption": "bicycle",
       "quartierId": 1,
-      "x": 477.3689880371094,
+      "x": 552.1929931640625,
       "y": 113.0999984741211,
-      "scale": 2.831069215669196,
-      "zIndex": 1567
+      "scale": 1,
+      "zIndex": 1769
     },
     {
       "imageUrl": "/gen-images/generated-26-01-04-20-42-50.png",
@@ -60,7 +60,7 @@
       "quartierId": 1,
       "x": 1902.8699951171875,
       "y": 298.91400146484375,
-      "scale": 1.0313346110415365,
+      "scale": 1,
       "zIndex": 1558
     },
     {
@@ -69,7 +69,7 @@
       "quartierId": 1,
       "x": 656.8670043945312,
       "y": 621.9359741210938,
-      "scale": 1.3985626161312668,
+      "scale": 1,
       "zIndex": 1559,
       "gps": {
         "lat": 47.555011,
@@ -82,7 +82,7 @@
       "quartierId": 20,
       "x": 662.2860107421875,
       "y": 492.62298583984375,
-      "scale": 3.4353170821575003,
+      "scale": 1,
       "zIndex": 1450
     },
     {
@@ -91,7 +91,7 @@
       "quartierId": 20,
       "x": 969.2479858398438,
       "y": 14.371600151062012,
-      "scale": 0.8680830938044419,
+      "scale": 1,
       "zIndex": 1461
     },
     {
@@ -100,7 +100,7 @@
       "quartierId": 20,
       "x": 505.72698974609375,
       "y": 86.402099609375,
-      "scale": 2.582927861523918,
+      "scale": 1,
       "zIndex": 1469
     },
     {
@@ -109,7 +109,7 @@
       "quartierId": 20,
       "x": 1804.780029296875,
       "y": 344.552001953125,
-      "scale": 2.8193664279674535,
+      "scale": 1,
       "zIndex": 1517
     },
     {
@@ -118,7 +118,7 @@
       "quartierId": 20,
       "x": 1209.25,
       "y": 603.5869750976562,
-      "scale": 1.8177863848539233,
+      "scale": 1,
       "zIndex": 1520
     },
     {
@@ -127,7 +127,7 @@
       "quartierId": 20,
       "x": 471.947998046875,
       "y": 611.7000122070312,
-      "scale": 1.3907745899144637,
+      "scale": 1,
       "zIndex": 1533,
       "gps": {
         "lat": 46.429103,
@@ -138,55 +138,55 @@
       "imageUrl": "/gen-images/generated-26-01-05-11-11-07.png",
       "caption": "person",
       "quartierId": 20,
-      "x": 1166.6800537109375,
-      "y": 559.4429931640625,
-      "scale": 0.3772947479628791,
-      "zIndex": 1615
+      "x": 1199.4000244140625,
+      "y": 456.9460144042969,
+      "scale": 1,
+      "zIndex": 1581
     },
     {
       "imageUrl": "/gen-images/generated-26-01-05-11-15-55.png",
       "caption": "people",
       "quartierId": 20,
-      "x": 1457.6099853515625,
-      "y": 233.68600463867188,
-      "scale": 1.0078046336488733,
-      "zIndex": 1601
+      "x": 1313.81005859375,
+      "y": 89.34190368652344,
+      "scale": 1,
+      "zIndex": 1597
     },
     {
       "imageUrl": "/gen-images/generated-26-01-05-11-18-44.png",
       "caption": "can",
       "quartierId": 20,
-      "x": 1669.3499755859375,
-      "y": 507.06298828125,
-      "scale": 0.9784400809043634,
-      "zIndex": 1603
+      "x": 1572.280029296875,
+      "y": 519.822021484375,
+      "scale": 1,
+      "zIndex": 1584
     },
     {
       "imageUrl": "/gen-images/generated-26-01-05-11-20-31.png",
       "caption": "braid",
       "quartierId": 20,
-      "x": 1088.1600341796875,
-      "y": 461.14801025390625,
-      "scale": 0.8423599162346137,
-      "zIndex": 1616
+      "x": 1208.0699462890625,
+      "y": 673.2960205078125,
+      "scale": 1,
+      "zIndex": 1560
     },
     {
       "imageUrl": "/gen-images/generated-26-01-05-11-21-19.png",
       "caption": "croissant",
       "quartierId": 20,
-      "x": 795.6110229492188,
-      "y": 716.8369750976562,
-      "scale": 0.8608093178151649,
-      "zIndex": 1614
+      "x": 1109.260009765625,
+      "y": -0.8986999988555908,
+      "scale": 1,
+      "zIndex": 1610
     },
     {
       "imageUrl": "/gen-images/generated-26-01-05-13-02-54.png",
       "caption": "bin",
       "quartierId": 1,
-      "x": 1294.97998046875,
-      "y": 611.3389892578125,
-      "scale": 2.1175666957152797,
-      "zIndex": 1569,
+      "x": 934.7559814453125,
+      "y": 509.33099365234375,
+      "scale": 1,
+      "zIndex": 1766,
       "gps": {
         "lat": 47.555014,
         "lon": 7.589828
@@ -196,10 +196,10 @@
       "imageUrl": "/gen-images/generated-26-01-05-13-08-19.png",
       "caption": "van",
       "quartierId": 20,
-      "x": 510.8110046386719,
-      "y": 427.4129943847656,
-      "scale": 1.1802833396154144,
-      "zIndex": 1609,
+      "x": 489.3269958496094,
+      "y": 230.7949981689453,
+      "scale": 1,
+      "zIndex": 1593,
       "gps": {
         "lat": 47.516392,
         "lon": 7.554839
@@ -209,10 +209,10 @@
       "imageUrl": "/gen-images/generated-26-01-05-13-10-40.png",
       "caption": "fondue",
       "quartierId": 20,
-      "x": 603.4879760742188,
-      "y": 626.4749755859375,
-      "scale": 0.9040580629697731,
-      "zIndex": 1612,
+      "x": 1648.699951171875,
+      "y": 339.9930114746094,
+      "scale": 1,
+      "zIndex": 1592,
       "gps": {
         "lat": 47.516389,
         "lon": 7.554833
@@ -222,10 +222,505 @@
       "imageUrl": "/gen-images/generated-26-01-05-13-13-12.png",
       "caption": "ramen",
       "quartierId": 20,
-      "x": 843.7839965820312,
-      "y": 139.4340057373047,
-      "scale": 1.0134819028752762,
-      "zIndex": 1593
+      "x": 816.8610229492188,
+      "y": -1.806399941444397,
+      "scale": 1,
+      "zIndex": 1595
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-11-50-31.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 1486.469970703125,
+      "y": 254.95399475097656,
+      "scale": 1,
+      "zIndex": 1621
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-11-50-59.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 1240.739990234375,
+      "y": 772.2789916992188,
+      "scale": 1,
+      "zIndex": 1600,
+      "gps": {
+        "lat": 46.589917,
+        "lon": 11.703528
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-11-51-30.png",
+      "caption": "people",
+      "quartierId": 20,
+      "x": 804.322021484375,
+      "y": 649.9539794921875,
+      "scale": 1,
+      "zIndex": 1625
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-11-55-19.png",
+      "caption": "tree",
+      "quartierId": 1,
+      "x": 1260.8299560546875,
+      "y": 518.177001953125,
+      "scale": 1,
+      "zIndex": 1604,
+      "gps": {
+        "lat": 47.555003,
+        "lon": 7.589797
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-11-56-42.png",
+      "caption": "laptop",
+      "quartierId": 20,
+      "x": 1646.9000244140625,
+      "y": 657.3870239257812,
+      "scale": 1,
+      "zIndex": 1611,
+      "gps": {
+        "lat": 47.516392,
+        "lon": 7.554839
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-11-57-40.png",
+      "caption": "hiker",
+      "quartierId": 20,
+      "x": 1146.8699951171875,
+      "y": 159.12399291992188,
+      "scale": 1,
+      "zIndex": 1614,
+      "gps": {
+        "lat": 46.602311,
+        "lon": 12.283581
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-11-58-16.png",
+      "caption": "dog",
+      "quartierId": 20,
+      "x": 868.218017578125,
+      "y": 260.02801513671875,
+      "scale": 1,
+      "zIndex": 1626,
+      "gps": {
+        "lat": 47.532958,
+        "lon": 7.611094
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-11-59-26.png",
+      "caption": "people",
+      "quartierId": 20,
+      "x": 546.60498046875,
+      "y": -23.560300827026367,
+      "scale": 1,
+      "zIndex": 1624
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-00-42.png",
+      "caption": "bulb",
+      "quartierId": 20,
+      "x": 1707.1199951171875,
+      "y": 620.4829711914062,
+      "scale": 1,
+      "zIndex": 1645,
+      "gps": {
+        "lat": 47.516392,
+        "lon": 7.554839
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-03-52.png",
+      "caption": "man",
+      "quartierId": 20,
+      "x": 1432.9300537109375,
+      "y": 500.2049865722656,
+      "scale": 1,
+      "zIndex": 1648,
+      "gps": {
+        "lat": 46.602311,
+        "lon": 12.283581
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-04-58.png",
+      "caption": "bin",
+      "quartierId": 1,
+      "x": 1400.52001953125,
+      "y": 567.5490112304688,
+      "scale": 1,
+      "zIndex": 1630,
+      "gps": {
+        "lat": 47.555014,
+        "lon": 7.589828
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-06-04.png",
+      "caption": "coffee",
+      "quartierId": 20,
+      "x": 1129.449951171875,
+      "y": 669.8380126953125,
+      "scale": 1,
+      "zIndex": 1649,
+      "gps": {
+        "lat": 46.574844,
+        "lon": 11.667167
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-06-54.png",
+      "caption": "house",
+      "quartierId": 20,
+      "x": 1486.510009765625,
+      "y": 240.02699279785156,
+      "scale": 1,
+      "zIndex": 1673
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-07-36.png",
+      "caption": "cow",
+      "quartierId": 20,
+      "x": 1263.2099609375,
+      "y": -34.70880126953125,
+      "scale": 1,
+      "zIndex": 1671
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-08-17.png",
+      "caption": "cow",
+      "quartierId": 20,
+      "x": 781.5499877929688,
+      "y": 405.15301513671875,
+      "scale": 1,
+      "zIndex": 1637
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-09-50.png",
+      "caption": "bar",
+      "quartierId": 20,
+      "x": 1735.9599609375,
+      "y": -27.899999618530273,
+      "scale": 1,
+      "zIndex": 1685
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-10-33.png",
+      "caption": "mask",
+      "quartierId": 20,
+      "x": 1380.25,
+      "y": 821.7860107421875,
+      "scale": 1,
+      "zIndex": 1699
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-11-04.png",
+      "caption": "man",
+      "quartierId": 20,
+      "x": 745.1380004882812,
+      "y": 45.26729965209961,
+      "scale": 1,
+      "zIndex": 1716
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-11-55.png",
+      "caption": "man",
+      "quartierId": 20,
+      "x": 2008.75,
+      "y": 531.8419799804688,
+      "scale": 1,
+      "zIndex": 1706,
+      "gps": {
+        "lat": 46.6548,
+        "lon": 12.178056
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-13-17.png",
+      "caption": "croissant",
+      "quartierId": 20,
+      "x": 580.6329956054688,
+      "y": 602.5910034179688,
+      "scale": 1,
+      "zIndex": 1717,
+      "gps": {
+        "lat": 46.574844,
+        "lon": 11.667167
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-15-37.png",
+      "caption": "microwave",
+      "quartierId": 20,
+      "x": 1702.8499755859375,
+      "y": 780.2420043945312,
+      "scale": 1,
+      "zIndex": 1746,
+      "gps": {
+        "lat": 47.516392,
+        "lon": 7.554839
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-16-10.png",
+      "caption": "camper",
+      "quartierId": 20,
+      "x": 1281.5400390625,
+      "y": 598.85498046875,
+      "scale": 1,
+      "zIndex": 1745,
+      "gps": {
+        "lat": 47.516392,
+        "lon": 7.554839
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-19-15.png",
+      "caption": "bicycle",
+      "quartierId": 1,
+      "x": 1689.280029296875,
+      "y": 515.614013671875,
+      "scale": 1,
+      "zIndex": 1768,
+      "gps": {
+        "lat": 47.555003,
+        "lon": 7.589797
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-26-33.png",
+      "caption": "jacket",
+      "quartierId": 20,
+      "x": 839.8380126953125,
+      "y": 91.5238037109375,
+      "scale": 1,
+      "zIndex": 1749
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-27-11.png",
+      "caption": "city",
+      "quartierId": 20,
+      "x": 1347.8199462890625,
+      "y": 246.30599975585938,
+      "scale": 1,
+      "zIndex": 1759
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-28-52.png",
+      "caption": "bag",
+      "quartierId": 20,
+      "x": 1908.93994140625,
+      "y": 474.12701416015625,
+      "scale": 1,
+      "zIndex": 1762
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-29-40.png",
+      "caption": "tower",
+      "quartierId": 20,
+      "x": 906.6829833984375,
+      "y": 559.083984375,
+      "scale": 1,
+      "zIndex": 1778
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-30-07.png",
+      "caption": "curry",
+      "quartierId": 20,
+      "x": 1707.469970703125,
+      "y": 345.239990234375,
+      "scale": 1,
+      "zIndex": 1755
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-31-06.png",
+      "caption": "bunk",
+      "quartierId": 20,
+      "x": 547.3619995117188,
+      "y": 328.35699462890625,
+      "scale": 2.5395553359455567,
+      "zIndex": 1781,
+      "gps": {
+        "lat": 45.812642,
+        "lon": 9.074778
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-32-26.png",
+      "caption": "trees",
+      "quartierId": 20,
+      "x": 1482.280029296875,
+      "y": 587.8690185546875,
+      "scale": 1,
+      "zIndex": 1776,
+      "gps": {
+        "lat": 47.517728,
+        "lon": 7.587397
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-33-01.png",
+      "caption": "tower",
+      "quartierId": 20,
+      "x": 1138.6300048828125,
+      "y": 495.1180114746094,
+      "scale": 1,
+      "zIndex": 1777,
+      "gps": {
+        "lat": 47.516372,
+        "lon": 7.554811
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-33-56.png",
+      "caption": "rose",
+      "quartierId": 6,
+      "x": 1268.5899658203125,
+      "y": 677.0819702148438,
+      "scale": 1,
+      "zIndex": 1763,
+      "gps": {
+        "lat": 47.540642,
+        "lon": 7.598597
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-34-27.png",
+      "caption": "flower",
+      "quartierId": 20,
+      "x": 1284.550048828125,
+      "y": 258.6719970703125,
+      "scale": 1,
+      "zIndex": 1772
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-34-54.png",
+      "caption": "man",
+      "quartierId": 1,
+      "x": 1097.8699951171875,
+      "y": 80.79199981689453,
+      "scale": 1,
+      "zIndex": 1767,
+      "gps": {
+        "lat": 47.5542,
+        "lon": 7.590892
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-35-32.png",
+      "caption": "phone",
+      "quartierId": 20,
+      "x": 976.2589721679688,
+      "y": 122.66799926757812,
+      "scale": 1,
+      "zIndex": 1771
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-35-57.png",
+      "caption": "dessert",
+      "quartierId": 20,
+      "x": 1476.969970703125,
+      "y": 319.7669982910156,
+      "scale": 1,
+      "zIndex": 1780,
+      "gps": {
+        "lat": 47.534583,
+        "lon": 7.609864
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-36-45.png",
+      "caption": "fruit",
+      "quartierId": 20,
+      "x": 763.5869750976562,
+      "y": 697.5369873046875,
+      "scale": 1,
+      "zIndex": 1789,
+      "gps": {
+        "lat": 47.533194,
+        "lon": 7.611228
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-37-26.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 1456.6300048828125,
+      "y": 504.4519958496094,
+      "scale": 1,
+      "zIndex": 1783,
+      "gps": {
+        "lat": 47.516394,
+        "lon": 7.554839
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-38-44.png",
+      "caption": "food",
+      "quartierId": 20,
+      "x": 1321.1099853515625,
+      "y": 498.1820068359375,
+      "scale": 0.3,
+      "zIndex": 1784,
+      "gps": {
+        "lat": 47.516281,
+        "lon": 7.554886
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-53-29.png",
+      "caption": "caterpillar",
+      "quartierId": 20,
+      "x": 1558.97998046875,
+      "y": 473.3169860839844,
+      "scale": 0.3,
+      "zIndex": 1785,
+      "gps": {
+        "lat": 46.779381,
+        "lon": 9.856097
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-54-20.png",
+      "caption": "artwork",
+      "quartierId": 3,
+      "x": 1211.9000244140625,
+      "y": 576.4229736328125,
+      "scale": 1.712743367064843,
+      "zIndex": 1787,
+      "gps": {
+        "lat": 47.553672,
+        "lon": 7.594267
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-55-37.png",
+      "caption": "fighter",
+      "quartierId": 20,
+      "x": 1368.72998046875,
+      "y": 535.39599609375,
+      "scale": 1,
+      "zIndex": 1790,
+      "gps": {
+        "lat": 47.209153,
+        "lon": 7.525481
+      }
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-06-12-56-35.png",
+      "caption": "books",
+      "quartierId": 3,
+      "x": 1367.5899658203125,
+      "y": 575.9760131835938,
+      "scale": 1,
+      "zIndex": 1791,
+      "gps": {
+        "lat": 47.553233,
+        "lon": 7.590744
+      }
     }
   ]
 }

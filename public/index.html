@@ -18,28 +18,14 @@
     <aside class="sidebar">
         <!-- Title -->
         <div class="app-title">
-            <h1>Basel Simplified</h1>
-            <span class="version">Version 1.0</span>
-        </div>
-
-        <!-- Status Indicators -->
-        <div class="status-indicators">
-            <div class="status-indicator">
-                <div class="status-light" id="connection-status"></div>
-                <span class="status-label">Connection</span>
-            </div>
-            <div class="status-indicator hands-indicator">
-                <div class="status-light" id="hand-left-status"></div>
-                <div class="status-light" id="hand-right-status"></div>
-                <span class="status-label">Hands</span>
-            </div>
+            <img src="title_logo.jpg" alt="Basel Simplified" class="title-logo" />
         </div>
 
         <!-- Mode Switch -->
         <div class="section mode-switch-section">
             <div class="mode-switch-container">
-                <button class="mode-switch-btn active" data-mode="scene">Scene Mode</button>
-                <button class="mode-switch-btn" data-mode="grid">Grid Mode</button>
+                <button class="mode-switch-btn" data-mode="scene">Scene Mode</button>
+                <button class="mode-switch-btn active" data-mode="grid">Grid Mode</button>
             </div>
         </div>
 
@@ -47,24 +33,22 @@
         <div class="section upload-section">
             <label for="image-upload" class="upload-preview-combined">
                 <input type="file" id="image-upload" accept="image/*" hidden />
-                <div id="upload-preview" class="upload-preview">
-                    <span class="preview-placeholder">Add Image</span>
-                </div>
+                <img id="upload-preview" class="upload-preview" src="addimg.jpg" alt="Add Image" />
             </label>
         </div>
 
-        <!-- Generate and Cancel Buttons -->
+        <!-- Generate Button -->
         <div style="display: flex; gap: 8px;">
-            <button id="generate-btn" class="generate-btn" style="flex: 1;">
-                <span class="btn-text">Generate</span>
-            </button>
-            <button id="cancel-btn" class="cancel-btn hidden">Cancel</button>
+            <img id="generate-btn" class="generate-btn" src="gen-button.jpg" style="flex: 1; cursor: pointer;" />
         </div>
 
         <!-- Progress Section -->
         <div id="progress-container" class="section progress-section hidden">
-            <div class="progress-bar">
-                <div id="progress-fill" class="progress-fill"></div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar" style="flex: 1;">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <button id="cancel-btn" class="cancel-btn">×</button>
             </div>
             <div id="progress-text" class="progress-text">Generating...</div>
             <div id="status-updates" class="status-updates"></div>
@@ -150,11 +134,14 @@
                     <span class="quartier-count" data-count="19">0</span>
                 </button>
                 <button class="quartier-toggle" data-quartier="20">
-                    <span class="quartier-name">Ausserhalb Basel</span>
+                    <span class="quartier-name">Unknown</span>
                     <span class="quartier-count" data-count="20">0</span>
                 </button>
             </div>
         </div>
+
+        <!-- Info Button -->
+        <button id="info-btn" class="info-btn" aria-label="Project Information">i</button>
     </aside>
 
     <!-- Main Canvas Area -->
@@ -170,8 +157,11 @@
     <!-- Hand Tracking Camera -->
     <div id="p5-container"></div>
 
-    <!-- Info Button -->
-    <button id="info-btn" class="info-btn" aria-label="Project Information">i</button>
+    <!-- Scene Control Buttons -->
+    <div id="scene-controls" class="scene-controls">
+        <button id="random-images-btn" class="scene-control-btn" title="Add 6 Random Images">Random 6</button>
+        <button id="normalize-size-btn" class="scene-control-btn" title="Make All Same Size">Same Size</button>
+    </div>
 
     <!-- Info Modal -->
     <div id="info-modal" class="info-modal hidden">

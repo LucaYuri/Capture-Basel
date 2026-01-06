@@ -10,14 +10,18 @@ const progressContainer = document.getElementById("progress-container");
 const progressFill = document.getElementById("progress-fill");
 const progressText = document.getElementById("progress-text");
 const statusUpdates = document.getElementById("status-updates");
-const connectionStatus = document.getElementById("connection-status");
-const handLeftStatus = document.getElementById("hand-left-status");
-const handRightStatus = document.getElementById("hand-right-status");
+const randomImagesBtn = document.getElementById("random-images-btn");
+const normalizeSizeBtn = document.getElementById("normalize-size-btn");
+// Status indicators removed
+// const connectionStatus = document.getElementById("connection-status");
+// const handLeftStatus = document.getElementById("hand-left-status");
+// const handRightStatus = document.getElementById("hand-right-status");
 
 let uploadedImageFile = null;
+let hoverInterval = null;
 let currentQuartier = null;
 let currentAbortController = null;
-let currentMode = "scene"; // 'scene' oder 'grid'
+let currentMode = "grid"; // 'scene' oder 'grid'
 
 // Mode Switch Event Listeners
 document.querySelectorAll(".mode-switch-btn").forEach((btn) => {
@@ -184,6 +188,11 @@ function populateGrid() {
       flipCardInner.appendChild(flipCardFront);
       flipCardInner.appendChild(flipCardBack);
       flipCard.appendChild(flipCardInner);
+
+      // Apply random tilt to card
+      const randomRotation = (Math.random() * 8 - 4).toFixed(2);
+      flipCard.style.transform = `rotate(${randomRotation}deg)`;
+
       gridItem.appendChild(flipCard);
       gridContainer.appendChild(gridItem);
     }
@@ -242,43 +251,28 @@ function updateQuartierCounts() {
   buttons.forEach((button) => grid.appendChild(button));
 }
 
-// Check internet connection
-function checkConnection() {
-  if (navigator.onLine) {
-    connectionStatus.classList.add("online");
-    connectionStatus.classList.remove("offline");
-  } else {
-    connectionStatus.classList.add("offline");
-    connectionStatus.classList.remove("online");
-  }
-}
+// Check internet connection - disabled (status indicators removed)
+// function checkConnection() {
+//   if (navigator.onLine) {
+//     connectionStatus.classList.add("online");
+//     connectionStatus.classList.remove("offline");
+//   } else {
+//     connectionStatus.classList.add("offline");
+//     connectionStatus.classList.remove("online");
+//   }
+// }
 
 // Initial connection check
-checkConnection();
+// checkConnection();
 
 // Listen for connection changes
-window.addEventListener("online", checkConnection);
-window.addEventListener("offline", checkConnection);
+// window.addEventListener("online", checkConnection);
+// window.addEventListener("offline", checkConnection);
 
-// Export hand status update function for handtracking.js
+// Export hand status update function for handtracking.js - disabled (status indicators removed)
 window.updateHandStatus = function (handCount) {
-  // Hand 1 (linke Hand im Kamerabild = rechte Hand real)
-  if (handCount >= 1) {
-    handLeftStatus.classList.add("detecting");
-    handLeftStatus.classList.remove("offline");
-  } else {
-    handLeftStatus.classList.remove("detecting");
-    handLeftStatus.classList.add("offline");
-  }
-
-  // Hand 2 (rechte Hand im Kamerabild = linke Hand real)
-  if (handCount >= 2) {
-    handRightStatus.classList.add("detecting");
-    handRightStatus.classList.remove("offline");
-  } else {
-    handRightStatus.classList.remove("detecting");
-    handRightStatus.classList.add("offline");
-  }
+  // Hand status indicators removed from UI
+  // Function kept for compatibility with handtracking.js
 };
 
 // GSAP Draggable Plugin registrieren
@@ -331,6 +325,9 @@ function addImageToQuartier(quartierId, imageData) {
 async function savePositions() {
   const positions = [];
 
+  // Sammle zuerst alle Bilder mit DOM-Elementen (sichtbar im Scene)
+  const visibleImages = new Map(); // URL -> position data
+
   document.querySelectorAll(".image-container").forEach((container) => {
     const img = container.querySelector("img");
     const imageUrl = img.src.replace(window.location.origin, ""); // Relative URL
@@ -362,8 +359,27 @@ async function savePositions() {
       };
     }
 
+    visibleImages.set(imageUrl, position);
     positions.push(position);
   });
+
+  // Füge ALLE anderen Bilder aus quartierImages hinzu (die nicht sichtbar sind)
+  for (let i = 1; i <= 20; i++) {
+    for (const imgData of quartierImages[i]) {
+      // Nur hinzufügen wenn NICHT bereits als sichtbares Bild erfasst
+      if (!visibleImages.has(imgData.url)) {
+        positions.push({
+          imageUrl: imgData.url,
+          caption: imgData.caption || "object",
+          quartierId: i,
+          x: 0,
+          y: 0,
+          scale: 1,
+          zIndex: 1000
+        });
+      }
+    }
+  }
 
   console.log("💾 Saving positions:", positions.length, "images");
   console.log("Positions data:", positions);
@@ -446,12 +462,10 @@ function createDraggableImage(
   // Zum Body hinzufügen
   document.body.appendChild(container);
 
-  // GSAP Draggable mit inertialer Glättung
+  // GSAP Draggable ohne Inertia für direktes Folgen der Maus
   const draggableInstance = Draggable.create(container, {
     type: "x,y",
-    inertia: true,
-    dragResistance: 0.3,
-    edgeResistance: 0.5,
+    inertia: false,
     onPress: function () {
       // Bringe Element nach vorne beim Greifen
       container.style.zIndex = imageZIndex++;
@@ -504,7 +518,10 @@ function createDraggableImage(
     scale += e.deltaY * -0.001;
     scale = Math.min(Math.max(0.1, scale), 5);
     container.dataset.scale = scale;
-    gsap.to(container, { scale: scale, duration: 0.1 });
+    gsap.to(container, {
+      scale: scale,
+      duration: 0.1,
+    });
     // Speichere Skalierung
     debouncedSave();
   });
@@ -644,6 +661,9 @@ async function loadSavedPositions() {
 window.addEventListener("DOMContentLoaded", async () => {
   // Lade gespeicherte Bilder
   await loadSavedPositions();
+
+  // Aktiviere Grid-Modus als Standard
+  switchToGridMode();
 
   // Info Button Event Listeners
   const infoBtn = document.getElementById("info-btn");
@@ -793,12 +813,13 @@ imageUpload.addEventListener("change", (e) => {
     uploadedImageFile = file;
     const reader = new FileReader();
     reader.onload = (event) => {
-      uploadPreview.innerHTML = `<img src="${event.target.result}" alt="Uploaded image" />`;
+      uploadPreview.src = event.target.result;
+      uploadPreviewCombined.classList.add("has-uploaded-image");
     };
     reader.readAsDataURL(file);
 
     // Visual feedback
-    gsap.from(uploadPreview.querySelector("img"), {
+    gsap.from(uploadPreview, {
       scale: 0.9,
       opacity: 0,
       duration: 0.3,
@@ -818,8 +839,13 @@ cancelBtn.addEventListener("click", () => {
       progressContainer.classList.add("hidden");
       progressFill.style.backgroundColor = "";
       cancelBtn.classList.add("hidden");
-      generateBtn.disabled = false;
+      generateBtn.classList.remove("disabled");
       uploadPreviewCombined.classList.remove("disabled");
+      if (hoverInterval) {
+        clearInterval(hoverInterval);
+        hoverInterval = null;
+        generateBtn.src = "gen-button.jpg";
+      }
     }, 1500);
   }
 });
@@ -832,9 +858,18 @@ generateBtn.addEventListener("click", async () => {
   }
 
   // Disable UI elements during generation
-  generateBtn.disabled = true;
+  generateBtn.classList.add("disabled");
   uploadPreviewCombined.classList.add("disabled");
   cancelBtn.classList.remove("hidden");
+
+  // Start image hover animation
+  hoverInterval = setInterval(() => {
+    if (generateBtn.src.includes("gen-button_hover.jpg")) {
+      generateBtn.src = "gen-button.jpg";
+    } else {
+      generateBtn.src = "gen-button_hover.jpg";
+    }
+  }, 400);
 
   progressContainer.classList.remove("hidden");
   progressFill.style.width = "0%";
@@ -885,8 +920,13 @@ generateBtn.addEventListener("click", async () => {
                 progressFill.style.backgroundColor = "";
                 cancelBtn.classList.add("hidden");
               }, 5000);
-              generateBtn.disabled = false;
+              generateBtn.classList.remove("disabled");
               uploadPreviewCombined.classList.remove("disabled");
+              if (hoverInterval) {
+                clearInterval(hoverInterval);
+                hoverInterval = null;
+                generateBtn.src = "gen-button.jpg";
+              }
               return;
             } else if (data.type === "result") {
               console.log("========================================");
@@ -997,9 +1037,8 @@ generateBtn.addEventListener("click", async () => {
                 cancelBtn.classList.add("hidden");
 
                 // Reset upload preview
-                uploadPreview.innerHTML = `
-                                    <span class="preview-placeholder">Add Image</span>
-                                `;
+                uploadPreview.src = "addimg.jpg";
+                uploadPreviewCombined.classList.remove("has-uploaded-image");
                 uploadedImageFile = null;
               }, 2000);
             }
@@ -1030,8 +1069,140 @@ generateBtn.addEventListener("click", async () => {
       cancelBtn.classList.add("hidden");
     }
   } finally {
-    generateBtn.disabled = false;
+    generateBtn.classList.remove("disabled");
     uploadPreviewCombined.classList.remove("disabled");
     currentAbortController = null;
+    if (hoverInterval) {
+      clearInterval(hoverInterval);
+      hoverInterval = null;
+      generateBtn.src = "gen-button.jpg";
+    }
   }
 });
+
+// Random 6 Images Button
+randomImagesBtn.addEventListener("click", () => {
+  console.log("Random button clicked!");
+  console.log("Current mode:", currentMode);
+
+  if (currentMode !== "scene") {
+    alert("Please switch to Scene Mode first!");
+    return;
+  }
+
+  // Get selected quartier
+  console.log("Current quartier:", currentQuartier);
+
+  if (!currentQuartier) {
+    alert("Please select a quartier first!");
+    return;
+  }
+
+  const quartierNum = currentQuartier;
+  const availableImages = quartierImages[quartierNum];
+  console.log("Available images:", availableImages.length);
+
+  if (availableImages.length === 0) {
+    alert("No images available in the selected quartier!");
+    return;
+  }
+
+  // First, clear all existing images from scene
+  const containers = document.querySelectorAll(".image-container");
+  containers.forEach(container => {
+    container.remove();
+  });
+
+  // Update the quartierImages array to mark elements as not in scene
+  for (let i = 1; i <= 20; i++) {
+    quartierImages[i].forEach(img => {
+      img.element = null;
+    });
+  }
+
+  // Get 6 random images (or less if not enough available)
+  const numImages = Math.min(6, availableImages.length);
+  const shuffled = [...availableImages].sort(() => Math.random() - 0.5);
+  const selected = shuffled.slice(0, numImages);
+  console.log("Selected images:", selected);
+
+  // Get window dimensions
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const margin = 150;
+  const minX = margin;
+  const maxX = windowWidth - margin;
+  const minY = margin;
+  const maxY = windowHeight - margin;
+
+  // Add selected images to scene
+  selected.forEach((imgData, index) => {
+    const x = minX + Math.random() * (maxX - minX);
+    const y = minY + Math.random() * (maxY - minY);
+    console.log(`Creating image ${index + 1}:`, imgData.url, "at", x, y);
+
+    createDraggableImage(imgData.url, imgData.caption, quartierNum, {
+      x,
+      y,
+      scale: 1,
+      zIndex: imageZIndex++
+    });
+  });
+
+  // NICHT speichern - das würde alle anderen Bilder überschreiben!
+  // saveImagePositions();
+});
+
+// Normalize Size Button
+normalizeSizeBtn.addEventListener("click", () => {
+  if (currentMode !== "scene") {
+    alert("Please switch to Scene Mode first!");
+    return;
+  }
+
+  const containers = document.querySelectorAll(".image-container");
+
+  if (containers.length === 0) {
+    alert("No images in the scene!");
+    return;
+  }
+
+  const standardScale = 1;
+
+  containers.forEach(container => {
+    container.dataset.scale = standardScale;
+    container.style.pointerEvents = "none";
+
+    gsap.to(container, {
+      scale: standardScale,
+      duration: 0.5,
+      ease: "power2.out",
+      onComplete: () => {
+        container.style.pointerEvents = "auto";
+      }
+    });
+  });
+
+  setTimeout(() => {
+    saveImagePositions();
+  }, 600);
+});
+
+// Apply random tilt to all buttons on page load
+function applyRandomTiltToButtons() {
+  const buttons = document.querySelectorAll('button, .generate-btn, .upload-preview-combined');
+
+  buttons.forEach(button => {
+    // Generate random rotation between -4 and 4 degrees
+    const randomRotation = (Math.random() * 8 - 4).toFixed(2);
+    button.style.transform = `rotate(${randomRotation}deg)`;
+  });
+}
+
+// Apply tilt when page loads
+applyRandomTiltToButtons();
+
+// Debug: Check if buttons are found
+console.log("clearSceneBtn:", clearSceneBtn);
+console.log("randomImagesBtn:", randomImagesBtn);
+console.log("normalizeSizeBtn:", normalizeSizeBtn);

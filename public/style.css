@@ -5,9 +5,9 @@
 }
 
 :root {
-  --primary-blue: #0077ff;
+  --primary-blue: #ff4b58;
   --bg-main: #f8f9fa;
-  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card: rgba(255, 255, 255, 1.0);
   --border-light: rgba(0, 0, 0, 0.1);
   --text-primary: #1a1a1a;
   --text-secondary: #666;
@@ -28,13 +28,14 @@ body {
 
 /* ========== SIDEBAR ========== */
 .sidebar {
-  width: 320px;
+  width: 360px;
   height: 100vh;
   background: var(--bg-card);
   backdrop-filter: blur(8px);
   border-right: 1px solid var(--border-light);
   padding: 24px;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -53,7 +54,6 @@ body {
 
 .sidebar::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
@@ -65,23 +65,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-light);
 }
 
-.app-title h1 {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.5px;
-}
-
-.app-title .version {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.title-logo {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ========== STATUS INDICATORS ========== */
@@ -91,7 +80,6 @@ body {
   gap: 16px;
   padding: 16px;
   background: rgba(0, 0, 0, 0.03);
-  border-radius: 12px;
   border: 1px solid var(--border-light);
 }
 
@@ -187,33 +175,32 @@ body {
 .mode-switch-container {
   display: flex;
   width: 100%;
-  background: var(--border-light);
-  border-radius: 8px;
-  padding: 3px;
-  gap: 3px;
+  background: transparent;
+  padding: 0;
+  gap: 8px;
 }
 
 .mode-switch-btn {
   flex: 1;
   padding: 10px 16px;
   border: none;
-  background: transparent;
-  color: var(--text-secondary);
+  background: rgba(255, 75, 88, 0.15);
+  color: rgba(255, 75, 88, 0.6);
   font-size: 13px;
   font-weight: 500;
-  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: inherit;
 }
 
 .mode-switch-btn:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 75, 88, 0.25);
+  color: rgba(255, 75, 88, 0.8);
 }
 
 .mode-switch-btn.active {
-  background: white;
-  color: var(--text-primary);
+  background: var(--primary-blue);
+  color: white;
   box-shadow: var(--shadow-sm);
 }
 
@@ -231,48 +218,28 @@ body {
 
 .upload-preview {
   width: 100%;
-  min-height: 140px;
-  background: white;
-  border: 2px dashed var(--border-light);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  overflow: hidden;
-  transition: all 0.2s ease;
+  height: auto;
+  border: none;
+  display: block;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.upload-preview:hover {
-  background: rgba(0, 119, 255, 0.06);
-  border-color: var(--primary-blue);
+.upload-preview-combined:not(.disabled):not(.has-uploaded-image)
+  .upload-preview:hover {
+  content: url("addimg_hover.jpg");
 }
 
-.upload-preview-combined.disabled .upload-preview:hover {
+.upload-preview-combined.has-uploaded-image .upload-preview {
+  border: none;
   background: white;
-  border-color: var(--border-light);
-}
-
-.upload-preview:has(img) {
-  border-style: solid;
-  min-height: 180px;
-}
-
-.upload-preview img {
-  max-width: 100%;
-  max-height: 180px;
+  padding: 8px;
   object-fit: contain;
+  max-height: 180px;
 }
 
-.upload-icon {
-  font-size: 32px;
-  transition: transform 0.2s ease;
-}
-
-.upload-preview:hover .upload-icon {
-  transform: scale(1.1);
+.upload-preview-combined.has-uploaded-image .upload-preview:hover {
+  cursor: pointer;
 }
 
 .preview-placeholder {
@@ -283,58 +250,82 @@ body {
 
 /* ========== GENERATE BUTTON ========== */
 .generate-btn {
-  padding: 16px 24px;
-  background: #1a1a1a;
-  color: white;
+  width: 100%;
+  height: auto;
   border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: var(--shadow-sm);
+  display: block;
 }
 
-.generate-btn:hover:not(:disabled) {
-  background: #333;
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
+.generate-btn:hover:not(.disabled) {
+  content: url("gen-button_hover.jpg");
 }
 
-.generate-btn:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
+.generate-btn:active:not(.disabled) {
+  transform: translateY(1px);
 }
 
-.generate-btn:disabled {
-  opacity: 0.4;
+.generate-btn.disabled {
   cursor: not-allowed;
-  transform: none;
-  background: #666;
+  pointer-events: none;
+  animation: wobble-and-hover 3s ease-in-out infinite;
+}
+
+@keyframes wobble-and-hover {
+  0% {
+    transform: rotate(-4deg);
+  }
+  12.5% {
+    transform: rotate(3deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  37.5% {
+    transform: rotate(4deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+  62.5% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-4deg);
+  }
+  87.5% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(-4deg);
+  }
 }
 
 /* ========== CANCEL BUTTON ========== */
 .cancel-btn {
-  padding: 12px 20px;
-  background: #ef4444;
-  color: white;
+  padding: 0;
+  background: transparent;
+  color: #666;
   border: none;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 300;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .cancel-btn:hover {
-  background: #dc2626;
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
+  background: transparent;
+  color: #333;
+  box-shadow: none;
+  transform: none;
 }
 
 .cancel-btn:active {
@@ -352,10 +343,9 @@ body {
 
 /* ========== PROGRESS SECTION ========== */
 .progress-section {
-  background: rgba(0, 0, 0, 0.03);
-  padding: 16px;
-  border-radius: 8px;
-  border: 1px solid var(--border-light);
+  background: none;
+  padding: 0;
+  border: none;
 }
 
 .progress-section.hidden {
@@ -366,7 +356,6 @@ body {
   width: 100%;
   height: 6px;
   background: rgba(0, 0, 0, 0.08);
-  border-radius: 3px;
   overflow: hidden;
 }
 
@@ -375,7 +364,6 @@ body {
   background: var(--primary-blue);
   width: 0%;
   transition: width 0.3s ease;
-  border-radius: 3px;
 }
 
 .progress-text {
@@ -399,7 +387,6 @@ body {
 .current-quartier-display {
   padding: 20px;
   background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-  border-radius: 12px;
   text-align: center;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border-light);
@@ -424,14 +411,15 @@ body {
 
 /* ========== QUARTIERE SECTION ========== */
 .quartiere-section {
-  flex: 1;
-  overflow-y: auto;
+  flex: 4;
+  overflow: hidden;
 }
 
 .quartiere-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
+  gap: 4px;
+  overflow: hidden;
 }
 
 /* ========== QUARTIER TOGGLE BUTTONS ========== */
@@ -440,10 +428,9 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 3px;
-  padding: 6px 8px;
+  padding: 5px 6px;
   border: none;
   background: rgba(0, 0, 0, 0.03);
-  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: inherit;
@@ -456,7 +443,7 @@ body {
 }
 
 .quartier-toggle.active {
-  background: #1a1a1a;
+  background: var(--primary-blue);
 }
 
 .quartier-toggle.active .quartier-name {
@@ -466,7 +453,7 @@ body {
 
 .quartier-toggle.active .quartier-count {
   background: white;
-  color: #1a1a1a;
+  color: var(--primary-blue);
 }
 
 .quartier-name {
@@ -487,7 +474,6 @@ body {
   color: var(--text-secondary);
   background: rgba(0, 0, 0, 0.06);
   padding: 2px 5px;
-  border-radius: 8px;
   min-width: 18px;
   text-align: center;
   transition: all 0.2s ease;
@@ -542,16 +528,21 @@ body {
 .image-container img {
   width: 15vw;
   display: block;
-  border-radius: 8px;
 }
 
 .image-container .caption {
+  position: absolute;
+  bottom: 0.5vw;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  padding: 4px 12px;
-  margin-top: 4px;
-  font-size: 13px;
+  padding: 2px 12px;
+  margin-top: 2px;
+  font-size: 0.5vw;
   font-weight: 500;
   color: var(--text-primary);
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 /* ========== HAND TRACKING CAMERA ========== */
@@ -560,7 +551,6 @@ body {
   top: 20px;
   right: 20px;
   z-index: 1;
-  border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
 }
@@ -588,7 +578,7 @@ body {
 .grid-container {
   display: none;
   position: fixed;
-  left: 320px;
+  left: 360px;
   top: 0;
   right: 0;
   bottom: 0;
@@ -658,7 +648,6 @@ body.grid-mode .hands-indicator {
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
-  border-radius: 12px;
   box-shadow: var(--shadow-sm);
   background: white;
 }
@@ -683,7 +672,6 @@ body.grid-mode .hands-indicator {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  border-radius: 12px;
 }
 
 .grid-item-caption-container {
@@ -750,38 +738,69 @@ body.grid-mode .hands-indicator {
   min-width: 60px;
 }
 
+/* ========== SCENE CONTROL BUTTONS ========== */
+.scene-controls {
+  position: fixed;
+  top: 200px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scene-control-btn {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-shadow: var(--shadow-sm);
+  min-width: 100px;
+}
+
+.scene-control-btn:hover {
+  background: white;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.scene-control-btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+body.grid-mode .scene-controls {
+  display: none;
+}
+
 /* ========== INFO BUTTON ========== */
 .info-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #1a1a1a;
-  color: white;
+  width: 50%;
+  padding: 6px;
+  background: rgba(255, 75, 88, 0.15);
+  color: rgba(255, 75, 88, 0.6);
   border: none;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 500;
   font-style: italic;
   font-family: "Georgia", serif;
   cursor: pointer;
-  box-shadow: var(--shadow-lg);
   transition: all 0.2s ease;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-top: 8px;
 }
 
 .info-btn:hover {
-  background: #333;
-  transform: scale(1.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 75, 88, 0.25);
+  color: rgba(255, 75, 88, 0.8);
 }
 
 .info-btn:active {
-  transform: scale(1.05);
+  background: rgba(255, 75, 88, 0.35);
 }
 
 /* ========== INFO MODAL ========== */
@@ -809,7 +828,6 @@ body.grid-mode .hands-indicator {
 
 .info-modal-content {
   background: white;
-  border-radius: 16px;
   padding: 32px;
   max-width: 600px;
   width: 100%;
@@ -892,7 +910,6 @@ body.grid-mode .hands-indicator {
 .info-disclaimer {
   background: rgba(239, 68, 68, 0.08);
   padding: 16px;
-  border-radius: 8px;
   border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
