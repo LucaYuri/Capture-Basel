@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bild hochladen - Capture Basel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .upload-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            margin: 0 auto 30px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9ff;
+            margin-bottom: 20px;
+        }
+
+        .upload-area:hover {
+            border-color: #764ba2;
+            background: #f0f2ff;
+        }
+
+        .upload-area.dragover {
+            border-color: #764ba2;
+            background: #e8ebff;
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .upload-hint {
+            font-size: 13px;
+            color: #888;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        .preview-container {
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .preview-container.show {
+            display: block;
+        }
+
+        .image-preview {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .file-info {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            display: none;
+        }
+
+        .status.show {
+            display: block;
+        }
+
+        .status.loading {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .progress-bar.show {
+            display: block;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 600px) {
+            .upload-container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .upload-area {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <img src="title_logo.jpg" alt="Basel Simplified" class="logo" />
+
+        <h1>Bild hochladen</h1>
+        <p class="subtitle">Lade ein Bild hoch und generiere eine stilisierte Illustration</p>
+
+        <div class="upload-area" id="upload-area">
+            <div class="upload-icon">📸</div>
+            <div class="upload-text">Klicke oder ziehe ein Bild hierher</div>
+            <div class="upload-hint">PNG, JPG, HEIC bis 10MB</div>
+        </div>
+
+        <input type="file" id="file-input" accept="image/*" />
+
+        <div class="preview-container" id="preview-container">
+            <img id="image-preview" class="image-preview" />
+            <div class="file-info" id="file-info"></div>
+            <button class="btn btn-primary" id="generate-btn">Bild generieren</button>
+            <button class="btn btn-secondary" id="change-btn">Anderes Bild wählen</button>
+        </div>
+
+        <div class="status" id="status">
+            <div id="status-text"></div>
+            <div class="progress-bar" id="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        HKG Basel FHNW - Oliver Wick & Nicolas Birrer
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('file-input');
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        const fileInfo = document.getElementById('file-info');
+        const generateBtn = document.getElementById('generate-btn');
+        const changeBtn = document.getElementById('change-btn');
+        const status = document.getElementById('status');
+        const statusText = document.getElementById('status-text');
+        const progressBar = document.getElementById('progress-bar');
+        const progressFill = document.getElementById('progress-fill');
+
+        let selectedFile = null;
+
+        // Click to upload
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Drag and drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        // File input change
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        // Change button
+        changeBtn.addEventListener('click', () => {
+            previewContainer.classList.remove('show');
+            uploadArea.style.display = 'block';
+            selectedFile = null;
+            status.classList.remove('show');
+            fileInput.value = '';
+        });
+
+        // Generate button
+        generateBtn.addEventListener('click', async () => {
+            if (!selectedFile) return;
+
+            generateBtn.disabled = true;
+            changeBtn.disabled = true;
+
+            showStatus('loading', 'Bild wird verarbeitet...');
+            progressBar.classList.add('show');
+            progressFill.style.width = '0%';
+
+            const formData = new FormData();
+            formData.append('image', selectedFile);
+
+            try {
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Upload fehlgeschlagen');
+                }
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = JSON.parse(line.substring(6));
+
+                            if (data.type === 'progress') {
+                                progressFill.style.width = data.progress + '%';
+                                statusText.textContent = data.message;
+                            } else if (data.type === 'result') {
+                                showStatus('success', 'Bild erfolgreich generiert! Es wird auf der Hauptansicht angezeigt.');
+                                progressBar.classList.remove('show');
+
+                                // Reset after 3 seconds
+                                setTimeout(() => {
+                                    previewContainer.classList.remove('show');
+                                    uploadArea.style.display = 'block';
+                                    selectedFile = null;
+                                    status.classList.remove('show');
+                                    fileInput.value = '';
+                                    generateBtn.disabled = false;
+                                    changeBtn.disabled = false;
+                                }, 3000);
+                            } else if (data.type === 'error') {
+                                throw new Error(data.message);
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                showStatus('error', 'Fehler: ' + error.message);
+                progressBar.classList.remove('show');
+                generateBtn.disabled = false;
+                changeBtn.disabled = false;
+            }
+        });
+
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showStatus('error', 'Bitte wähle eine Bilddatei aus');
+                return;
+            }
+
+            if (file.size > 10 * 1024 * 1024) {
+                showStatus('error', 'Datei ist zu gross (max. 10MB)');
+                return;
+            }
+
+            selectedFile = file;
+
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                imagePreview.src = e.target.result;
+                uploadArea.style.display = 'none';
+                previewContainer.classList.add('show');
+            };
+            reader.readAsDataURL(file);
+
+            // Show file info
+            const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+            fileInfo.textContent = `${file.name} (${sizeInMB} MB)`;
+
+            status.classList.remove('show');
+        }
+
+        function showStatus(type, message) {
+            status.className = 'status show ' + type;
+            statusText.textContent = message;
+        }
+    </script>
+</body>
+</html>
