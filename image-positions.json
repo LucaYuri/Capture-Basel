@@ -854,6 +854,15 @@
       "y": 0,
       "scale": 1,
       "zIndex": 1000
+    },
+    {
+      "imageUrl": "/gen-images/generated-26-01-08-12-42-47.png",
+      "caption": "car",
+      "quartierId": 20,
+      "x": 1454.6400146484375,
+      "y": 522.916015625,
+      "scale": 1,
+      "zIndex": 2024
     }
   ]
 }
