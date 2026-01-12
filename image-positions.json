@@ -35,6 +35,19 @@
       "y": 241.29949951171875,
       "scale": 1,
       "zIndex": 1004
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-18-39-28.png",
+      "caption": "plushie",
+      "quartierId": 6,
+      "x": 370.9198913574219,
+      "y": 344.6418151855469,
+      "scale": 1,
+      "zIndex": 1005,
+      "gps": {
+        "lat": 47.540611,
+        "lon": 7.598639
+      }
     }
   ]
 }

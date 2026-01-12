@@ -89,8 +89,16 @@ function populateGrid() {
   // Get all image containers and convert to array
   const allImages = Array.from(document.querySelectorAll(".image-container"));
 
-  // Reverse the array so newest images come first
-  allImages.reverse();
+  // Sort by filename (which contains timestamp) to show newest first
+  allImages.sort((a, b) => {
+    const imgA = a.querySelector("img");
+    const imgB = b.querySelector("img");
+    if (!imgA || !imgB) return 0;
+
+    const filenameA = imgA.src.split("/").pop();
+    const filenameB = imgB.src.split("/").pop();
+    return filenameB.localeCompare(filenameA); // Descending order (newest first)
+  });
 
   allImages.forEach((container) => {
     const img = container.querySelector("img");
@@ -1324,8 +1332,12 @@ if (isMobile) {
       }
     }
 
-    // Reverse to show newest first
-    allImages.reverse();
+    // Sort by filename (which contains timestamp) to show newest first
+    allImages.sort((a, b) => {
+      const filenameA = a.url.split("/").pop();
+      const filenameB = b.url.split("/").pop();
+      return filenameB.localeCompare(filenameA); // Descending order (newest first)
+    });
 
     console.log("📱 Populating mobile grid with", allImages.length, "images");
 
@@ -1347,9 +1359,12 @@ if (isMobile) {
       gridItem.className = "mobile-grid-item";
       gridItem.dataset.quartier = quartierId;
 
-      // Create flip card
+      // Create flip card structure
       const flipCard = document.createElement("div");
       flipCard.className = "mobile-flip-card";
+
+      const flipCardInner = document.createElement("div");
+      flipCardInner.className = "mobile-flip-card-inner";
 
       // Random tilt
       const randomRotation = (Math.random() * 6 - 3).toFixed(2);
@@ -1436,18 +1451,26 @@ if (isMobile) {
         }
       });
 
-      flipCard.appendChild(front);
-      flipCard.appendChild(back);
+      flipCardInner.appendChild(front);
+      flipCardInner.appendChild(back);
+      flipCard.appendChild(flipCardInner);
       gridItem.appendChild(flipCard);
 
       // Flip on tap
       let autoFlipTimeout = null;
       front.addEventListener("click", (e) => {
         e.stopPropagation();
-        flipCard.classList.add("flipped");
-        autoFlipTimeout = setTimeout(() => {
+        const isFlipped = flipCard.classList.contains("flipped");
+
+        if (!isFlipped) {
+          flipCard.classList.add("flipped");
+          autoFlipTimeout = setTimeout(() => {
+            flipCard.classList.remove("flipped");
+          }, 3000);
+        } else {
           flipCard.classList.remove("flipped");
-        }, 3000);
+          if (autoFlipTimeout) clearTimeout(autoFlipTimeout);
+        }
       });
 
       back.addEventListener("click", (e) => {
