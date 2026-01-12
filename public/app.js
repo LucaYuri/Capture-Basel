@@ -90,6 +90,7 @@ function populateGrid() {
   const allImages = Array.from(document.querySelectorAll(".image-container"));
 
   // Sort by filename (which contains timestamp) to show newest first
+  // Format: generated-YY-MM-DD-HH-MM-SS.png
   allImages.sort((a, b) => {
     const imgA = a.querySelector("img");
     const imgB = b.querySelector("img");
@@ -97,7 +98,21 @@ function populateGrid() {
 
     const filenameA = imgA.src.split("/").pop();
     const filenameB = imgB.src.split("/").pop();
-    return filenameB.localeCompare(filenameA); // Descending order (newest first)
+
+    // Extract timestamp from filename
+    const matchA = filenameA.match(/generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/);
+    const matchB = filenameB.match(/generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/);
+
+    if (!matchA && !matchB) return 0;
+    if (!matchA) return 1;
+    if (!matchB) return -1;
+
+    // Compare timestamps as strings (YY-MM-DD-HH-MM-SS format sorts correctly)
+    const timeA = matchA[0].replace('generated-', '');
+    const timeB = matchB[0].replace('generated-', '');
+
+    // Newest first: B > A returns negative (B comes before A)
+    return timeB.localeCompare(timeA);
   });
 
   allImages.forEach((container) => {
@@ -1344,10 +1359,25 @@ if (isMobile) {
     }
 
     // Sort by filename (which contains timestamp) to show newest first
+    // Format: generated-YY-MM-DD-HH-MM-SS.png
     allImages.sort((a, b) => {
       const filenameA = a.url.split("/").pop();
       const filenameB = b.url.split("/").pop();
-      return filenameB.localeCompare(filenameA); // Descending order (newest first)
+
+      // Extract timestamp from filename
+      const matchA = filenameA.match(/generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/);
+      const matchB = filenameB.match(/generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/);
+
+      if (!matchA && !matchB) return 0;
+      if (!matchA) return 1;
+      if (!matchB) return -1;
+
+      // Compare timestamps as strings (YY-MM-DD-HH-MM-SS format sorts correctly)
+      const timeA = matchA[0].replace('generated-', '');
+      const timeB = matchB[0].replace('generated-', '');
+
+      // Newest first: B > A returns negative (B comes before A)
+      return timeB.localeCompare(timeA);
     });
 
     console.log("📱 Populating mobile grid with", allImages.length, "images");
