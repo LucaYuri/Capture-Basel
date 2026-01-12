@@ -146,11 +146,76 @@ function populateGrid() {
       const flipCardBack = document.createElement("div");
       flipCardBack.className = "flip-card-back";
 
+      const imageUrlRelative = img.src.replace(window.location.origin, "");
+
       flipCardBack.innerHTML = `
         <div class="info-header">Bilddetails</div>
         <div class="info-row"><strong>Quartier:</strong> ${quartierName}</div>
         <div class="info-row"><strong>Datum:</strong> ${dateTimeStr}</div>
+        <div class="card-buttons">
+          <button class="download-btn" data-src="${img.src}" data-filename="${imageFilename}">Download</button>
+          <button class="delete-btn" data-src="${imageUrlRelative}" data-quartier="${quartierId}">&times;</button>
+        </div>
       `;
+
+      // Download button click handler
+      const downloadBtn = flipCardBack.querySelector(".download-btn");
+      downloadBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const imgSrc = e.target.dataset.src;
+        const filename = e.target.dataset.filename;
+
+        // Create temporary link and trigger download
+        const link = document.createElement("a");
+        link.href = imgSrc;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+
+      // Delete button click handler
+      const deleteBtn = flipCardBack.querySelector(".delete-btn");
+      deleteBtn.addEventListener("click", async (e) => {
+        e.stopPropagation();
+
+        if (!confirm("Bild wirklich löschen?")) {
+          return;
+        }
+
+        const imgSrc = e.target.dataset.src;
+        const qId = parseInt(e.target.dataset.quartier);
+
+        try {
+          // Delete from server
+          const response = await fetch("/api/delete-image", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ imageUrl: imgSrc }),
+          });
+
+          if (response.ok) {
+            // Remove from quartierImages array
+            const index = quartierImages[qId].findIndex((img) => img.url === imgSrc);
+            if (index > -1) {
+              quartierImages[qId].splice(index, 1);
+            }
+
+            // Remove grid item from DOM
+            gridItem.remove();
+
+            // Update quartier counts
+            updateQuartierCounts();
+
+            console.log("Image deleted:", imgSrc);
+          } else {
+            alert("Fehler beim Löschen des Bildes");
+          }
+        } catch (error) {
+          console.error("Delete error:", error);
+          alert("Fehler beim Löschen des Bildes");
+        }
+      });
 
       let autoFlipTimeout = null;
 

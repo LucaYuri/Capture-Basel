@@ -391,6 +391,48 @@ app.post('/api/positions', (req, res) => {
     }
 });
 
+// Endpunkt zum Löschen eines Bildes
+app.post('/api/delete-image', (req, res) => {
+    try {
+        const { imageUrl } = req.body;
+
+        if (!imageUrl) {
+            return res.status(400).json({ error: 'No image URL provided' });
+        }
+
+        console.log('Deleting image:', imageUrl);
+
+        // Delete the actual image file
+        const imagePath = join(__dirname, 'public', imageUrl);
+        const altImagePath = join(__dirname, imageUrl.startsWith('/') ? imageUrl.slice(1) : imageUrl);
+
+        if (fs.existsSync(imagePath)) {
+            fs.unlinkSync(imagePath);
+            console.log('Deleted file:', imagePath);
+        } else if (fs.existsSync(altImagePath)) {
+            fs.unlinkSync(altImagePath);
+            console.log('Deleted file:', altImagePath);
+        } else {
+            console.log('File not found, but continuing to update positions');
+        }
+
+        // Remove from image-positions.json
+        const positionsPath = join(__dirname, 'image-positions.json');
+        if (fs.existsSync(positionsPath)) {
+            const data = JSON.parse(fs.readFileSync(positionsPath, 'utf8'));
+            const originalLength = data.images.length;
+            data.images = data.images.filter(img => img.imageUrl !== imageUrl);
+            fs.writeFileSync(positionsPath, JSON.stringify(data, null, 2));
+            console.log(`Removed from positions: ${originalLength} -> ${data.images.length}`);
+        }
+
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error deleting image:', error);
+        res.status(500).json({ error: 'Failed to delete image' });
+    }
+});
+
 app.post('/api/generate', upload.single('image'), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: 'No image file provided' });
