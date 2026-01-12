@@ -732,12 +732,20 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   // Info Button Event Listeners
   const infoBtn = document.getElementById("info-btn");
+  const mobileInfoBtn = document.getElementById("mobile-info-btn");
   const infoModal = document.getElementById("info-modal");
   const infoCloseBtn = document.getElementById("info-close-btn");
 
   infoBtn.addEventListener("click", () => {
     infoModal.classList.remove("hidden");
   });
+
+  // Mobile info button
+  if (mobileInfoBtn) {
+    mobileInfoBtn.addEventListener("click", () => {
+      infoModal.classList.remove("hidden");
+    });
+  }
 
   infoCloseBtn.addEventListener("click", () => {
     infoModal.classList.add("hidden");
@@ -1267,7 +1275,401 @@ function applyRandomTiltToButtons() {
 // Apply tilt when page loads
 applyRandomTiltToButtons();
 
-// Debug: Check if buttons are found
-console.log("clearSceneBtn:", clearSceneBtn);
-console.log("randomImagesBtn:", randomImagesBtn);
-console.log("normalizeSizeBtn:", normalizeSizeBtn);
+// Debug: Check if buttons are found (removed - causes error on mobile)
+// console.log("clearSceneBtn:", clearSceneBtn);
+// console.log("randomImagesBtn:", randomImagesBtn);
+// console.log("normalizeSizeBtn:", normalizeSizeBtn);
+
+// ========== MOBILE DETECTION & SETUP ==========
+const isMobile = window.innerWidth <= 768;
+console.log("🔍 Window width:", window.innerWidth, "isMobile:", isMobile);
+
+if (isMobile) {
+  console.log("📱 Mobile detected - initializing mobile layout");
+
+  // Force grid mode on mobile
+  currentMode = "grid";
+  document.body.classList.add("grid-mode");
+
+  // Mobile DOM Elements
+  const mobileGridContainer = document.getElementById("mobile-grid-container");
+  const mobileUploadLabel = document.getElementById("mobile-upload-label");
+  const mobileFileInput = document.getElementById("mobile-image-upload");
+  const mobileUploadPreview = document.getElementById("mobile-upload-preview");
+  const mobileGenerateBtn = document.getElementById("mobile-generate-btn");
+  const mobileProgressBarContainer = document.getElementById("mobile-progress-bar-container");
+  const mobileProgressBarFill = document.getElementById("mobile-progress-bar-fill");
+  const mobileProgressTextSmall = document.getElementById("mobile-progress-text-small");
+  const mobileInfoBtn = document.getElementById("mobile-info-btn");
+
+  let mobileAbortController = null;
+  let mobileImageSwapInterval = null;
+
+  // ===== MOBILE GRID POPULATION =====
+  function populateMobileGrid() {
+    if (!mobileGridContainer) return;
+
+    mobileGridContainer.innerHTML = "";
+
+    // Collect all images from all quartiers
+    const allImages = [];
+    for (let i = 1; i <= 20; i++) {
+      if (quartierImages[i]) {
+        quartierImages[i].forEach(img => {
+          allImages.push({
+            ...img,
+            quartierId: i
+          });
+        });
+      }
+    }
+
+    // Reverse to show newest first
+    allImages.reverse();
+
+    console.log("📱 Populating mobile grid with", allImages.length, "images");
+
+    allImages.forEach((imgData) => {
+      const quartierId = imgData.quartierId;
+      const quartierName = quartierIdToName[quartierId] || "Unbekannt";
+
+      // Extract date from filename
+      const imageFilename = imgData.url.split("/").pop();
+      const match = imageFilename.match(/generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/);
+      let dateTimeStr = "Unbekannt";
+      if (match) {
+        const [_, year, month, day, hour, minute, second] = match;
+        dateTimeStr = `${day}.${month}.20${year} ${hour}:${minute}`;
+      }
+
+      // Create grid item
+      const gridItem = document.createElement("div");
+      gridItem.className = "mobile-grid-item";
+      gridItem.dataset.quartier = quartierId;
+
+      // Create flip card
+      const flipCard = document.createElement("div");
+      flipCard.className = "mobile-flip-card";
+
+      // Random tilt
+      const randomRotation = (Math.random() * 6 - 3).toFixed(2);
+      flipCard.style.transform = `rotate(${randomRotation}deg)`;
+
+      // FRONT
+      const front = document.createElement("div");
+      front.className = "mobile-flip-card-front";
+
+      const img = document.createElement("img");
+      img.src = imgData.url;
+      img.alt = imgData.caption || "Generated image";
+      img.loading = "lazy";
+
+      const caption = document.createElement("div");
+      caption.className = "mobile-flip-card-caption";
+      caption.textContent = imgData.caption || "Objekt";
+
+      front.appendChild(img);
+      front.appendChild(caption);
+
+      // BACK
+      const back = document.createElement("div");
+      back.className = "mobile-flip-card-back";
+
+      const imageUrlRelative = imgData.url.replace(window.location.origin, "");
+
+      back.innerHTML = `
+        <div class="mobile-card-info">
+          <div class="mobile-info-header">Details</div>
+          <div class="mobile-info-row"><strong>Quartier:</strong> ${quartierName}</div>
+          <div class="mobile-info-row"><strong>Datum:</strong> ${dateTimeStr}</div>
+          <div class="mobile-info-row"><strong>Objekt:</strong> ${imgData.caption || "—"}</div>
+        </div>
+        <div class="mobile-card-buttons">
+          <button class="mobile-download-btn" data-src="${imgData.url}" data-filename="${imageFilename}">Download</button>
+          <button class="mobile-delete-btn" data-src="${imageUrlRelative}" data-quartier="${quartierId}">&times;</button>
+        </div>
+      `;
+
+      // Download handler
+      const downloadBtn = back.querySelector(".mobile-download-btn");
+      downloadBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const link = document.createElement("a");
+        link.href = e.target.dataset.src;
+        link.download = e.target.dataset.filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+
+      // Delete handler
+      const deleteBtn = back.querySelector(".mobile-delete-btn");
+      deleteBtn.addEventListener("click", async (e) => {
+        e.stopPropagation();
+
+        if (!confirm("Bild wirklich löschen?")) return;
+
+        const imgSrc = e.target.dataset.src;
+        const qId = parseInt(e.target.dataset.quartier);
+
+        try {
+          const response = await fetch("/api/delete-image", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ imageUrl: imgSrc }),
+          });
+
+          if (response.ok) {
+            const index = quartierImages[qId].findIndex((img) => img.url === imgSrc);
+            if (index > -1) {
+              quartierImages[qId].splice(index, 1);
+            }
+            gridItem.remove();
+            updateQuartierCounts();
+            console.log("🗑️ Image deleted:", imgSrc);
+          } else {
+            alert("Fehler beim Löschen");
+          }
+        } catch (error) {
+          console.error("Delete error:", error);
+          alert("Fehler beim Löschen");
+        }
+      });
+
+      flipCard.appendChild(front);
+      flipCard.appendChild(back);
+      gridItem.appendChild(flipCard);
+
+      // Flip on tap
+      let autoFlipTimeout = null;
+      front.addEventListener("click", (e) => {
+        e.stopPropagation();
+        flipCard.classList.add("flipped");
+        autoFlipTimeout = setTimeout(() => {
+          flipCard.classList.remove("flipped");
+        }, 3000);
+      });
+
+      back.addEventListener("click", (e) => {
+        if (e.target.tagName !== "BUTTON") {
+          e.stopPropagation();
+          flipCard.classList.remove("flipped");
+          if (autoFlipTimeout) clearTimeout(autoFlipTimeout);
+        }
+      });
+
+      mobileGridContainer.appendChild(gridItem);
+    });
+  }
+
+  // Initial populate
+  setTimeout(populateMobileGrid, 100);
+
+  // ===== MOBILE FILE UPLOAD =====
+  mobileFileInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    console.log("📱 Mobile file selected:", file);
+    if (file) {
+      uploadedImageFile = file;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        mobileUploadPreview.src = event.target.result;
+        mobileUploadLabel.classList.add("has-image");
+        console.log("📱 Mobile preview updated");
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // ===== MOBILE GENERATE =====
+  mobileGenerateBtn.addEventListener("click", async () => {
+    console.log("📱 Generate button clicked. uploadedImageFile:", uploadedImageFile);
+
+    if (!uploadedImageFile) {
+      console.log("📱 No file uploaded, showing error");
+      // Shake animation on upload button
+      mobileUploadLabel.classList.add("shake");
+      setTimeout(() => {
+        mobileUploadLabel.classList.remove("shake");
+      }, 500);
+
+      // Show error message in inline progress bar
+      mobileProgressBarContainer.classList.add("active");
+      mobileProgressBarFill.style.width = "100%";
+      mobileProgressBarFill.style.background = "#ef4444";
+      mobileProgressTextSmall.textContent = "Bitte zuerst ein Bild hochladen!";
+
+      setTimeout(() => {
+        mobileProgressBarContainer.classList.remove("active");
+        mobileProgressBarFill.style.background = "";
+        mobileProgressBarFill.style.width = "0%";
+      }, 2500);
+
+      return;
+    }
+
+    console.log("📱 Starting generation process...");
+
+    // Show inline progress bar
+    mobileProgressBarContainer.classList.add("active");
+    mobileProgressBarFill.style.width = "0%";
+    mobileProgressBarFill.style.background = "";
+    mobileProgressTextSmall.textContent = "Analysiere Bild...";
+
+    // Disable and start wobbling generate button with image swap
+    mobileGenerateBtn.classList.add("disabled", "wobbling");
+
+    // Start image swapping animation
+    mobileImageSwapInterval = setInterval(() => {
+      if (mobileGenerateBtn.src.includes("gen-button_hover.jpg")) {
+        mobileGenerateBtn.src = "gen-button.jpg";
+      } else {
+        mobileGenerateBtn.src = "gen-button_hover.jpg";
+      }
+    }, 400);
+
+    mobileAbortController = new AbortController();
+
+    const formData = new FormData();
+    formData.append("image", uploadedImageFile);
+
+    try {
+      const response = await fetch("/api/generate", {
+        method: "POST",
+        body: formData,
+        signal: mobileAbortController.signal,
+      });
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value);
+        const lines = chunk.split("\n");
+
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            try {
+              const data = JSON.parse(line.slice(6));
+
+              if (data.type === "progress") {
+                mobileProgressBarFill.style.width = `${data.progress}%`;
+                mobileProgressTextSmall.textContent = data.message || "Wird verarbeitet...";
+              } else if (data.type === "error") {
+                mobileProgressTextSmall.textContent = data.message || "Fehler";
+                mobileProgressBarFill.style.background = "#ef4444";
+
+                // Stop wobble and image swap
+                mobileGenerateBtn.classList.remove("disabled", "wobbling");
+                if (mobileImageSwapInterval) {
+                  clearInterval(mobileImageSwapInterval);
+                  mobileImageSwapInterval = null;
+                  mobileGenerateBtn.src = "gen-button.jpg";
+                }
+
+                setTimeout(() => {
+                  mobileProgressBarContainer.classList.remove("active");
+                  mobileProgressBarFill.style.background = "";
+                }, 2500);
+                return;
+              } else if (data.type === "result") {
+                mobileProgressBarFill.style.width = "100%";
+                mobileProgressTextSmall.textContent = `"${data.detectedObject}" generiert!`;
+
+                // Determine quartier ID
+                let quartierId = 20;
+                if (data.quartier?.name) {
+                  quartierId = quartierNameToId[data.quartier.name] || 20;
+                } else if (data.quartier?.label) {
+                  quartierId = quartierNameToId[data.quartier.label] || 20;
+                }
+
+                // Create draggable image for desktop (needed for data consistency)
+                const imageContainer = createDraggableImage(
+                  data.imageUrl,
+                  data.detectedObject,
+                  quartierId,
+                  null,
+                  data.gps || null
+                );
+
+                // Add to quartierImages
+                addImageToQuartier(quartierId, {
+                  url: data.imageUrl,
+                  element: imageContainer,
+                  caption: data.detectedObject,
+                  gps: data.gps,
+                });
+
+                // Update counts
+                updateQuartierCounts();
+
+                // Refresh mobile grid
+                populateMobileGrid();
+
+                // Save positions
+                savePositions();
+
+                // Stop wobble and image swap
+                mobileGenerateBtn.classList.remove("disabled", "wobbling");
+                if (mobileImageSwapInterval) {
+                  clearInterval(mobileImageSwapInterval);
+                  mobileImageSwapInterval = null;
+                  mobileGenerateBtn.src = "gen-button.jpg";
+                }
+
+                // Reset after delay
+                setTimeout(() => {
+                  mobileProgressBarContainer.classList.remove("active");
+                  mobileUploadPreview.src = "addimg.jpg";
+                  mobileUploadLabel.classList.remove("has-image");
+                  uploadedImageFile = null;
+                }, 1500);
+              }
+            } catch (e) {
+              console.error("Error parsing SSE:", e);
+            }
+          }
+        }
+      }
+    } catch (error) {
+      if (error.name === "AbortError") {
+        console.log("Generation cancelled");
+        mobileProgressTextSmall.textContent = "Abgebrochen";
+      } else {
+        console.error("Error generating:", error);
+        mobileProgressTextSmall.textContent = "Fehler beim Generieren";
+      }
+
+      // Stop wobble and image swap
+      mobileGenerateBtn.classList.remove("disabled", "wobbling");
+      if (mobileImageSwapInterval) {
+        clearInterval(mobileImageSwapInterval);
+        mobileImageSwapInterval = null;
+        mobileGenerateBtn.src = "gen-button.jpg";
+      }
+
+      setTimeout(() => {
+        mobileProgressBarContainer.classList.remove("active");
+      }, 1500);
+    } finally {
+      mobileAbortController = null;
+    }
+  });
+
+  // ===== MOBILE INFO BUTTON =====
+  if (mobileInfoBtn) {
+    mobileInfoBtn.addEventListener("click", () => {
+      const infoModal = document.getElementById("info-modal");
+      if (infoModal) {
+        infoModal.classList.remove("hidden");
+      }
+    });
+  }
+
+  // Export for external use
+  window.populateMobileGrid = populateMobileGrid;
+}

@@ -189,6 +189,46 @@
         </div>
     </div>
 
+    <!-- Mobile Header -->
+    <header id="mobile-header" class="mobile-header">
+        <img src="title_logo.jpg" alt="Capture Basel" class="mobile-title-logo" />
+        <button id="mobile-info-btn" class="mobile-info-btn">i</button>
+    </header>
+
+    <!-- Mobile Grid Container (separate from desktop) -->
+    <div id="mobile-grid-container" class="mobile-grid-container"></div>
+
+    <!-- Mobile Progress Bar (integrated in UI, above bottom bar) -->
+    <div id="mobile-progress-bar-container" class="mobile-progress-bar-container">
+        <div class="mobile-progress-bar-inner">
+            <div id="mobile-progress-bar-fill" class="mobile-progress-bar-fill"></div>
+        </div>
+        <div id="mobile-progress-text-small" class="mobile-progress-text-small">Wird verarbeitet...</div>
+    </div>
+
+    <!-- Mobile Bottom Bar (Upload & Generate) -->
+    <div id="mobile-bottom-bar" class="mobile-bottom-bar">
+        <!-- Upload Image Button -->
+        <label for="mobile-image-upload" class="mobile-upload-label" id="mobile-upload-label">
+            <input type="file" id="mobile-image-upload" accept="image/*" hidden />
+            <img id="mobile-upload-preview" class="mobile-upload-img" src="addimg.jpg" alt="Bild hinzufügen" />
+        </label>
+
+        <!-- Generate Button -->
+        <img id="mobile-generate-btn" class="mobile-generate-btn" src="gen-button.jpg" alt="Generieren" />
+    </div>
+
+    <!-- Mobile Progress Overlay -->
+    <div id="mobile-progress-overlay" class="mobile-progress-overlay hidden">
+        <div class="mobile-progress-content">
+            <div class="mobile-progress-bar">
+                <div id="mobile-progress-fill" class="mobile-progress-fill"></div>
+            </div>
+            <div id="mobile-progress-text" class="mobile-progress-text">Wird verarbeitet...</div>
+            <button id="mobile-cancel-btn" class="mobile-cancel-btn">&times;</button>
+        </div>
+    </div>
+
     <script src="handtracking.js"></script>
     <script src="app.js"></script>
 </body>
