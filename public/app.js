@@ -722,6 +722,12 @@ async function loadSavedPositions() {
         );
         showQuartier(quartierWithMostImages);
       }
+
+      // Populate mobile grid if on mobile
+      if (window.populateMobileGrid) {
+        console.log("📱 Populating mobile grid after loading saved images");
+        window.populateMobileGrid();
+      }
     } else {
       console.log("ℹ️ No saved images found");
     }
@@ -1292,6 +1298,11 @@ applyRandomTiltToButtons();
 const isMobile = window.innerWidth <= 768;
 console.log("🔍 Window width:", window.innerWidth, "isMobile:", isMobile);
 
+// Deaktiviere Hand-Tracking auf Mobile
+if (isMobile && window.stopHandTracking) {
+  window.stopHandTracking();
+}
+
 if (isMobile) {
   console.log("📱 Mobile detected - initializing mobile layout");
 
@@ -1485,8 +1496,11 @@ if (isMobile) {
     });
   }
 
-  // Initial populate
-  setTimeout(populateMobileGrid, 100);
+  // Populate grid initially (will be called again after images are loaded)
+  populateMobileGrid();
+
+  // Export populateMobileGrid globally so it can be called after loadSavedPositions
+  window.populateMobileGrid = populateMobileGrid;
 
   // ===== MOBILE FILE UPLOAD =====
   mobileFileInput.addEventListener("change", (e) => {
@@ -1692,7 +1706,4 @@ if (isMobile) {
       }
     });
   }
-
-  // Export for external use
-  window.populateMobileGrid = populateMobileGrid;
 }

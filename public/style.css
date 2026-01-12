@@ -991,7 +991,10 @@ body.grid-mode .scene-controls {
   .main-canvas,
   .scene-controls,
   #p5-container,
-  .grid-container {
+  .grid-container,
+  #hand-cursor,
+  #progress-ring,
+  .hands-indicator {
     display: none !important;
   }
 
