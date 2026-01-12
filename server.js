@@ -424,15 +424,64 @@ async function analyzeImageWithGemini(filePath) {
     }
 }
 
-// Endpunkt zum Laden der Bildpositionen
-app.get('/api/positions', (req, res) => {
+// Upload positions JSON to R2
+async function uploadPositionsToR2(positionsData) {
     try {
-        const positionsPath = join(__dirname, 'image-positions.json');
-        if (fs.existsSync(positionsPath)) {
-            const data = fs.readFileSync(positionsPath, 'utf8');
-            res.json(JSON.parse(data));
+        const filename = 'image-positions.json';
+        const buffer = Buffer.from(JSON.stringify(positionsData, null, 2), 'utf8');
+
+        const command = new PutObjectCommand({
+            Bucket: R2_BUCKET_NAME,
+            Key: filename,
+            Body: buffer,
+            ContentType: 'application/json',
+        });
+
+        await s3Client.send(command);
+        console.log('✅ Uploaded positions to R2');
+    } catch (error) {
+        console.error('❌ Error uploading positions to R2:', error);
+        // Don't throw - we'll fall back to local storage
+    }
+}
+
+// Download positions JSON from R2
+async function downloadPositionsFromR2() {
+    try {
+        const filename = 'image-positions.json';
+        const response = await fetch(`${R2_PUBLIC_URL}/${filename}`);
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log('✅ Downloaded positions from R2');
+            return data;
         } else {
-            res.json({ images: [] });
+            console.log('ℹ️ No positions file found in R2');
+            return { images: [] };
+        }
+    } catch (error) {
+        console.error('❌ Error downloading positions from R2:', error);
+        return { images: [] };
+    }
+}
+
+// Endpunkt zum Laden der Bildpositionen
+app.get('/api/positions', async (req, res) => {
+    try {
+        // Try to load from R2 first
+        const r2Data = await downloadPositionsFromR2();
+
+        if (r2Data.images && r2Data.images.length > 0) {
+            res.json(r2Data);
+        } else {
+            // Fallback to local file
+            const positionsPath = join(__dirname, 'image-positions.json');
+            if (fs.existsSync(positionsPath)) {
+                const data = fs.readFileSync(positionsPath, 'utf8');
+                res.json(JSON.parse(data));
+            } else {
+                res.json({ images: [] });
+            }
         }
     } catch (error) {
         console.error('Error loading positions:', error);
@@ -441,10 +490,15 @@ app.get('/api/positions', (req, res) => {
 });
 
 // Endpunkt zum Speichern der Bildpositionen
-app.post('/api/positions', (req, res) => {
+app.post('/api/positions', async (req, res) => {
     try {
+        // Save to R2 first
+        await uploadPositionsToR2(req.body);
+
+        // Also save locally as backup
         const positionsPath = join(__dirname, 'image-positions.json');
         fs.writeFileSync(positionsPath, JSON.stringify(req.body, null, 2));
+
         res.json({ success: true });
     } catch (error) {
         console.error('Error saving positions:', error);
@@ -484,15 +538,26 @@ app.post('/api/delete-image', async (req, res) => {
             }
         }
 
-        // Remove from image-positions.json
+        // Remove from image-positions.json (local and R2)
         const positionsPath = join(__dirname, 'image-positions.json');
-        if (fs.existsSync(positionsPath)) {
-            const data = JSON.parse(fs.readFileSync(positionsPath, 'utf8'));
-            const originalLength = data.images.length;
-            data.images = data.images.filter(img => img.imageUrl !== imageUrl);
-            fs.writeFileSync(positionsPath, JSON.stringify(data, null, 2));
-            console.log(`Removed from positions: ${originalLength} -> ${data.images.length}`);
+        let data = { images: [] };
+
+        // Try to load from R2 first
+        const r2Data = await downloadPositionsFromR2();
+        if (r2Data.images && r2Data.images.length > 0) {
+            data = r2Data;
+        } else if (fs.existsSync(positionsPath)) {
+            data = JSON.parse(fs.readFileSync(positionsPath, 'utf8'));
         }
+
+        const originalLength = data.images.length;
+        data.images = data.images.filter(img => img.imageUrl !== imageUrl);
+
+        // Save to both R2 and local
+        await uploadPositionsToR2(data);
+        fs.writeFileSync(positionsPath, JSON.stringify(data, null, 2));
+
+        console.log(`Removed from positions: ${originalLength} -> ${data.images.length}`);
 
         res.json({ success: true });
     } catch (error) {
