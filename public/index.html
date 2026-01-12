@@ -229,7 +229,14 @@
         </div>
     </div>
 
-    <script src="handtracking.js"></script>
+    <script>
+        // Only load hand tracking on desktop (not mobile)
+        if (window.innerWidth > 768) {
+            const script = document.createElement('script');
+            script.src = 'handtracking.js';
+            document.body.appendChild(script);
+        }
+    </script>
     <script src="app.js"></script>
 </body>
 </html>
