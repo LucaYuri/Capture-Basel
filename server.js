@@ -11,6 +11,7 @@ import { config } from './config.js';
 import convert from 'heic-convert';
 import sharp from 'sharp';
 import { exiftool } from 'exiftool-vendored';
+import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -48,6 +49,65 @@ const upload = multer({
 
 if (!fs.existsSync('uploads')) {
     fs.mkdirSync('uploads');
+}
+
+// Cloudflare R2 Setup
+const R2_ACCOUNT_ID = process.env.R2_ACCOUNT_ID;
+const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID;
+const R2_SECRET_ACCESS_KEY = process.env.R2_SECRET_ACCESS_KEY;
+const R2_BUCKET_NAME = process.env.R2_BUCKET_NAME;
+const R2_PUBLIC_URL = process.env.R2_PUBLIC_URL;
+
+const s3Client = new S3Client({
+    region: 'auto',
+    endpoint: `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+    credentials: {
+        accessKeyId: R2_ACCESS_KEY_ID,
+        secretAccessKey: R2_SECRET_ACCESS_KEY,
+    },
+});
+
+// Upload image to Cloudflare R2
+async function uploadToR2(buffer, filename) {
+    try {
+        console.log('Uploading to R2:', filename);
+
+        const command = new PutObjectCommand({
+            Bucket: R2_BUCKET_NAME,
+            Key: filename,
+            Body: buffer,
+            ContentType: 'image/png',
+        });
+
+        await s3Client.send(command);
+
+        // R2 public URL
+        const publicUrl = `${R2_PUBLIC_URL}/${filename}`;
+
+        console.log('✅ Uploaded to R2:', publicUrl);
+        return publicUrl;
+    } catch (error) {
+        console.error('❌ Error uploading to R2:', error);
+        throw error;
+    }
+}
+
+// Delete image from Cloudflare R2
+async function deleteFromR2(filename) {
+    try {
+        console.log('Deleting from R2:', filename);
+
+        const command = new DeleteObjectCommand({
+            Bucket: R2_BUCKET_NAME,
+            Key: filename,
+        });
+
+        await s3Client.send(command);
+        console.log('✅ Deleted from R2:', filename);
+    } catch (error) {
+        console.error('❌ Error deleting from R2:', error);
+        throw error;
+    }
 }
 
 // Cache für GeoJSON Daten
@@ -392,7 +452,7 @@ app.post('/api/positions', (req, res) => {
 });
 
 // Endpunkt zum Löschen eines Bildes
-app.post('/api/delete-image', (req, res) => {
+app.post('/api/delete-image', async (req, res) => {
     try {
         const { imageUrl } = req.body;
 
@@ -402,18 +462,25 @@ app.post('/api/delete-image', (req, res) => {
 
         console.log('Deleting image:', imageUrl);
 
-        // Delete the actual image file
-        const imagePath = join(__dirname, 'public', imageUrl);
-        const altImagePath = join(__dirname, imageUrl.startsWith('/') ? imageUrl.slice(1) : imageUrl);
-
-        if (fs.existsSync(imagePath)) {
-            fs.unlinkSync(imagePath);
-            console.log('Deleted file:', imagePath);
-        } else if (fs.existsSync(altImagePath)) {
-            fs.unlinkSync(altImagePath);
-            console.log('Deleted file:', altImagePath);
+        // Check if it's an R2 URL
+        if (imageUrl.includes('.r2.dev/') || imageUrl.includes('.r2.cloudflarestorage.com/')) {
+            // Extract filename from R2 URL
+            const filename = imageUrl.split('/').pop();
+            await deleteFromR2(filename);
         } else {
-            console.log('File not found, but continuing to update positions');
+            // Delete local file (for backwards compatibility)
+            const imagePath = join(__dirname, 'public', imageUrl);
+            const altImagePath = join(__dirname, imageUrl.startsWith('/') ? imageUrl.slice(1) : imageUrl);
+
+            if (fs.existsSync(imagePath)) {
+                fs.unlinkSync(imagePath);
+                console.log('Deleted file:', imagePath);
+            } else if (fs.existsSync(altImagePath)) {
+                fs.unlinkSync(altImagePath);
+                console.log('Deleted file:', altImagePath);
+            } else {
+                console.log('File not found, but continuing to update positions');
+            }
         }
 
         // Remove from image-positions.json
@@ -563,11 +630,7 @@ app.post('/api/generate', upload.single('image'), async (req, res) => {
         }
         
         const imageBuffer = await imageResponse.arrayBuffer();
-        const genImagesDir = join(__dirname, 'gen-images');
-        if (!fs.existsSync(genImagesDir)) {
-            fs.mkdirSync(genImagesDir);
-        }
-        
+
         // Format: YY-MM-DD-HH-MM-SS
         const now = new Date();
         const yy = String(now.getFullYear()).slice(-2);
@@ -577,13 +640,16 @@ app.post('/api/generate', upload.single('image'), async (req, res) => {
         const min = String(now.getMinutes()).padStart(2, '0');
         const ss = String(now.getSeconds()).padStart(2, '0');
         const filename = `generated-${yy}-${mm}-${dd}-${hh}-${min}-${ss}.png`;
-        
-        fs.writeFileSync(join(genImagesDir, filename), Buffer.from(imageBuffer));
-        
+
+        res.write(`data: ${JSON.stringify({ type: 'progress', progress: 95, message: 'Uploading to R2...' })}\n\n`);
+
+        // Upload to Cloudflare R2
+        const r2ImageUrl = await uploadToR2(Buffer.from(imageBuffer), filename);
+
         // WICHTIG: Sende quartier-Daten mit validierter Struktur
         const resultData = {
             type: 'result',
-            imageUrl: `/gen-images/${filename}`,
+            imageUrl: r2ImageUrl,
             detectedObject: detectedObject,
             quartier: {
                 name: quartier.name,
