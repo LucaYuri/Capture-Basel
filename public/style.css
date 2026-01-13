@@ -1196,8 +1196,8 @@ body.grid-mode .scene-controls {
   }
 
   .mobile-grid-container.grid-4col {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
   }
 
   .mobile-grid-container:empty::after {

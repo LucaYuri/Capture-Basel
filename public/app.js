@@ -1685,6 +1685,12 @@ if (isMobile) {
     // Force reflow to ensure CSS changes are applied immediately
     void mobileGridContainer.offsetHeight;
 
+    // Force grid recalculation by briefly toggling display
+    const currentDisplay = mobileGridContainer.style.display;
+    mobileGridContainer.style.display = 'none';
+    void mobileGridContainer.offsetHeight; // Force reflow
+    mobileGridContainer.style.display = currentDisplay || 'grid';
+
     console.log("📱 Grid columns changed to:", mobileGridColumns);
   });
 
