@@ -1329,6 +1329,7 @@ if (isMobile) {
 
   // Mobile DOM Elements
   const mobileGridContainer = document.getElementById("mobile-grid-container");
+  const mobileQuartierChips = document.getElementById("mobile-quartier-chips");
   const mobileUploadLabel = document.getElementById("mobile-upload-label");
   const mobileFileInput = document.getElementById("mobile-image-upload");
   const mobileUploadPreview = document.getElementById("mobile-upload-preview");
@@ -1340,6 +1341,68 @@ if (isMobile) {
 
   let mobileAbortController = null;
   let mobileImageSwapInterval = null;
+  let mobileCurrentQuartier = null; // null = show all
+
+  // ===== MOBILE QUARTIER CHIPS =====
+  function populateMobileQuartierChips() {
+    if (!mobileQuartierChips) return;
+
+    mobileQuartierChips.innerHTML = "";
+
+    // Count images per quartier
+    const quartierCounts = {};
+    let totalCount = 0;
+    for (let i = 1; i <= 20; i++) {
+      const count = quartierImages[i]?.length || 0;
+      quartierCounts[i] = count;
+      totalCount += count;
+    }
+
+    // "Alle" chip
+    const alleChip = document.createElement("div");
+    alleChip.className = "mobile-quartier-chip" + (mobileCurrentQuartier === null ? " active" : "");
+    const alleTilt = (Math.random() - 0.5) * 4; // Random tilt between -2 and 2 degrees
+    alleChip.style.transform = `rotate(${alleTilt}deg)`;
+    alleChip.innerHTML = `
+      <span>Alle</span>
+      <span class="mobile-quartier-chip-count">${totalCount}</span>
+    `;
+    alleChip.addEventListener("click", () => {
+      mobileCurrentQuartier = null;
+      populateMobileQuartierChips();
+      populateMobileGrid();
+    });
+    mobileQuartierChips.appendChild(alleChip);
+
+    // Sort quartiers by image count (most first)
+    const sortedQuartiers = [];
+    for (let i = 1; i <= 20; i++) {
+      sortedQuartiers.push({
+        id: i,
+        name: quartierIdToName[i] || `Quartier ${i}`,
+        count: quartierCounts[i]
+      });
+    }
+    sortedQuartiers.sort((a, b) => b.count - a.count);
+
+    // Individual quartier chips
+    sortedQuartiers.forEach(quartier => {
+      const chip = document.createElement("div");
+      chip.className = "mobile-quartier-chip" + (mobileCurrentQuartier === quartier.id ? " active" : "");
+      const tilt = (Math.random() - 0.5) * 4; // Random tilt between -2 and 2 degrees
+      chip.style.transform = `rotate(${tilt}deg)`;
+      chip.innerHTML = `
+        <span>${quartier.name}</span>
+        <span class="mobile-quartier-chip-count">${quartier.count}</span>
+      `;
+      chip.addEventListener("click", () => {
+        mobileCurrentQuartier = quartier.id;
+        populateMobileQuartierChips();
+        populateMobileGrid();
+      });
+      mobileQuartierChips.appendChild(chip);
+    });
+  }
 
   // ===== MOBILE GRID POPULATION =====
   function populateMobileGrid() {
@@ -1347,9 +1410,13 @@ if (isMobile) {
 
     mobileGridContainer.innerHTML = "";
 
-    // Collect all images from all quartiers
+    // Collect all images from all or filtered quartiers
     const allImages = [];
-    for (let i = 1; i <= 20; i++) {
+    const quartiersToShow = mobileCurrentQuartier === null ?
+      Array.from({length: 20}, (_, i) => i + 1) :
+      [mobileCurrentQuartier];
+
+    for (const i of quartiersToShow) {
       if (quartierImages[i]) {
         quartierImages[i].forEach(img => {
           allImages.push({
@@ -1437,10 +1504,8 @@ if (isMobile) {
 
       back.innerHTML = `
         <div class="mobile-card-info">
-          <div class="mobile-info-header">Details</div>
           <div class="mobile-info-row"><strong>Quartier:</strong> ${quartierName}</div>
           <div class="mobile-info-row"><strong>Datum:</strong> ${dateTimeStr}</div>
-          <div class="mobile-info-row"><strong>Objekt:</strong> ${imgData.caption || "—"}</div>
         </div>
         <div class="mobile-card-buttons">
           <button class="mobile-download-btn" data-src="${imgData.url}" data-filename="${imageFilename}">Download</button>
@@ -1528,11 +1593,15 @@ if (isMobile) {
     });
   }
 
-  // Populate grid initially (will be called again after images are loaded)
+  // Populate chips and grid initially (will be called again after images are loaded)
+  populateMobileQuartierChips();
   populateMobileGrid();
 
-  // Export populateMobileGrid globally so it can be called after loadSavedPositions
-  window.populateMobileGrid = populateMobileGrid;
+  // Export functions globally so they can be called after loadSavedPositions
+  window.populateMobileGrid = () => {
+    populateMobileQuartierChips();
+    populateMobileGrid();
+  };
 
   // ===== MOBILE FILE UPLOAD =====
   mobileFileInput.addEventListener("change", (e) => {
@@ -1670,7 +1739,8 @@ if (isMobile) {
                 // Update counts
                 updateQuartierCounts();
 
-                // Refresh mobile grid
+                // Refresh mobile chips and grid
+                populateMobileQuartierChips();
                 populateMobileGrid();
 
                 // Save positions

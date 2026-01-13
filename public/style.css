@@ -967,6 +967,26 @@ body.grid-mode .scene-controls {
   margin-bottom: 0;
 }
 
+.info-image-container {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.info-image {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.info-caption {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
 .info-disclaimer {
   background: rgba(239, 68, 68, 0.08);
   padding: 16px;
@@ -1025,12 +1045,12 @@ body.grid-mode .scene-controls {
     right: 0;
     height: 60px;
     background: var(--bg-card);
-    border-bottom: 1px solid var(--border-light);
+    border-bottom: none;
     padding: 8px 16px;
     align-items: center;
     justify-content: space-between;
     z-index: 100;
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
   }
 
   .mobile-title-logo {
@@ -1062,13 +1082,62 @@ body.grid-mode .scene-controls {
     background: rgba(255, 75, 88, 0.3);
   }
 
+  /* Mobile Quartier Chips */
+  .mobile-quartier-chips {
+    display: flex !important;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-light);
+    padding: 12px 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 8px;
+    z-index: 99;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .mobile-quartier-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-quartier-chip {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border: none;
+    background: rgba(255, 75, 88, 0.1);
+    color: rgba(255, 75, 88, 0.7);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .mobile-quartier-chip.active {
+    background: rgba(255, 75, 88, 0.2);
+    border: none;
+    color: rgba(255, 75, 88, 0.9);
+  }
+
+  .mobile-quartier-chip-count {
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
   /* ===== MOBILE GRID ===== */
   .mobile-grid-container {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     padding: 12px;
-    padding-top: 72px; /* Header height + spacing */
+    padding-top: 120px; /* Header height + chips height + spacing */
     padding-bottom: 160px; /* Bottom bar height + spacing */
     overflow-y: auto;
     overflow-x: hidden;

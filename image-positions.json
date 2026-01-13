@@ -304,6 +304,19 @@
       "zIndex": 1034
     },
     {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-07-30-55.png",
+      "caption": "couple",
+      "quartierId": 20,
+      "x": 352.47900390625,
+      "y": 432.4469909667969,
+      "scale": 1,
+      "zIndex": 1035,
+      "gps": {
+        "lat": 46.586764,
+        "lon": 11.696989
+      }
+    },
+    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-54-38.png",
       "caption": "camper",
       "quartierId": 20,
@@ -368,15 +381,6 @@
       "y": 214.02000427246094,
       "scale": 0.3,
       "zIndex": 1044
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-54-44.png",
-      "caption": "object",
-      "quartierId": 20,
-      "x": 298.40411376953125,
-      "y": 362.1654052734375,
-      "scale": 1,
-      "zIndex": 1048
     },
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-55-10.png",
@@ -516,6 +520,250 @@
       "gps": {
         "lat": 47.573036,
         "lon": 7.592986
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-38-11.png",
+      "caption": "hamburger",
+      "quartierId": 1,
+      "x": 311.03338623046875,
+      "y": 433.47540283203125,
+      "scale": 1,
+      "zIndex": 1061,
+      "gps": {
+        "lat": 47.556267,
+        "lon": 7.586858
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-38-51.png",
+      "caption": "camcorder",
+      "quartierId": 1,
+      "x": 417.9679870605469,
+      "y": 251.13890075683594,
+      "scale": 1,
+      "zIndex": 1062,
+      "gps": {
+        "lat": 47.556278,
+        "lon": 7.586867
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-39-44.png",
+      "caption": "restaurant",
+      "quartierId": 12,
+      "x": 418.78289794921875,
+      "y": 276.7522888183594,
+      "scale": 1,
+      "zIndex": 1063,
+      "gps": {
+        "lat": 47.555908,
+        "lon": 7.575192
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-44-24.png",
+      "caption": "object",
+      "quartierId": 20,
+      "x": 422.95489501953125,
+      "y": 306.4216003417969,
+      "scale": 1,
+      "zIndex": 1064
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-44-47.png",
+      "caption": "object",
+      "quartierId": 20,
+      "x": 436.8594970703125,
+      "y": 347.3432922363281,
+      "scale": 1,
+      "zIndex": 1065
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-48-15.png",
+      "caption": "people",
+      "quartierId": 20,
+      "x": 303.0889892578125,
+      "y": 273.4292907714844,
+      "scale": 1,
+      "zIndex": 1066
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-48-36.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 386.36151123046875,
+      "y": 347.05731201171875,
+      "scale": 1,
+      "zIndex": 1067
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-50-07.png",
+      "caption": "tracks",
+      "quartierId": 6,
+      "x": 308.09649658203125,
+      "y": 387.49249267578125,
+      "scale": 1,
+      "zIndex": 1068,
+      "gps": {
+        "lat": 47.547425,
+        "lon": 7.584661
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-50-52.png",
+      "caption": "bin",
+      "quartierId": 14,
+      "x": 286.1434020996094,
+      "y": 408.9707946777344,
+      "scale": 1,
+      "zIndex": 1069,
+      "gps": {
+        "lat": 47.557931,
+        "lon": 7.60095
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-51-31.png",
+      "caption": "onion",
+      "quartierId": 1,
+      "x": 411.118408203125,
+      "y": 304.02349853515625,
+      "scale": 1,
+      "zIndex": 1070,
+      "gps": {
+        "lat": 47.556294,
+        "lon": 7.586867
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-52-07.png",
+      "caption": "object",
+      "quartierId": 11,
+      "x": 384.876708984375,
+      "y": 323.9643859863281,
+      "scale": 1,
+      "zIndex": 1071,
+      "gps": {
+        "lat": 47.546394,
+        "lon": 7.575089
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-53-46.png",
+      "caption": "person",
+      "quartierId": 17,
+      "x": 422.6940002441406,
+      "y": 335.1361083984375,
+      "scale": 1,
+      "zIndex": 1072,
+      "gps": {
+        "lat": 47.567128,
+        "lon": 7.596606
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-55-24.png",
+      "caption": "camcorder",
+      "quartierId": 14,
+      "x": 370.9507141113281,
+      "y": 332.52130126953125,
+      "scale": 1,
+      "zIndex": 1073,
+      "gps": {
+        "lat": 47.557939,
+        "lon": 7.60105
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-56-15.png",
+      "caption": "luggage",
+      "quartierId": 7,
+      "x": 329.3922119140625,
+      "y": 358.2434997558594,
+      "scale": 1,
+      "zIndex": 1074,
+      "gps": {
+        "lat": 47.572194,
+        "lon": 7.569686
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-56-52.png",
+      "caption": "camera",
+      "quartierId": 7,
+      "x": 370.5152893066406,
+      "y": 253.91549682617188,
+      "scale": 1,
+      "zIndex": 1075,
+      "gps": {
+        "lat": 47.572289,
+        "lon": 7.569719
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-57-34.png",
+      "caption": "bottle",
+      "quartierId": 5,
+      "x": 397.1502990722656,
+      "y": 294.38238525390625,
+      "scale": 1,
+      "zIndex": 1076,
+      "gps": {
+        "lat": 47.546528,
+        "lon": 7.622464
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-59-27.png",
+      "caption": "dog",
+      "quartierId": 1,
+      "x": 263.268798828125,
+      "y": 351.3764953613281,
+      "scale": 1,
+      "zIndex": 1077,
+      "gps": {
+        "lat": 47.554711,
+        "lon": 7.589161
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-11-00-00.png",
+      "caption": "bottle",
+      "quartierId": 18,
+      "x": 270.9447021484375,
+      "y": 397.5177917480469,
+      "scale": 1,
+      "zIndex": 1078,
+      "gps": {
+        "lat": 47.577178,
+        "lon": 7.586256
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-11-02-36.png",
+      "caption": "sign",
+      "quartierId": 18,
+      "x": 301.5585021972656,
+      "y": 329.7167053222656,
+      "scale": 1,
+      "zIndex": 1079,
+      "gps": {
+        "lat": 47.577969,
+        "lon": 7.586381
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-11-03-25.png",
+      "caption": "container",
+      "quartierId": 18,
+      "x": 384.3865966796875,
+      "y": 303.6200866699219,
+      "scale": 1,
+      "zIndex": 1080,
+      "gps": {
+        "lat": 47.577811,
+        "lon": 7.586983
       }
     }
   ]
