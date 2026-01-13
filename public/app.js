@@ -178,9 +178,10 @@ function populateGrid() {
       const imageUrlRelative = img.src.replace(window.location.origin, "");
 
       flipCardBack.innerHTML = `
-        <div class="info-header">Bilddetails</div>
-        <div class="info-row"><strong>Quartier:</strong> ${quartierName}</div>
-        <div class="info-row"><strong>Datum:</strong> ${dateTimeStr}</div>
+        <div class="card-info">
+          <div class="info-value">${quartierName}</div>
+          <div class="info-value">${dateTimeStr}</div>
+        </div>
         <div class="card-buttons">
           <button class="download-btn" data-src="${img.src}" data-filename="${imageFilename}">Download</button>
           <button class="delete-btn" data-src="${imageUrlRelative}" data-quartier="${quartierId}">&times;</button>
@@ -235,6 +236,9 @@ function populateGrid() {
 
             // Update quartier counts
             updateQuartierCounts();
+
+            // Save updated positions to keep desktop/mobile in sync
+            savePositions();
 
             console.log("Image deleted:", imgSrc);
           } else {
@@ -1338,10 +1342,12 @@ if (isMobile) {
   const mobileProgressImage = document.getElementById("mobile-progress-image");
   const mobileBottomProgressText = document.getElementById("mobile-bottom-progress-text");
   const mobileInfoBtn = document.getElementById("mobile-info-btn");
+  const mobileGridToggle = document.getElementById("mobile-grid-toggle");
 
   let mobileAbortController = null;
   let mobileImageSwapInterval = null;
   let mobileCurrentQuartier = null; // null = show all
+  let mobileGridColumns = 2; // 2 or 4
 
   // ===== MOBILE QUARTIER CHIPS =====
   function populateMobileQuartierChips() {
@@ -1504,8 +1510,8 @@ if (isMobile) {
 
       back.innerHTML = `
         <div class="mobile-card-info">
-          <div class="mobile-info-row"><strong>Quartier:</strong> ${quartierName}</div>
-          <div class="mobile-info-row"><strong>Datum:</strong> ${dateTimeStr}</div>
+          <div class="mobile-info-value">${quartierName}</div>
+          <div class="mobile-info-value">${dateTimeStr}</div>
         </div>
         <div class="mobile-card-buttons">
           <button class="mobile-download-btn" data-src="${imgData.url}" data-filename="${imageFilename}">Download</button>
@@ -1549,6 +1555,11 @@ if (isMobile) {
             }
             gridItem.remove();
             updateQuartierCounts();
+            populateMobileQuartierChips();
+
+            // Save updated positions to keep desktop/mobile in sync
+            savePositions();
+
             console.log("🗑️ Image deleted:", imgSrc);
           } else {
             alert("Fehler beim Löschen");
@@ -1617,6 +1628,25 @@ if (isMobile) {
       };
       reader.readAsDataURL(file);
     }
+  });
+
+  // ===== MOBILE GRID TOGGLE =====
+  mobileGridToggle.addEventListener("click", () => {
+    // Toggle between 2 and 4 columns
+    if (mobileGridColumns === 2) {
+      mobileGridColumns = 4;
+      mobileGridContainer.classList.add("grid-4col");
+      // Update icons
+      mobileGridToggle.querySelector(".grid-icon-2col").classList.remove("active");
+      mobileGridToggle.querySelector(".grid-icon-4col").classList.add("active");
+    } else {
+      mobileGridColumns = 2;
+      mobileGridContainer.classList.remove("grid-4col");
+      // Update icons
+      mobileGridToggle.querySelector(".grid-icon-2col").classList.add("active");
+      mobileGridToggle.querySelector(".grid-icon-4col").classList.remove("active");
+    }
+    console.log("📱 Grid columns changed to:", mobileGridColumns);
   });
 
   // ===== MOBILE GENERATE =====
@@ -1802,4 +1832,52 @@ if (isMobile) {
       }
     });
   }
+}
+
+// ========== RANDOM CARD WOBBLE ANIMATION ==========
+let wobbleInterval = null;
+let currentlyWobbling = [];
+
+function startRandomWobble() {
+  function wobbleRandomCards() {
+    // Remove wobble from previous cards
+    currentlyWobbling.forEach(card => {
+      card.classList.remove('wobbling');
+    });
+    currentlyWobbling = [];
+
+    // Get all grid items (desktop and mobile)
+    const desktopItems = Array.from(document.querySelectorAll('.grid-item'));
+    const mobileItems = Array.from(document.querySelectorAll('.mobile-grid-item'));
+    const allItems = isMobile ? mobileItems : desktopItems;
+
+    // Select 2 random cards
+    if (allItems.length >= 2) {
+      const indices = new Set();
+      while (indices.size < 2) {
+        indices.add(Math.floor(Math.random() * allItems.length));
+      }
+
+      indices.forEach(index => {
+        const card = allItems[index];
+        card.classList.add('wobbling');
+        currentlyWobbling.push(card);
+      });
+    }
+  }
+
+  // Start wobbling immediately
+  wobbleRandomCards();
+
+  // Then repeat every 1 second
+  wobbleInterval = setInterval(wobbleRandomCards, 1000);
+}
+
+// Start wobbling after page load
+if (document.readyState === 'complete') {
+  setTimeout(startRandomWobble, 500);
+} else {
+  window.addEventListener('load', () => {
+    setTimeout(startRandomWobble, 500);
+  });
 }

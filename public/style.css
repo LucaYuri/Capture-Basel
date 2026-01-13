@@ -302,6 +302,24 @@ body {
   }
 }
 
+@keyframes subtle-wobble {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 /* ========== CANCEL BUTTON ========== */
 .cancel-btn {
   padding: 0;
@@ -622,6 +640,11 @@ body.grid-mode .hands-indicator {
 .grid-item {
   perspective: 1000px;
   height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.grid-item.wobbling {
+  animation: subtle-wobble 1s ease-in-out;
 }
 
 .flip-card {
@@ -708,6 +731,22 @@ body.grid-mode .hands-indicator {
   overflow-y: auto;
 }
 
+.card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.info-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+}
+
 .card-buttons {
   margin-top: auto;
   display: flex;
@@ -749,36 +788,6 @@ body.grid-mode .hands-indicator {
 .download-btn:hover,
 .delete-btn:hover {
   background: var(--primary-blue);
-}
-
-.info-header {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-primary);
-  text-align: center;
-  margin-bottom: 8px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--border-light);
-}
-
-.info-row {
-  font-size: 11px;
-  line-height: 1.8;
-  color: var(--text-primary);
-  padding: 4px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  word-break: break-word;
-}
-
-.info-row:last-child {
-  border-bottom: none;
-}
-
-.info-row strong {
-  font-weight: 600;
-  color: var(--text-secondary);
-  display: inline-block;
-  min-width: 60px;
 }
 
 /* ========== SCENE CONTROL BUTTONS ========== */
@@ -1059,6 +1068,45 @@ body.grid-mode .scene-controls {
     object-fit: contain;
   }
 
+  .mobile-header-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .mobile-grid-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 0;
+    background: rgba(255, 75, 88, 0.15);
+    color: var(--primary-blue);
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-grid-toggle:active {
+    background: rgba(255, 75, 88, 0.3);
+  }
+
+  .grid-icon-2col,
+  .grid-icon-4col {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .grid-icon-2col.active,
+  .grid-icon-4col.active {
+    opacity: 1;
+  }
+
   .mobile-info-btn {
     width: 36px;
     height: 36px;
@@ -1144,6 +1192,12 @@ body.grid-mode .scene-controls {
     flex: 1;
     background: var(--bg-main);
     -webkit-overflow-scrolling: touch;
+    transition: gap 0.2s ease;
+  }
+
+  .mobile-grid-container.grid-4col {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
   }
 
   .mobile-grid-container:empty::after {
@@ -1159,6 +1213,11 @@ body.grid-mode .scene-controls {
   .mobile-grid-item {
     perspective: 1000px;
     aspect-ratio: 3/4;
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-grid-item.wobbling {
+    animation: subtle-wobble 1s ease-in-out;
   }
 
   .mobile-flip-card {
@@ -1204,7 +1263,7 @@ body.grid-mode .scene-controls {
 
   .mobile-flip-card-caption {
     padding: 8px;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--text-primary);
     text-align: center;
@@ -1225,35 +1284,35 @@ body.grid-mode .scene-controls {
   .mobile-card-info {
     flex: 1;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 
-  .mobile-info-header {
+  /* Hide card info in 4-column grid mode */
+  .mobile-grid-container.grid-4col .mobile-card-info {
+    display: none;
+  }
+
+  .mobile-info-value {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--text-primary);
     text-align: center;
-    margin-bottom: 8px;
-    padding-bottom: 6px;
-    border-bottom: 2px solid var(--border-light);
-  }
-
-  .mobile-info-row {
-    font-size: 10px;
-    line-height: 1.6;
-    color: var(--text-primary);
-    padding: 3px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  }
-
-  .mobile-info-row strong {
-    font-weight: 600;
-    color: var(--text-secondary);
   }
 
   .mobile-card-buttons {
     display: flex;
     gap: 6px;
     margin-top: 8px;
+  }
+
+  /* Center buttons in 4-column grid mode and stack vertically */
+  .mobile-grid-container.grid-4col .mobile-card-buttons {
+    margin: auto;
+    flex-direction: column;
   }
 
   .mobile-download-btn {
@@ -1343,8 +1402,8 @@ body.grid-mode .scene-controls {
 
   .mobile-upload-label.has-image .mobile-upload-img {
     object-fit: cover;
-    border: 2px solid var(--primary-blue);
-    box-shadow: 0 0 0 2px rgba(255, 75, 88, 0.2);
+    border: none;
+    box-shadow: none;
   }
 
   .mobile-generate-btn {
