@@ -1293,7 +1293,7 @@ body.grid-mode .scene-controls {
 
   /* Hide card info in 4-column grid mode */
   .mobile-grid-container.grid-4col .mobile-card-info {
-    display: none;
+    display: none !important;
   }
 
   .mobile-info-value {
@@ -1311,8 +1311,8 @@ body.grid-mode .scene-controls {
 
   /* Center buttons in 4-column grid mode and stack vertically */
   .mobile-grid-container.grid-4col .mobile-card-buttons {
-    margin: auto;
-    flex-direction: column;
+    margin: auto !important;
+    flex-direction: column !important;
   }
 
   .mobile-download-btn {

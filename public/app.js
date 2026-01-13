@@ -1646,6 +1646,10 @@ if (isMobile) {
       mobileGridToggle.querySelector(".grid-icon-2col").classList.add("active");
       mobileGridToggle.querySelector(".grid-icon-4col").classList.remove("active");
     }
+
+    // Force reflow to ensure CSS changes are applied immediately
+    void mobileGridContainer.offsetHeight;
+
     console.log("📱 Grid columns changed to:", mobileGridColumns);
   });
 
