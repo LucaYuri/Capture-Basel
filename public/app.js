@@ -1331,9 +1331,9 @@ if (isMobile) {
   const mobileFileInput = document.getElementById("mobile-image-upload");
   const mobileUploadPreview = document.getElementById("mobile-upload-preview");
   const mobileGenerateBtn = document.getElementById("mobile-generate-btn");
-  const mobileProgressBarContainer = document.getElementById("mobile-progress-bar-container");
-  const mobileProgressBarFill = document.getElementById("mobile-progress-bar-fill");
-  const mobileProgressTextSmall = document.getElementById("mobile-progress-text-small");
+  const mobileBottomProgress = document.getElementById("mobile-bottom-progress");
+  const mobileBottomProgressFill = document.getElementById("mobile-bottom-progress-fill");
+  const mobileBottomProgressText = document.getElementById("mobile-bottom-progress-text");
   const mobileInfoBtn = document.getElementById("mobile-info-btn");
 
   let mobileAbortController = null;
@@ -1560,16 +1560,16 @@ if (isMobile) {
         mobileUploadLabel.classList.remove("shake");
       }, 500);
 
-      // Show error message in inline progress bar
-      mobileProgressBarContainer.classList.add("active");
-      mobileProgressBarFill.style.width = "100%";
-      mobileProgressBarFill.style.background = "#ef4444";
-      mobileProgressTextSmall.textContent = "Bitte zuerst ein Bild hochladen!";
+      // Show error message in bottom progress bar
+      mobileBottomProgress.classList.remove("hidden");
+      mobileBottomProgressFill.style.width = "100%";
+      mobileBottomProgressFill.style.background = "#ef4444";
+      mobileBottomProgressText.textContent = "Bitte zuerst ein Bild hochladen!";
 
       setTimeout(() => {
-        mobileProgressBarContainer.classList.remove("active");
-        mobileProgressBarFill.style.background = "";
-        mobileProgressBarFill.style.width = "0%";
+        mobileBottomProgress.classList.add("hidden");
+        mobileBottomProgressFill.style.background = "";
+        mobileBottomProgressFill.style.width = "0%";
       }, 2500);
 
       return;
@@ -1577,16 +1577,16 @@ if (isMobile) {
 
     console.log("📱 Starting generation process...");
 
-    // Show inline progress bar
-    mobileProgressBarContainer.classList.add("active");
-    mobileProgressBarFill.style.width = "0%";
-    mobileProgressBarFill.style.background = "";
-    mobileProgressTextSmall.textContent = "Analysiere Bild...";
+    // Show progress bar
+    mobileBottomProgress.classList.remove("hidden");
+    mobileBottomProgressFill.style.width = "0%";
+    mobileBottomProgressFill.style.background = "";
+    mobileBottomProgressText.textContent = "Analysiere Bild...";
 
-    // Disable and start wobbling generate button with image swap
+    // Disable and wobble generate button with image swapping
     mobileGenerateBtn.classList.add("disabled", "wobbling");
 
-    // Start image swapping animation
+    // Start image swapping animation on generate button
     mobileImageSwapInterval = setInterval(() => {
       if (mobileGenerateBtn.src.includes("gen-button_hover.jpg")) {
         mobileGenerateBtn.src = "gen-button.jpg";
@@ -1623,11 +1623,11 @@ if (isMobile) {
               const data = JSON.parse(line.slice(6));
 
               if (data.type === "progress") {
-                mobileProgressBarFill.style.width = `${data.progress}%`;
-                mobileProgressTextSmall.textContent = data.message || "Wird verarbeitet...";
+                mobileBottomProgressFill.style.width = `${data.progress}%`;
+                mobileBottomProgressText.textContent = data.message || "Wird verarbeitet...";
               } else if (data.type === "error") {
-                mobileProgressTextSmall.textContent = data.message || "Fehler";
-                mobileProgressBarFill.style.background = "#ef4444";
+                mobileBottomProgressText.textContent = data.message || "Fehler";
+                mobileBottomProgressFill.style.background = "#ef4444";
 
                 // Stop wobble and image swap
                 mobileGenerateBtn.classList.remove("disabled", "wobbling");
@@ -1638,13 +1638,13 @@ if (isMobile) {
                 }
 
                 setTimeout(() => {
-                  mobileProgressBarContainer.classList.remove("active");
-                  mobileProgressBarFill.style.background = "";
+                  mobileBottomProgress.classList.add("hidden");
+                  mobileBottomProgressFill.style.background = "";
                 }, 2500);
                 return;
               } else if (data.type === "result") {
-                mobileProgressBarFill.style.width = "100%";
-                mobileProgressTextSmall.textContent = `"${data.detectedObject}" generiert!`;
+                mobileBottomProgressFill.style.width = "100%";
+                mobileBottomProgressText.textContent = `"${data.detectedObject}" generiert!`;
 
                 // Determine quartier ID
                 let quartierId = 20;
@@ -1690,7 +1690,7 @@ if (isMobile) {
 
                 // Reset after delay
                 setTimeout(() => {
-                  mobileProgressBarContainer.classList.remove("active");
+                  mobileBottomProgress.classList.add("hidden");
                   mobileUploadPreview.src = "addimg.jpg";
                   mobileUploadLabel.classList.remove("has-image");
                   uploadedImageFile = null;
@@ -1705,10 +1705,10 @@ if (isMobile) {
     } catch (error) {
       if (error.name === "AbortError") {
         console.log("Generation cancelled");
-        mobileProgressTextSmall.textContent = "Abgebrochen";
+        mobileBottomProgressText.textContent = "Abgebrochen";
       } else {
         console.error("Error generating:", error);
-        mobileProgressTextSmall.textContent = "Fehler beim Generieren";
+        mobileBottomProgressText.textContent = "Fehler beim Generieren";
       }
 
       // Stop wobble and image swap
@@ -1720,7 +1720,7 @@ if (isMobile) {
       }
 
       setTimeout(() => {
-        mobileProgressBarContainer.classList.remove("active");
+        mobileBottomProgress.classList.add("hidden");
       }, 1500);
     } finally {
       mobileAbortController = null;

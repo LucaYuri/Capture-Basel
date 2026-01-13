@@ -1,154 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Capture Basel</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
     <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <!-- Left Sidebar -->
     <aside class="sidebar">
-        <!-- Title -->
-        <div class="app-title">
-            <img src="title_logo.jpg" alt="Basel Simplified" class="title-logo" />
-        </div>
+      <!-- Title -->
+      <div class="app-title">
+        <img src="title_logo.jpg" alt="Basel Simplified" class="title-logo" />
+      </div>
 
-        <!-- Mode Switch -->
-        <div class="section mode-switch-section">
-            <div class="mode-switch-container">
-                <button class="mode-switch-btn" data-mode="scene">Scene Mode</button>
-                <button class="mode-switch-btn active" data-mode="grid">Grid Mode</button>
-            </div>
+      <!-- Mode Switch -->
+      <div class="section mode-switch-section">
+        <div class="mode-switch-container">
+          <button class="mode-switch-btn" data-mode="scene">Scene Mode</button>
+          <button class="mode-switch-btn active" data-mode="grid">
+            Grid Mode
+          </button>
         </div>
+      </div>
 
-        <!-- Upload Section -->
-        <div class="section upload-section">
-            <label for="image-upload" class="upload-preview-combined">
-                <input type="file" id="image-upload" accept="image/*" hidden />
-                <img id="upload-preview" class="upload-preview" src="addimg.jpg" alt="Add Image" />
-            </label>
+      <!-- Upload Section -->
+      <div class="section upload-section">
+        <label for="image-upload" class="upload-preview-combined">
+          <input type="file" id="image-upload" accept="image/*" hidden />
+          <img
+            id="upload-preview"
+            class="upload-preview"
+            src="addimg.jpg"
+            alt="Add Image"
+          />
+        </label>
+      </div>
+
+      <!-- Generate Button -->
+      <div style="display: flex; gap: 8px">
+        <img
+          id="generate-btn"
+          class="generate-btn"
+          src="gen-button.jpg"
+          style="flex: 1; cursor: pointer"
+        />
+      </div>
+
+      <!-- Progress Section -->
+      <div id="progress-container" class="section progress-section hidden">
+        <div style="display: flex; align-items: center; gap: 8px">
+          <div class="progress-bar" style="flex: 1">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+          <button id="cancel-btn" class="cancel-btn">×</button>
         </div>
+        <div id="progress-text" class="progress-text">Generating...</div>
+        <div id="status-updates" class="status-updates"></div>
+      </div>
 
-        <!-- Generate Button -->
-        <div style="display: flex; gap: 8px;">
-            <img id="generate-btn" class="generate-btn" src="gen-button.jpg" style="flex: 1; cursor: pointer;" />
+      <!-- Quartiere Section -->
+      <div class="section quartiere-section">
+        <div id="quartiere-grid" class="quartiere-grid">
+          <button class="quartier-toggle" data-quartier="1">
+            <span class="quartier-name">Altstadt Grossbasel</span>
+            <span class="quartier-count" data-count="1">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="2">
+            <span class="quartier-name">Altstadt Kleinbasel</span>
+            <span class="quartier-count" data-count="2">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="3">
+            <span class="quartier-name">Vorstädte</span>
+            <span class="quartier-count" data-count="3">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="4">
+            <span class="quartier-name">Am Ring</span>
+            <span class="quartier-count" data-count="4">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="5">
+            <span class="quartier-name">Breite</span>
+            <span class="quartier-count" data-count="5">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="6">
+            <span class="quartier-name">Gundeldingen</span>
+            <span class="quartier-count" data-count="6">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="7">
+            <span class="quartier-name">St. Johann</span>
+            <span class="quartier-count" data-count="7">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="8">
+            <span class="quartier-name">St. Alban</span>
+            <span class="quartier-count" data-count="8">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="9">
+            <span class="quartier-name">Iselin</span>
+            <span class="quartier-count" data-count="9">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="10">
+            <span class="quartier-name">Bruderholz</span>
+            <span class="quartier-count" data-count="10">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="11">
+            <span class="quartier-name">Bachletten</span>
+            <span class="quartier-count" data-count="11">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="12">
+            <span class="quartier-name">Gotthelf</span>
+            <span class="quartier-count" data-count="12">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="13">
+            <span class="quartier-name">Clara</span>
+            <span class="quartier-count" data-count="13">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="14">
+            <span class="quartier-name">Wettstein</span>
+            <span class="quartier-count" data-count="14">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="15">
+            <span class="quartier-name">Hirzbrunnen</span>
+            <span class="quartier-count" data-count="15">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="16">
+            <span class="quartier-name">Rosental</span>
+            <span class="quartier-count" data-count="16">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="17">
+            <span class="quartier-name">Matthäus</span>
+            <span class="quartier-count" data-count="17">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="18">
+            <span class="quartier-name">Klybeck</span>
+            <span class="quartier-count" data-count="18">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="19">
+            <span class="quartier-name">Kleinhüningen</span>
+            <span class="quartier-count" data-count="19">0</span>
+          </button>
+          <button class="quartier-toggle" data-quartier="20">
+            <span class="quartier-name">Ausserhalb</span>
+            <span class="quartier-count" data-count="20">0</span>
+          </button>
         </div>
+      </div>
 
-        <!-- Progress Section -->
-        <div id="progress-container" class="section progress-section hidden">
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="flex: 1;">
-                    <div id="progress-fill" class="progress-fill"></div>
-                </div>
-                <button id="cancel-btn" class="cancel-btn">×</button>
-            </div>
-            <div id="progress-text" class="progress-text">Generating...</div>
-            <div id="status-updates" class="status-updates"></div>
-        </div>
-
-        <!-- Quartiere Section -->
-        <div class="section quartiere-section">
-            <div id="quartiere-grid" class="quartiere-grid">
-                <button class="quartier-toggle" data-quartier="1">
-                    <span class="quartier-name">Altstadt Grossbasel</span>
-                    <span class="quartier-count" data-count="1">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="2">
-                    <span class="quartier-name">Altstadt Kleinbasel</span>
-                    <span class="quartier-count" data-count="2">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="3">
-                    <span class="quartier-name">Vorstädte</span>
-                    <span class="quartier-count" data-count="3">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="4">
-                    <span class="quartier-name">Am Ring</span>
-                    <span class="quartier-count" data-count="4">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="5">
-                    <span class="quartier-name">Breite</span>
-                    <span class="quartier-count" data-count="5">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="6">
-                    <span class="quartier-name">Gundeldingen</span>
-                    <span class="quartier-count" data-count="6">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="7">
-                    <span class="quartier-name">St. Johann</span>
-                    <span class="quartier-count" data-count="7">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="8">
-                    <span class="quartier-name">St. Alban</span>
-                    <span class="quartier-count" data-count="8">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="9">
-                    <span class="quartier-name">Iselin</span>
-                    <span class="quartier-count" data-count="9">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="10">
-                    <span class="quartier-name">Bruderholz</span>
-                    <span class="quartier-count" data-count="10">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="11">
-                    <span class="quartier-name">Bachletten</span>
-                    <span class="quartier-count" data-count="11">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="12">
-                    <span class="quartier-name">Gotthelf</span>
-                    <span class="quartier-count" data-count="12">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="13">
-                    <span class="quartier-name">Clara</span>
-                    <span class="quartier-count" data-count="13">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="14">
-                    <span class="quartier-name">Wettstein</span>
-                    <span class="quartier-count" data-count="14">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="15">
-                    <span class="quartier-name">Hirzbrunnen</span>
-                    <span class="quartier-count" data-count="15">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="16">
-                    <span class="quartier-name">Rosental</span>
-                    <span class="quartier-count" data-count="16">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="17">
-                    <span class="quartier-name">Matthäus</span>
-                    <span class="quartier-count" data-count="17">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="18">
-                    <span class="quartier-name">Klybeck</span>
-                    <span class="quartier-count" data-count="18">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="19">
-                    <span class="quartier-name">Kleinhüningen</span>
-                    <span class="quartier-count" data-count="19">0</span>
-                </button>
-                <button class="quartier-toggle" data-quartier="20">
-                    <span class="quartier-name">Ausserhalb</span>
-                    <span class="quartier-count" data-count="20">0</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Info Button -->
-        <button id="info-btn" class="info-btn" aria-label="Project Information">i</button>
+      <!-- Info Button -->
+      <button id="info-btn" class="info-btn" aria-label="Project Information">
+        i
+      </button>
     </aside>
 
     <!-- Main Canvas Area -->
     <main class="main-canvas">
-        <div id="result-container" class="result-container">
-            <div class="placeholder">Generated images will appear here</div>
-        </div>
+      <div id="result-container" class="result-container">
+        <div class="placeholder">Generated images will appear here</div>
+      </div>
     </main>
 
     <!-- Grid Container -->
@@ -159,85 +176,160 @@
 
     <!-- Scene Control Buttons -->
     <div id="scene-controls" class="scene-controls">
-        <button id="random-images-btn" class="scene-control-btn" title="Add 6 Random Images">Random 6</button>
-        <button id="normalize-size-btn" class="scene-control-btn" title="Make All Same Size">Same Size</button>
+      <button
+        id="random-images-btn"
+        class="scene-control-btn"
+        title="Add 6 Random Images"
+      >
+        Random 6
+      </button>
+      <button
+        id="normalize-size-btn"
+        class="scene-control-btn"
+        title="Make All Same Size"
+      >
+        Same Size
+      </button>
     </div>
 
     <!-- Info Modal -->
     <div id="info-modal" class="info-modal hidden">
-        <div class="info-modal-content">
-            <button id="info-close-btn" class="info-close-btn">&times;</button>
-            <h2>Über dieses Projekt</h2>
-            <div class="info-section">
-                <h3>Team</h3>
-                <p>Entwickelt von <strong>Oliver Wick</strong> und <strong>Nicolas Birrer</strong><br>
-                unter dem Mentorat von <strong>Paulina Zybinska</strong></p>
-                <p>Hochschule für Kunst und Gestaltung Basel FHNW<br>
-                Bachelor Studiengang, 5. Semester</p>
-            </div>
-            <div class="info-section">
-                <h3>AI Workflow</h3>
-                <p>1. <strong>Objekterkennung:</strong> Das hochgeladene Bild wird mit <strong>Google Gemini 2.0 Flash</strong> analysiert, um das Hauptobjekt zu identifizieren.</p>
-                <p>2. <strong>Geocoding:</strong> GPS-Daten (EXIF) aus dem Bild werden extrahiert und mit <strong>Google Geocoding API</strong> das entsprechende Basler Quartier ermittelt.</p>
-                <p>3. <strong>Bildgenerierung:</strong> Mit <strong>Flux Pro 1.1</strong> (via fal.ai) werden stilisierte Illustrationen generiert. Die Stilisierung basiert auf Zeichnungen von Oliver Wick und wurde durch LoRA-Training in das Modell integriert.</p>
-            </div>
-            <div class="info-section info-disclaimer">
-                <h3>Datenschutz & Speicherung</h3>
-                <p>Hochgeladene Bilder werden nur temporär verarbeitet und zur Analyse an Google Gemini und fal.ai weitergeleitet. <strong>Generierte Zeichnungen werden auf Cloudflare R2 gespeichert</strong> und sind öffentlich zugänglich.</p>
-                <p>Bitte laden Sie keine sensiblen oder persönlichen Bilder hoch.</p>
-            </div>
+      <div class="info-modal-content">
+        <button id="info-close-btn" class="info-close-btn">&times;</button>
+        <div class="info-section">
+          <p>
+            Developed by <strong>Oliver Wick</strong> and
+            <strong>Nicolas Birrer</strong><br />
+            Mentored by <strong>Paulina Zybinska</strong>
+          </p>
+          <p>
+            Hochschule für Kunst und Gestaltung Basel FHNW<br />
+            Visual Communication and Digital Spaces B, 5. Semester
+          </p>
         </div>
+        <div class="info-section">
+          <h3>AI Workflow</h3>
+          <ol>
+            <li>
+              GPS-Daten (EXIF) von Bild extrahieren mit
+              <strong>Google Geocoding API</strong>
+            </li>
+            <li>
+              Identifizierung Hauptobjekt mit
+              <strong>Google Gemini 2.0 Flash</strong> via Replicate API
+            </li>
+            <li>
+              Fall AI: <strong>Segment Anything Model 3</strong> = Masking main
+              object
+            </li>
+            <li>
+              Img-Generation with <strong>Flux 2 Lora</strong> (trained with
+              Illustrations from Oliver Wick)
+            </li>
+          </ol>
+        </div>
+        <div class="info-section info-disclaimer">
+          <h3>Datenschutz & Speicherung</h3>
+          <p>
+            Hochgeladene Bilder werden nur temporär verarbeitet und zur Analyse
+            an Google Gemini und fal.ai weitergeleitet. Generierte Zeichnungen
+            werden auf Cloudflare R2 gespeichert und sind öffentlich zugänglich.
+          </p>
+          <p>Bitte laden Sie keine sensiblen oder persönlichen Bilder hoch.</p>
+        </div>
+      </div>
     </div>
 
     <!-- Mobile Header -->
     <header id="mobile-header" class="mobile-header">
-        <img src="title_logo.jpg" alt="Capture Basel" class="mobile-title-logo" />
-        <button id="mobile-info-btn" class="mobile-info-btn">i</button>
+      <img src="title_logo.jpg" alt="Capture Basel" class="mobile-title-logo" />
+      <button id="mobile-info-btn" class="mobile-info-btn">i</button>
     </header>
 
     <!-- Mobile Grid Container (separate from desktop) -->
     <div id="mobile-grid-container" class="mobile-grid-container"></div>
 
     <!-- Mobile Progress Bar (integrated in UI, above bottom bar) -->
-    <div id="mobile-progress-bar-container" class="mobile-progress-bar-container">
-        <div class="mobile-progress-bar-inner">
-            <div id="mobile-progress-bar-fill" class="mobile-progress-bar-fill"></div>
-        </div>
-        <div id="mobile-progress-text-small" class="mobile-progress-text-small">Wird verarbeitet...</div>
+    <div
+      id="mobile-progress-bar-container"
+      class="mobile-progress-bar-container"
+    >
+      <div class="mobile-progress-bar-inner">
+        <div
+          id="mobile-progress-bar-fill"
+          class="mobile-progress-bar-fill"
+        ></div>
+      </div>
+      <div id="mobile-progress-text-small" class="mobile-progress-text-small">
+        Wird verarbeitet...
+      </div>
     </div>
 
     <!-- Mobile Bottom Bar (Upload & Generate) -->
     <div id="mobile-bottom-bar" class="mobile-bottom-bar">
+      <!-- Integrated Progress Bar (full width above buttons) -->
+      <div id="mobile-bottom-progress" class="mobile-bottom-progress hidden">
+        <div class="mobile-bottom-progress-bar">
+          <div
+            id="mobile-bottom-progress-fill"
+            class="mobile-bottom-progress-fill"
+          ></div>
+        </div>
+        <div id="mobile-bottom-progress-text" class="mobile-bottom-progress-text">
+          Wird verarbeitet...
+        </div>
+      </div>
+
+      <!-- Buttons Row -->
+      <div class="mobile-bottom-buttons">
         <!-- Upload Image Button -->
-        <label for="mobile-image-upload" class="mobile-upload-label" id="mobile-upload-label">
-            <input type="file" id="mobile-image-upload" accept="image/*" hidden />
-            <img id="mobile-upload-preview" class="mobile-upload-img" src="addimg.jpg" alt="Bild hinzufügen" />
+        <label
+          for="mobile-image-upload"
+          class="mobile-upload-label"
+          id="mobile-upload-label"
+        >
+          <input type="file" id="mobile-image-upload" accept="image/*" hidden />
+          <img
+            id="mobile-upload-preview"
+            class="mobile-upload-img"
+            src="addimg.jpg"
+            alt="Bild hinzufügen"
+          />
         </label>
 
         <!-- Generate Button -->
-        <img id="mobile-generate-btn" class="mobile-generate-btn" src="gen-button.jpg" alt="Generieren" />
+        <img
+          id="mobile-generate-btn"
+          class="mobile-generate-btn"
+          src="gen-button.jpg"
+          alt="Generieren"
+        />
+      </div>
     </div>
 
     <!-- Mobile Progress Overlay -->
     <div id="mobile-progress-overlay" class="mobile-progress-overlay hidden">
-        <div class="mobile-progress-content">
-            <div class="mobile-progress-bar">
-                <div id="mobile-progress-fill" class="mobile-progress-fill"></div>
-            </div>
-            <div id="mobile-progress-text" class="mobile-progress-text">Wird verarbeitet...</div>
-            <button id="mobile-cancel-btn" class="mobile-cancel-btn">&times;</button>
+      <div class="mobile-progress-content">
+        <div class="mobile-progress-bar">
+          <div id="mobile-progress-fill" class="mobile-progress-fill"></div>
         </div>
+        <div id="mobile-progress-text" class="mobile-progress-text">
+          Wird verarbeitet...
+        </div>
+        <button id="mobile-cancel-btn" class="mobile-cancel-btn">
+          &times;
+        </button>
+      </div>
     </div>
 
     <script>
-        // Only load hand tracking on desktop (not mobile)
-        if (window.innerWidth > 768) {
-            const script = document.createElement('script');
-            script.src = 'handtracking.js';
-            document.body.appendChild(script);
-        }
+      // Only load hand tracking on desktop (not mobile)
+      if (window.innerWidth > 768) {
+        const script = document.createElement("script");
+        script.src = "handtracking.js";
+        document.body.appendChild(script);
+      }
     </script>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
-

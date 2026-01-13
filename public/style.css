@@ -886,8 +886,8 @@ body.grid-mode .scene-controls {
   right: 16px;
   width: 32px;
   height: 32px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.06);
+  border-radius: 0;
+  background: rgba(255, 75, 88, 0.15);
   border: none;
   font-size: 24px;
   line-height: 1;
@@ -896,12 +896,12 @@ body.grid-mode .scene-controls {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
+  color: rgba(255, 75, 88, 0.6);
 }
 
 .info-close-btn:hover {
-  background: rgba(0, 0, 0, 0.12);
-  color: var(--text-primary);
+  background: rgba(255, 75, 88, 0.25);
+  color: rgba(255, 75, 88, 0.8);
   transform: scale(1.1);
 }
 
@@ -950,10 +950,28 @@ body.grid-mode .scene-controls {
   color: var(--text-primary);
 }
 
+.info-section ol {
+  margin: 0;
+  padding-left: 20px;
+  list-style-type: decimal;
+}
+
+.info-section li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.info-section li:last-child {
+  margin-bottom: 0;
+}
+
 .info-disclaimer {
   background: rgba(239, 68, 68, 0.08);
   padding: 16px;
   border: 1px solid rgba(239, 68, 68, 0.2);
+  border-bottom: 1px solid rgba(239, 68, 68, 0.2) !important;
 }
 
 .info-disclaimer h3 {
@@ -1024,14 +1042,14 @@ body.grid-mode .scene-controls {
   .mobile-info-btn {
     width: 36px;
     height: 36px;
-    border-radius: 50%;
+    border-radius: 0;
     background: rgba(255, 75, 88, 0.15);
     color: var(--primary-blue);
     border: none;
     font-size: 18px;
     font-weight: 500;
-    font-style: italic;
-    font-family: "Georgia", serif;
+    font-style: normal;
+    font-family: inherit;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -1208,6 +1226,7 @@ body.grid-mode .scene-controls {
   /* ===== MOBILE BOTTOM BAR ===== */
   .mobile-bottom-bar {
     display: flex !important;
+    flex-direction: column;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -1219,6 +1238,11 @@ body.grid-mode .scene-controls {
     gap: 12px;
     z-index: 100;
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .mobile-bottom-buttons {
+    display: flex;
+    gap: 12px;
     align-items: center;
   }
 
@@ -1276,6 +1300,39 @@ body.grid-mode .scene-controls {
 
   .mobile-generate-btn.wobbling {
     animation: wobble-and-hover 3s ease-in-out infinite;
+  }
+
+  /* Mobile Bottom Progress (integrated in bottom bar, full width above buttons) */
+  .mobile-bottom-progress {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-bottom-progress.hidden {
+    display: none;
+  }
+
+  .mobile-bottom-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+
+  .mobile-bottom-progress-fill {
+    height: 100%;
+    background: var(--primary-blue);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  .mobile-bottom-progress-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-align: center;
+    font-weight: 500;
   }
 
   /* Mobile Progress Bar (integrated in UI, above bottom bar) */
