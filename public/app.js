@@ -7,7 +7,7 @@ const generateBtn = document.getElementById("generate-btn");
 const cancelBtn = document.getElementById("cancel-btn");
 const resultContainer = document.getElementById("result-container");
 const progressContainer = document.getElementById("progress-container");
-const progressFill = document.getElementById("progress-fill");
+const progressImage = document.getElementById("progress-image");
 const progressText = document.getElementById("progress-text");
 const statusUpdates = document.getElementById("status-updates");
 const randomImagesBtn = document.getElementById("random-images-btn");
@@ -22,6 +22,12 @@ let hoverInterval = null;
 let currentQuartier = null;
 let currentAbortController = null;
 let currentMode = "grid"; // 'scene' oder 'grid'
+
+// Helper function to update progress image based on percentage (0-100)
+function updateProgressImage(imageElement, progress) {
+  const frame = Math.min(8, Math.max(1, Math.ceil((progress / 100) * 8)));
+  imageElement.src = `progressbar_${frame}.jpg`;
+}
 
 // Mode Switch Event Listeners
 document.querySelectorAll(".mode-switch-btn").forEach((btn) => {
@@ -935,11 +941,9 @@ cancelBtn.addEventListener("click", () => {
   if (currentAbortController) {
     currentAbortController.abort();
     progressText.textContent = "Generation cancelled";
-    progressFill.style.backgroundColor = "#ef4444";
 
     setTimeout(() => {
       progressContainer.classList.add("hidden");
-      progressFill.style.backgroundColor = "";
       cancelBtn.classList.add("hidden");
       generateBtn.classList.remove("disabled");
       uploadPreviewCombined.classList.remove("disabled");
@@ -974,7 +978,7 @@ generateBtn.addEventListener("click", async () => {
   }, 400);
 
   progressContainer.classList.remove("hidden");
-  progressFill.style.width = "0%";
+  updateProgressImage(progressImage, 0);
   progressText.textContent = "Analyzing image...";
 
   // Create new AbortController for this request
@@ -1011,15 +1015,13 @@ generateBtn.addEventListener("click", async () => {
 
             if (data.type === "progress") {
               const progress = data.progress || 0;
-              progressFill.style.width = `${progress}%`;
+              updateProgressImage(progressImage, progress);
               progressText.textContent = data.message || "Generating...";
             } else if (data.type === "error") {
               progressText.textContent = data.message;
-              progressFill.style.width = "100%";
-              progressFill.style.backgroundColor = "#ff4444";
+              updateProgressImage(progressImage, 100);
               setTimeout(() => {
                 progressContainer.classList.add("hidden");
-                progressFill.style.backgroundColor = "";
                 cancelBtn.classList.add("hidden");
               }, 5000);
               generateBtn.classList.remove("disabled");
@@ -1131,7 +1133,7 @@ generateBtn.addEventListener("click", async () => {
                 console.error("Missing imageUrl or quartier in result:", data);
               }
 
-              progressFill.style.width = "100%";
+              updateProgressImage(progressImage, 100);
               progressText.textContent = `"${data.detectedObject}" erfolgreich generiert!`;
 
               setTimeout(() => {
@@ -1332,7 +1334,7 @@ if (isMobile) {
   const mobileUploadPreview = document.getElementById("mobile-upload-preview");
   const mobileGenerateBtn = document.getElementById("mobile-generate-btn");
   const mobileBottomProgress = document.getElementById("mobile-bottom-progress");
-  const mobileBottomProgressFill = document.getElementById("mobile-bottom-progress-fill");
+  const mobileProgressImage = document.getElementById("mobile-progress-image");
   const mobileBottomProgressText = document.getElementById("mobile-bottom-progress-text");
   const mobileInfoBtn = document.getElementById("mobile-info-btn");
 
@@ -1562,14 +1564,11 @@ if (isMobile) {
 
       // Show error message in bottom progress bar
       mobileBottomProgress.classList.remove("hidden");
-      mobileBottomProgressFill.style.width = "100%";
-      mobileBottomProgressFill.style.background = "#ef4444";
+      updateProgressImage(mobileProgressImage, 100);
       mobileBottomProgressText.textContent = "Bitte zuerst ein Bild hochladen!";
 
       setTimeout(() => {
         mobileBottomProgress.classList.add("hidden");
-        mobileBottomProgressFill.style.background = "";
-        mobileBottomProgressFill.style.width = "0%";
       }, 2500);
 
       return;
@@ -1579,8 +1578,7 @@ if (isMobile) {
 
     // Show progress bar
     mobileBottomProgress.classList.remove("hidden");
-    mobileBottomProgressFill.style.width = "0%";
-    mobileBottomProgressFill.style.background = "";
+    updateProgressImage(mobileProgressImage, 0);
     mobileBottomProgressText.textContent = "Analysiere Bild...";
 
     // Disable and wobble generate button with image swapping
@@ -1623,11 +1621,10 @@ if (isMobile) {
               const data = JSON.parse(line.slice(6));
 
               if (data.type === "progress") {
-                mobileBottomProgressFill.style.width = `${data.progress}%`;
+                updateProgressImage(mobileProgressImage, data.progress || 0);
                 mobileBottomProgressText.textContent = data.message || "Wird verarbeitet...";
               } else if (data.type === "error") {
                 mobileBottomProgressText.textContent = data.message || "Fehler";
-                mobileBottomProgressFill.style.background = "#ef4444";
 
                 // Stop wobble and image swap
                 mobileGenerateBtn.classList.remove("disabled", "wobbling");
@@ -1639,11 +1636,10 @@ if (isMobile) {
 
                 setTimeout(() => {
                   mobileBottomProgress.classList.add("hidden");
-                  mobileBottomProgressFill.style.background = "";
                 }, 2500);
                 return;
               } else if (data.type === "result") {
-                mobileBottomProgressFill.style.width = "100%";
+                updateProgressImage(mobileProgressImage, 100);
                 mobileBottomProgressText.textContent = `"${data.detectedObject}" generiert!`;
 
                 // Determine quartier ID

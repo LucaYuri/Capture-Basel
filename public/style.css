@@ -1314,18 +1314,10 @@ body.grid-mode .scene-controls {
     display: none;
   }
 
-  .mobile-bottom-progress-bar {
+  .mobile-progress-image {
     width: 100%;
-    height: 6px;
-    background: rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-  }
-
-  .mobile-bottom-progress-fill {
-    height: 100%;
-    background: var(--primary-blue);
-    width: 0%;
-    transition: width 0.3s ease;
+    height: auto;
+    display: block;
   }
 
   .mobile-bottom-progress-text {

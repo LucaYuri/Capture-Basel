@@ -21,7 +21,7 @@
     <aside class="sidebar">
       <!-- Title -->
       <div class="app-title">
-        <img src="title_logo.jpg" alt="Basel Simplified" class="title-logo" />
+        <img src="title_logo_v2.jpg" alt="Basel Simplified" class="title-logo" />
       </div>
 
       <!-- Mode Switch -->
@@ -60,9 +60,7 @@
       <!-- Progress Section -->
       <div id="progress-container" class="section progress-section hidden">
         <div style="display: flex; align-items: center; gap: 8px">
-          <div class="progress-bar" style="flex: 1">
-            <div id="progress-fill" class="progress-fill"></div>
-          </div>
+          <img id="progress-image" class="progress-image" src="progressbar_1.jpg" alt="Progress" style="flex: 1; width: 100%; height: auto;" />
           <button id="cancel-btn" class="cancel-btn">×</button>
         </div>
         <div id="progress-text" class="progress-text">Generating...</div>
@@ -269,13 +267,16 @@
     <div id="mobile-bottom-bar" class="mobile-bottom-bar">
       <!-- Integrated Progress Bar (full width above buttons) -->
       <div id="mobile-bottom-progress" class="mobile-bottom-progress hidden">
-        <div class="mobile-bottom-progress-bar">
-          <div
-            id="mobile-bottom-progress-fill"
-            class="mobile-bottom-progress-fill"
-          ></div>
-        </div>
-        <div id="mobile-bottom-progress-text" class="mobile-bottom-progress-text">
+        <img
+          id="mobile-progress-image"
+          class="mobile-progress-image"
+          src="progressbar_1.jpg"
+          alt="Progress"
+        />
+        <div
+          id="mobile-bottom-progress-text"
+          class="mobile-bottom-progress-text"
+        >
           Wird verarbeitet...
         </div>
       </div>

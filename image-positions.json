@@ -4,8 +4,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-19-29-59.png",
       "caption": "drive",
       "quartierId": 20,
-      "x": 439.4017028808594,
-      "y": 354.17889404296875,
+      "x": 439.4020080566406,
+      "y": 354.1789855957031,
       "scale": 1,
       "zIndex": 1006
     },
@@ -13,8 +13,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-19-30-42.png",
       "caption": "camper",
       "quartierId": 20,
-      "x": 426.27288818359375,
-      "y": 300.6387939453125,
+      "x": 426.27301025390625,
+      "y": 300.6390075683594,
       "scale": 1,
       "zIndex": 1007,
       "gps": {
@@ -26,8 +26,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-19-31-12.png",
       "caption": "plush",
       "quartierId": 6,
-      "x": 367.2069091796875,
-      "y": 338.2536926269531,
+      "x": 367.2070007324219,
+      "y": 338.2539978027344,
       "scale": 1,
       "zIndex": 1008,
       "gps": {
@@ -39,8 +39,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-09-45.png",
       "caption": "statue",
       "quartierId": 20,
-      "x": 305.168701171875,
-      "y": 352.14990234375,
+      "x": 305.16900634765625,
+      "y": 352.1499938964844,
       "scale": 1,
       "zIndex": 1009,
       "gps": {
@@ -52,8 +52,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-12-17.png",
       "caption": "person",
       "quartierId": 20,
-      "x": 379.9634094238281,
-      "y": 405.00860595703125,
+      "x": 379.9630126953125,
+      "y": 405.0090026855469,
       "scale": 1,
       "zIndex": 1011
     },
@@ -61,8 +61,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-13-26.png",
       "caption": "person",
       "quartierId": 6,
-      "x": 362.71160888671875,
-      "y": 433.7301940917969,
+      "x": 362.7120056152344,
+      "y": 433.7300109863281,
       "scale": 1,
       "zIndex": 1012,
       "gps": {
@@ -74,8 +74,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-40-05.png",
       "caption": "pendrive",
       "quartierId": 20,
-      "x": 296.12579345703125,
-      "y": 269.9175109863281,
+      "x": 296.1260070800781,
+      "y": 269.9179992675781,
       "scale": 1,
       "zIndex": 1013
     },
@@ -83,8 +83,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-40-36.png",
       "caption": "person",
       "quartierId": 20,
-      "x": 307.27911376953125,
-      "y": 313.12640380859375,
+      "x": 307.27899169921875,
+      "y": 313.1260070800781,
       "scale": 1,
       "zIndex": 1014,
       "gps": {
@@ -96,8 +96,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-44-01.png",
       "caption": "toothpaste",
       "quartierId": 20,
-      "x": 404.08660888671875,
-      "y": 315.831298828125,
+      "x": 404.0870056152344,
+      "y": 315.83099365234375,
       "scale": 1,
       "zIndex": 1015
     },
@@ -105,8 +105,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-54-02.png",
       "caption": "figurine",
       "quartierId": 20,
-      "x": 392.03839111328125,
-      "y": 396.32489013671875,
+      "x": 392.0379943847656,
+      "y": 396.32501220703125,
       "scale": 1,
       "zIndex": 1016
     },
@@ -114,8 +114,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-56-59.png",
       "caption": "cat",
       "quartierId": 20,
-      "x": 326.306396484375,
-      "y": 385.03070068359375,
+      "x": 326.3059997558594,
+      "y": 385.031005859375,
       "scale": 1,
       "zIndex": 1017,
       "gps": {
@@ -128,7 +128,7 @@
       "caption": "ducks",
       "quartierId": 20,
       "x": 440.2090148925781,
-      "y": 335.5154113769531,
+      "y": 335.5150146484375,
       "scale": 1,
       "zIndex": 1018
     },
@@ -136,8 +136,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-00-18.png",
       "caption": "person",
       "quartierId": 20,
-      "x": 281.5643005371094,
-      "y": 417.57958984375,
+      "x": 281.5639953613281,
+      "y": 417.5799865722656,
       "scale": 1,
       "zIndex": 1019
     },
@@ -145,8 +145,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-00-55.png",
       "caption": "person",
       "quartierId": 20,
-      "x": 383.9012145996094,
-      "y": 275.1766052246094,
+      "x": 383.9010009765625,
+      "y": 275.177001953125,
       "scale": 1,
       "zIndex": 1020
     },
@@ -154,8 +154,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-04-27.png",
       "caption": "person",
       "quartierId": 20,
-      "x": 285.9526062011719,
-      "y": 372.6689147949219,
+      "x": 285.9530029296875,
+      "y": 372.66900634765625,
       "scale": 1,
       "zIndex": 1021,
       "gps": {
@@ -167,8 +167,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-14-50.png",
       "caption": "person",
       "quartierId": 20,
-      "x": 279.76251220703125,
-      "y": 333.269287109375,
+      "x": 279.7619934082031,
+      "y": 333.2690124511719,
       "scale": 1,
       "zIndex": 1022,
       "gps": {
@@ -180,8 +180,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-31-47.png",
       "caption": "beer",
       "quartierId": 1,
-      "x": 306.8575134277344,
-      "y": 441.256103515625,
+      "x": 306.8580017089844,
+      "y": 441.2560119628906,
       "scale": 1,
       "zIndex": 1023,
       "gps": {
@@ -193,8 +193,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-36-36.png",
       "caption": "meal",
       "quartierId": 20,
-      "x": 414.464599609375,
-      "y": 409.1827087402344,
+      "x": 414.4649963378906,
+      "y": 409.1830139160156,
       "scale": 1,
       "zIndex": 1025,
       "gps": {
@@ -206,8 +206,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-37-07.png",
       "caption": "book",
       "quartierId": 20,
-      "x": 431.81280517578125,
-      "y": 405.9244079589844,
+      "x": 431.81298828125,
+      "y": 405.92401123046875,
       "scale": 1,
       "zIndex": 1026
     },
@@ -228,8 +228,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-39-28.png",
       "caption": "bin",
       "quartierId": 1,
-      "x": 440.5863037109375,
-      "y": 396.50360107421875,
+      "x": 440.58599853515625,
+      "y": 396.5039978027344,
       "scale": 1,
       "zIndex": 1028,
       "gps": {
@@ -241,8 +241,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-40-05.png",
       "caption": "microwave",
       "quartierId": 20,
-      "x": 284.94189453125,
-      "y": 333.9989013671875,
+      "x": 284.9419860839844,
+      "y": 333.9989929199219,
       "scale": 1,
       "zIndex": 1029,
       "gps": {
@@ -254,8 +254,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-41-44.png",
       "caption": "woman",
       "quartierId": 20,
-      "x": 444.9689025878906,
-      "y": 284.3725891113281,
+      "x": 444.968994140625,
+      "y": 284.37298583984375,
       "scale": 1,
       "zIndex": 1030
     },
@@ -263,8 +263,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-22-12-59.png",
       "caption": "bouquet",
       "quartierId": 20,
-      "x": 269.8847961425781,
-      "y": 299.1274108886719,
+      "x": 269.885009765625,
+      "y": 299.12701416015625,
       "scale": 1,
       "zIndex": 1031
     },
@@ -272,8 +272,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-07-27-39.png",
       "caption": "bicycle",
       "quartierId": 1,
-      "x": 450.8772888183594,
-      "y": 323.8763122558594,
+      "x": 450.87701416015625,
+      "y": 323.8760070800781,
       "scale": 1,
       "zIndex": 1032,
       "gps": {
@@ -285,8 +285,8 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-07-29-06.png",
       "caption": "woman",
       "quartierId": 20,
-      "x": 431.2157897949219,
-      "y": 400.5314025878906,
+      "x": 431.21600341796875,
+      "y": 400.531005859375,
       "scale": 1,
       "zIndex": 1033,
       "gps": {
@@ -298,30 +298,17 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-07-30-14.png",
       "caption": "projection",
       "quartierId": 20,
-      "x": 309.5592956542969,
-      "y": 336.3122863769531,
+      "x": 309.5589904785156,
+      "y": 336.31201171875,
       "scale": 1,
       "zIndex": 1034
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-07-30-55.png",
-      "caption": "couple",
-      "quartierId": 20,
-      "x": 352.47869873046875,
-      "y": 432.4473876953125,
-      "scale": 1,
-      "zIndex": 1035,
-      "gps": {
-        "lat": 46.586764,
-        "lon": 11.696989
-      }
     },
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-54-38.png",
       "caption": "camper",
       "quartierId": 20,
-      "x": 349.36138916015625,
-      "y": 392.1756896972656,
+      "x": 349.3609924316406,
+      "y": 392.1759948730469,
       "scale": 1,
       "zIndex": 1036,
       "gps": {
@@ -333,17 +320,17 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-56-00.png",
       "caption": "flashdrive",
       "quartierId": 20,
-      "x": 291.0793151855469,
-      "y": 332.50469970703125,
+      "x": 538.4500122070312,
+      "y": 346.66900634765625,
       "scale": 1,
-      "zIndex": 1037
+      "zIndex": 1047
     },
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-57-36.png",
       "caption": "man",
       "quartierId": 4,
-      "x": 451.73150634765625,
-      "y": 308.0801086425781,
+      "x": 451.7309875488281,
+      "y": 308.0799865722656,
       "scale": 1,
       "zIndex": 1038,
       "gps": {
@@ -352,31 +339,184 @@
       }
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-59-44.png",
-      "caption": "couple",
-      "quartierId": 20,
-      "x": 410.48638916015625,
-      "y": 265.94378662109375,
-      "scale": 1,
-      "zIndex": 1039
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-01-48.png",
-      "caption": "couple",
-      "quartierId": 20,
-      "x": 362.14910888671875,
-      "y": 406.3038024902344,
-      "scale": 1,
-      "zIndex": 1040
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-02-36.png",
       "caption": "people",
       "quartierId": 20,
-      "x": 450.82391357421875,
-      "y": 312.75640869140625,
+      "x": 685.4569702148438,
+      "y": 116.64299774169922,
       "scale": 1,
-      "zIndex": 1041
+      "zIndex": 1046
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-05-12.png",
+      "caption": "clothing",
+      "quartierId": 20,
+      "x": 1033.5,
+      "y": 517.7050170898438,
+      "scale": 0.3,
+      "zIndex": 1045,
+      "gps": {
+        "lat": 46.428614,
+        "lon": 8.167269
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-30-31.png",
+      "caption": "object",
+      "quartierId": 20,
+      "x": 774.344970703125,
+      "y": 214.02000427246094,
+      "scale": 0.3,
+      "zIndex": 1044
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-54-44.png",
+      "caption": "object",
+      "quartierId": 20,
+      "x": 298.40411376953125,
+      "y": 362.1654052734375,
+      "scale": 1,
+      "zIndex": 1048
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-55-10.png",
+      "caption": "object",
+      "quartierId": 20,
+      "x": 316.643310546875,
+      "y": 324.38330078125,
+      "scale": 1,
+      "zIndex": 1049
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-04-18.png",
+      "caption": "building",
+      "quartierId": 20,
+      "x": 364.2703857421875,
+      "y": 371.0994873046875,
+      "scale": 1,
+      "zIndex": 1050
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-04-53.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 436.46630859375,
+      "y": 307.6465148925781,
+      "scale": 1,
+      "zIndex": 1051
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-06-55.png",
+      "caption": "mouse",
+      "quartierId": 20,
+      "x": 447.5047912597656,
+      "y": 404.0668029785156,
+      "scale": 1,
+      "zIndex": 1052
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-28-43.png",
+      "caption": "bridge",
+      "quartierId": 5,
+      "x": 443.364990234375,
+      "y": 266.576904296875,
+      "scale": 1,
+      "zIndex": 1053,
+      "gps": {
+        "lat": 47.55585,
+        "lon": 7.615672
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-29-54.png",
+      "caption": "opener",
+      "quartierId": 1,
+      "x": 285.3402099609375,
+      "y": 267.6803894042969,
+      "scale": 1,
+      "zIndex": 1054,
+      "gps": {
+        "lat": 47.556267,
+        "lon": 7.586906
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-32-15.png",
+      "caption": "sculpture",
+      "quartierId": 3,
+      "x": 318.9888916015625,
+      "y": 291.3872985839844,
+      "scale": 1,
+      "zIndex": 1055,
+      "gps": {
+        "lat": 47.560847,
+        "lon": 7.580936
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-33-03.png",
+      "caption": "pipes",
+      "quartierId": 16,
+      "x": 372.9056091308594,
+      "y": 387.34759521484375,
+      "scale": 1,
+      "zIndex": 1056,
+      "gps": {
+        "lat": 47.567347,
+        "lon": 7.601631
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-34-30.png",
+      "caption": "bag",
+      "quartierId": 7,
+      "x": 353.18218994140625,
+      "y": 376.7091979980469,
+      "scale": 1,
+      "zIndex": 1057,
+      "gps": {
+        "lat": 47.569139,
+        "lon": 7.581692
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-35-07.png",
+      "caption": "bag",
+      "quartierId": 7,
+      "x": 428.63720703125,
+      "y": 307.4989013671875,
+      "scale": 1,
+      "zIndex": 1058,
+      "gps": {
+        "lat": 47.569253,
+        "lon": 7.581633
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-36-17.png",
+      "caption": "food",
+      "quartierId": 6,
+      "x": 381.25640869140625,
+      "y": 390.58929443359375,
+      "scale": 1,
+      "zIndex": 1059,
+      "gps": {
+        "lat": 47.543781,
+        "lon": 7.593036
+      }
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-36-56.png",
+      "caption": "shoe",
+      "quartierId": 18,
+      "x": 284.720703125,
+      "y": 363.1192932128906,
+      "scale": 1,
+      "zIndex": 1060,
+      "gps": {
+        "lat": 47.573036,
+        "lon": 7.592986
+      }
     }
   ]
 }
