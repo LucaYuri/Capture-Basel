@@ -106,16 +106,20 @@ function populateGrid() {
     const filenameB = imgB.src.split("/").pop();
 
     // Extract timestamp from filename
-    const matchA = filenameA.match(/generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/);
-    const matchB = filenameB.match(/generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/);
+    const matchA = filenameA.match(
+      /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+    );
+    const matchB = filenameB.match(
+      /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+    );
 
     if (!matchA && !matchB) return 0;
     if (!matchA) return 1;
     if (!matchB) return -1;
 
     // Compare timestamps as strings (YY-MM-DD-HH-MM-SS format sorts correctly)
-    const timeA = matchA[0].replace('generated-', '');
-    const timeB = matchB[0].replace('generated-', '');
+    const timeA = matchA[0].replace("generated-", "");
+    const timeB = matchB[0].replace("generated-", "");
 
     // Newest first: B > A returns negative (B comes before A)
     return timeB.localeCompare(timeA);
@@ -226,7 +230,9 @@ function populateGrid() {
 
           if (response.ok) {
             // Remove from quartierImages array
-            const index = quartierImages[qId].findIndex((img) => img.url === imgSrc);
+            const index = quartierImages[qId].findIndex(
+              (img) => img.url === imgSrc
+            );
             if (index > -1) {
               quartierImages[qId].splice(index, 1);
             }
@@ -323,7 +329,9 @@ function updateQuartierCounts() {
   // Aktualisiere Zähler für jeden Button
   buttons.forEach((button) => {
     const quartierId = parseInt(button.dataset.quartier);
-    const count = quartierImages[quartierId] ? quartierImages[quartierId].length : 0;
+    const count = quartierImages[quartierId]
+      ? quartierImages[quartierId].length
+      : 0;
     const countElement = button.querySelector(".quartier-count");
 
     if (countElement) {
@@ -416,7 +424,9 @@ function addImageToQuartier(quartierId, imageData) {
 
   // Füge das neue Bild hinzu (keine Limitierung mehr)
   images.push(imageData);
-  console.log(`✅ Added image to Quartier ${quartierId}. Current count: ${images.length}`);
+  console.log(
+    `✅ Added image to Quartier ${quartierId}. Current count: ${images.length}`
+  );
 }
 
 // Funktion zum Speichern aller Bildpositionen
@@ -473,7 +483,7 @@ async function savePositions() {
           x: 0,
           y: 0,
           scale: 1,
-          zIndex: 1000
+          zIndex: 1000,
         });
       }
     }
@@ -914,7 +924,9 @@ function displayQuartierImages(quartierId) {
       }
     });
 
-    console.log(`📺 Scene Mode: Showing ${imagesToShow.length} of ${images.length} images for Quartier ${quartierId}`);
+    console.log(
+      `📺 Scene Mode: Showing ${imagesToShow.length} of ${images.length} images for Quartier ${quartierId}`
+    );
   }
 }
 
@@ -1217,13 +1229,13 @@ randomImagesBtn.addEventListener("click", () => {
 
   // First, clear all existing images from scene
   const containers = document.querySelectorAll(".image-container");
-  containers.forEach(container => {
+  containers.forEach((container) => {
     container.remove();
   });
 
   // Update the quartierImages array to mark elements as not in scene
   for (let i = 1; i <= 20; i++) {
-    quartierImages[i].forEach(img => {
+    quartierImages[i].forEach((img) => {
       img.element = null;
     });
   }
@@ -1253,7 +1265,7 @@ randomImagesBtn.addEventListener("click", () => {
       x,
       y,
       scale: 1,
-      zIndex: imageZIndex++
+      zIndex: imageZIndex++,
     });
   });
 
@@ -1277,7 +1289,7 @@ normalizeSizeBtn.addEventListener("click", () => {
 
   const standardScale = 1;
 
-  containers.forEach(container => {
+  containers.forEach((container) => {
     container.dataset.scale = standardScale;
     container.style.pointerEvents = "none";
 
@@ -1287,7 +1299,7 @@ normalizeSizeBtn.addEventListener("click", () => {
       ease: "power2.out",
       onComplete: () => {
         container.style.pointerEvents = "auto";
-      }
+      },
     });
   });
 
@@ -1298,9 +1310,11 @@ normalizeSizeBtn.addEventListener("click", () => {
 
 // Apply random tilt to all buttons on page load
 function applyRandomTiltToButtons() {
-  const buttons = document.querySelectorAll('button, .generate-btn, .upload-preview-combined');
+  const buttons = document.querySelectorAll(
+    "button, .generate-btn, .upload-preview-combined"
+  );
 
-  buttons.forEach(button => {
+  buttons.forEach((button) => {
     // Generate random rotation between -4 and 4 degrees
     const randomRotation = (Math.random() * 8 - 4).toFixed(2);
     button.style.transform = `rotate(${randomRotation}deg)`;
@@ -1338,9 +1352,13 @@ if (isMobile) {
   const mobileFileInput = document.getElementById("mobile-image-upload");
   const mobileUploadPreview = document.getElementById("mobile-upload-preview");
   const mobileGenerateBtn = document.getElementById("mobile-generate-btn");
-  const mobileBottomProgress = document.getElementById("mobile-bottom-progress");
+  const mobileBottomProgress = document.getElementById(
+    "mobile-bottom-progress"
+  );
   const mobileProgressImage = document.getElementById("mobile-progress-image");
-  const mobileBottomProgressText = document.getElementById("mobile-bottom-progress-text");
+  const mobileBottomProgressText = document.getElementById(
+    "mobile-bottom-progress-text"
+  );
   const mobileInfoBtn = document.getElementById("mobile-info-btn");
   const mobileGridToggle = document.getElementById("mobile-grid-toggle");
 
@@ -1366,7 +1384,9 @@ if (isMobile) {
 
     // "Alle" chip
     const alleChip = document.createElement("div");
-    alleChip.className = "mobile-quartier-chip" + (mobileCurrentQuartier === null ? " active" : "");
+    alleChip.className =
+      "mobile-quartier-chip" +
+      (mobileCurrentQuartier === null ? " active" : "");
     const alleTilt = (Math.random() - 0.5) * 4; // Random tilt between -2 and 2 degrees
     alleChip.style.transform = `rotate(${alleTilt}deg)`;
     alleChip.innerHTML = `
@@ -1386,15 +1406,17 @@ if (isMobile) {
       sortedQuartiers.push({
         id: i,
         name: quartierIdToName[i] || `Quartier ${i}`,
-        count: quartierCounts[i]
+        count: quartierCounts[i],
       });
     }
     sortedQuartiers.sort((a, b) => b.count - a.count);
 
     // Individual quartier chips
-    sortedQuartiers.forEach(quartier => {
+    sortedQuartiers.forEach((quartier) => {
       const chip = document.createElement("div");
-      chip.className = "mobile-quartier-chip" + (mobileCurrentQuartier === quartier.id ? " active" : "");
+      chip.className =
+        "mobile-quartier-chip" +
+        (mobileCurrentQuartier === quartier.id ? " active" : "");
       const tilt = (Math.random() - 0.5) * 4; // Random tilt between -2 and 2 degrees
       chip.style.transform = `rotate(${tilt}deg)`;
       chip.innerHTML = `
@@ -1418,16 +1440,17 @@ if (isMobile) {
 
     // Collect all images from all or filtered quartiers
     const allImages = [];
-    const quartiersToShow = mobileCurrentQuartier === null ?
-      Array.from({length: 20}, (_, i) => i + 1) :
-      [mobileCurrentQuartier];
+    const quartiersToShow =
+      mobileCurrentQuartier === null
+        ? Array.from({ length: 20 }, (_, i) => i + 1)
+        : [mobileCurrentQuartier];
 
     for (const i of quartiersToShow) {
       if (quartierImages[i]) {
-        quartierImages[i].forEach(img => {
+        quartierImages[i].forEach((img) => {
           allImages.push({
             ...img,
-            quartierId: i
+            quartierId: i,
           });
         });
       }
@@ -1440,16 +1463,20 @@ if (isMobile) {
       const filenameB = b.url.split("/").pop();
 
       // Extract timestamp from filename
-      const matchA = filenameA.match(/generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/);
-      const matchB = filenameB.match(/generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/);
+      const matchA = filenameA.match(
+        /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+      );
+      const matchB = filenameB.match(
+        /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+      );
 
       if (!matchA && !matchB) return 0;
       if (!matchA) return 1;
       if (!matchB) return -1;
 
       // Compare timestamps as strings (YY-MM-DD-HH-MM-SS format sorts correctly)
-      const timeA = matchA[0].replace('generated-', '');
-      const timeB = matchB[0].replace('generated-', '');
+      const timeA = matchA[0].replace("generated-", "");
+      const timeB = matchB[0].replace("generated-", "");
 
       // Newest first: B > A returns negative (B comes before A)
       return timeB.localeCompare(timeA);
@@ -1463,7 +1490,9 @@ if (isMobile) {
 
       // Extract date from filename
       const imageFilename = imgData.url.split("/").pop();
-      const match = imageFilename.match(/generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/);
+      const match = imageFilename.match(
+        /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+      );
       let dateTimeStr = "Unbekannt";
       if (match) {
         const [_, year, month, day, hour, minute, second] = match;
@@ -1486,7 +1515,7 @@ if (isMobile) {
       const randomRotation = (Math.random() * 6 - 3).toFixed(2);
       flipCard.style.transform = `rotate(${randomRotation}deg)`;
 
-      // FRONT
+      // FRONT2
       const front = document.createElement("div");
       front.className = "mobile-flip-card-front";
 
@@ -1549,7 +1578,9 @@ if (isMobile) {
           });
 
           if (response.ok) {
-            const index = quartierImages[qId].findIndex((img) => img.url === imgSrc);
+            const index = quartierImages[qId].findIndex(
+              (img) => img.url === imgSrc
+            );
             if (index > -1) {
               quartierImages[qId].splice(index, 1);
             }
@@ -1637,14 +1668,18 @@ if (isMobile) {
       mobileGridColumns = 4;
       mobileGridContainer.classList.add("grid-4col");
       // Update icons
-      mobileGridToggle.querySelector(".grid-icon-2col").classList.remove("active");
+      mobileGridToggle
+        .querySelector(".grid-icon-2col")
+        .classList.remove("active");
       mobileGridToggle.querySelector(".grid-icon-4col").classList.add("active");
     } else {
       mobileGridColumns = 2;
       mobileGridContainer.classList.remove("grid-4col");
       // Update icons
       mobileGridToggle.querySelector(".grid-icon-2col").classList.add("active");
-      mobileGridToggle.querySelector(".grid-icon-4col").classList.remove("active");
+      mobileGridToggle
+        .querySelector(".grid-icon-4col")
+        .classList.remove("active");
     }
 
     // Force reflow to ensure CSS changes are applied immediately
@@ -1655,7 +1690,10 @@ if (isMobile) {
 
   // ===== MOBILE GENERATE =====
   mobileGenerateBtn.addEventListener("click", async () => {
-    console.log("📱 Generate button clicked. uploadedImageFile:", uploadedImageFile);
+    console.log(
+      "📱 Generate button clicked. uploadedImageFile:",
+      uploadedImageFile
+    );
 
     if (!uploadedImageFile) {
       console.log("📱 No file uploaded, showing error");
@@ -1725,7 +1763,8 @@ if (isMobile) {
 
               if (data.type === "progress") {
                 updateProgressImage(mobileProgressImage, data.progress || 0);
-                mobileBottomProgressText.textContent = data.message || "Wird verarbeitet...";
+                mobileBottomProgressText.textContent =
+                  data.message || "Wird verarbeitet...";
               } else if (data.type === "error") {
                 mobileBottomProgressText.textContent = data.message || "Fehler";
 
@@ -1845,14 +1884,16 @@ let currentlyWobbling = [];
 function startRandomWobble() {
   function wobbleRandomCards() {
     // Remove wobble from previous cards
-    currentlyWobbling.forEach(card => {
-      card.classList.remove('wobbling');
+    currentlyWobbling.forEach((card) => {
+      card.classList.remove("wobbling");
     });
     currentlyWobbling = [];
 
     // Get all grid items (desktop and mobile)
-    const desktopItems = Array.from(document.querySelectorAll('.grid-item'));
-    const mobileItems = Array.from(document.querySelectorAll('.mobile-grid-item'));
+    const desktopItems = Array.from(document.querySelectorAll(".grid-item"));
+    const mobileItems = Array.from(
+      document.querySelectorAll(".mobile-grid-item")
+    );
     const allItems = isMobile ? mobileItems : desktopItems;
 
     // Select 2 random cards
@@ -1862,9 +1903,9 @@ function startRandomWobble() {
         indices.add(Math.floor(Math.random() * allItems.length));
       }
 
-      indices.forEach(index => {
+      indices.forEach((index) => {
         const card = allItems[index];
-        card.classList.add('wobbling');
+        card.classList.add("wobbling");
         currentlyWobbling.push(card);
       });
     }
@@ -1878,10 +1919,10 @@ function startRandomWobble() {
 }
 
 // Start wobbling after page load
-if (document.readyState === 'complete') {
+if (document.readyState === "complete") {
   setTimeout(startRandomWobble, 500);
 } else {
-  window.addEventListener('load', () => {
+  window.addEventListener("load", () => {
     setTimeout(startRandomWobble, 500);
   });
 }
