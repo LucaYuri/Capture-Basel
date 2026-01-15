@@ -208,6 +208,12 @@ function populateGrid() {
     gridImg.src = imgData.url;
     gridImg.alt = imgData.caption;
 
+    // Hide grid item if image fails to load
+    gridImg.addEventListener("error", () => {
+      console.warn("Failed to load image, hiding grid item:", imgData.url);
+      gridItem.style.display = "none";
+    });
+
     const captionContainer = document.createElement("div");
     captionContainer.className = "grid-item-caption-container";
 
@@ -591,6 +597,12 @@ function createDraggableImage(
   const img = document.createElement("img");
   img.src = imageUrl;
   img.alt = caption;
+
+  // Hide container if image fails to load (Scene Mode)
+  img.addEventListener("error", () => {
+    console.warn("Failed to load image, hiding container:", imageUrl);
+    container.style.display = "none";
+  });
 
   const captionDiv = document.createElement("div");
   captionDiv.className = "caption";
