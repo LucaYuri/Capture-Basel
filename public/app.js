@@ -27,6 +27,13 @@ let currentMode = "grid"; // 'scene' oder 'grid'
 let inactivityTimer = null;
 const INACTIVITY_TIMEOUT = 3 * 60 * 1000; // 3 minutes in milliseconds
 
+// Auto-refresh every 5 minutes to keep server awake
+const AUTO_REFRESH_INTERVAL = 5 * 60 * 1000; // 5 minutes in milliseconds
+setInterval(() => {
+  console.log("Auto-refreshing page to keep server awake...");
+  window.location.reload();
+}, AUTO_REFRESH_INTERVAL);
+
 // Helper function to update progress image based on percentage (0-100)
 function updateProgressImage(imageElement, progress) {
   const frame = Math.min(8, Math.max(1, Math.ceil((progress / 100) * 8)));
@@ -946,6 +953,13 @@ function showQuartier(quartierId) {
 
   // Zeige nur Bilder dieses Quartiers
   displayQuartierImages(quartierId);
+
+  // Automatically add random images when switching quartier in scene mode
+  if (currentMode === "scene") {
+    setTimeout(() => {
+      addRandomImages();
+    }, 100);
+  }
 }
 
 // Exportiere showQuartier für handtracking.js
