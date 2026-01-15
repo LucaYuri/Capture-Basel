@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Capture Basel</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <!-- TEMPORARILY DISABLED: ml5 hand tracking
     <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+    -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,7 +23,11 @@
     <aside class="sidebar">
       <!-- Title -->
       <div class="app-title">
-        <img src="title_logo_v2.jpg" alt="Basel Simplified" class="title-logo" />
+        <img
+          src="title_logo_v2.jpg"
+          alt="Basel Simplified"
+          class="title-logo"
+        />
       </div>
 
       <!-- Mode Switch -->
@@ -60,7 +66,13 @@
       <!-- Progress Section -->
       <div id="progress-container" class="section progress-section hidden">
         <div style="display: flex; align-items: center; gap: 8px">
-          <img id="progress-image" class="progress-image" src="progressbar_1.jpg" alt="Progress" style="flex: 1; width: 100%; height: auto;" />
+          <img
+            id="progress-image"
+            class="progress-image"
+            src="progressbar_1.jpg"
+            alt="Progress"
+            style="flex: 1; width: 100%; height: auto"
+          />
           <button id="cancel-btn" class="cancel-btn">×</button>
         </div>
         <div id="progress-text" class="progress-text">Generating...</div>
@@ -155,14 +167,21 @@
 
       <!-- QR Code Section -->
       <div class="section qr-section">
-        <svg class="qr-code" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29">
-          <path d="M10 2h1v1h-1zM12 2h1v1h-1zM14 2h1v1h-1zM15 2h1v1h-1zM16 2h1v1h-1zM17 2h1v1h-1zM10 3h1v1h-1zM12 3h1v1h-1zM15 3h1v1h-1zM18 3h1v1h-1zM10 4h1v1h-1zM11 4h1v1h-1zM13 4h1v1h-1zM15 4h1v1h-1zM16 4h1v1h-1zM12 5h1v1h-1zM17 5h1v1h-1zM18 5h1v1h-1zM10 6h1v1h-1zM11 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM15 7h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM11 9h1v1h-1zM12 9h1v1h-1zM15 9h1v1h-1zM17 9h1v1h-1zM18 9h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM11 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM17 10h1v1h-1zM18 10h1v1h-1zM19 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM25 10h1v1h-1zM26 10h1v1h-1zM3 11h1v1h-1zM4 11h1v1h-1zM7 11h1v1h-1zM11 11h1v1h-1zM12 11h1v1h-1zM17 11h1v1h-1zM19 11h1v1h-1zM21 11h1v1h-1zM22 11h1v1h-1zM23 11h1v1h-1zM24 11h1v1h-1zM25 11h1v1h-1zM3 12h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM7 12h1v1h-1zM8 12h1v1h-1zM9 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM13 12h1v1h-1zM14 12h1v1h-1zM17 12h1v1h-1zM19 12h1v1h-1zM20 12h1v1h-1zM21 12h1v1h-1zM22 12h1v1h-1zM23 12h1v1h-1zM26 12h1v1h-1zM2 13h1v1h-1zM3 13h1v1h-1zM4 13h1v1h-1zM5 13h1v1h-1zM6 13h1v1h-1zM7 13h1v1h-1zM10 13h1v1h-1zM11 13h1v1h-1zM12 13h1v1h-1zM14 13h1v1h-1zM17 13h1v1h-1zM18 13h1v1h-1zM19 13h1v1h-1zM23 13h1v1h-1zM24 13h1v1h-1zM25 13h1v1h-1zM26 13h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM15 14h1v1h-1zM17 14h1v1h-1zM20 14h1v1h-1zM26 14h1v1h-1zM2 15h1v1h-1zM4 15h1v1h-1zM6 15h1v1h-1zM9 15h1v1h-1zM15 15h1v1h-1zM17 15h1v1h-1zM18 15h1v1h-1zM19 15h1v1h-1zM22 15h1v1h-1zM25 15h1v1h-1zM2 16h1v1h-1zM3 16h1v1h-1zM4 16h1v1h-1zM5 16h1v1h-1zM6 16h1v1h-1zM7 16h1v1h-1zM8 16h1v1h-1zM9 16h1v1h-1zM10 16h1v1h-1zM11 16h1v1h-1zM12 16h1v1h-1zM13 16h1v1h-1zM14 16h1v1h-1zM16 16h1v1h-1zM17 16h1v1h-1zM19 16h1v1h-1zM20 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM26 16h1v1h-1zM2 17h1v1h-1zM9 17h1v1h-1zM10 17h1v1h-1zM12 17h1v1h-1zM13 17h1v1h-1zM17 17h1v1h-1zM20 17h1v1h-1zM21 17h1v1h-1zM23 17h1v1h-1zM24 17h1v1h-1zM26 17h1v1h-1zM2 18h1v1h-1zM4 18h1v1h-1zM5 18h1v1h-1zM8 18h1v1h-1zM9 18h1v1h-1zM10 18h1v1h-1zM11 18h1v1h-1zM15 18h1v1h-1zM18 18h1v1h-1zM19 18h1v1h-1zM20 18h1v1h-1zM21 18h1v1h-1zM22 18h1v1h-1zM24 18h1v1h-1zM25 18h1v1h-1zM10 19h1v1h-1zM12 19h1v1h-1zM13 19h1v1h-1zM14 19h1v1h-1zM15 19h1v1h-1zM18 19h1v1h-1zM22 19h1v1h-1zM24 19h1v1h-1zM25 19h1v1h-1zM10 20h1v1h-1zM12 20h1v1h-1zM13 20h1v1h-1zM18 20h1v1h-1zM20 20h1v1h-1zM22 20h1v1h-1zM26 20h1v1h-1zM10 21h1v1h-1zM12 21h1v1h-1zM14 21h1v1h-1zM15 21h1v1h-1zM17 21h1v1h-1zM18 21h1v1h-1zM22 21h1v1h-1zM25 21h1v1h-1zM10 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM15 22h1v1h-1zM16 22h1v1h-1zM17 22h1v1h-1zM18 22h1v1h-1zM19 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM25 22h1v1h-1zM26 22h1v1h-1zM10 23h1v1h-1zM11 23h1v1h-1zM12 23h1v1h-1zM16 23h1v1h-1zM19 23h1v1h-1zM20 23h1v1h-1zM25 23h1v1h-1zM26 23h1v1h-1zM12 24h1v1h-1zM14 24h1v1h-1zM15 24h1v1h-1zM18 24h1v1h-1zM19 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM26 24h1v1h-1zM12 25h1v1h-1zM16 25h1v1h-1zM21 25h1v1h-1zM22 25h1v1h-1zM24 25h1v1h-1zM25 25h1v1h-1zM26 25h1v1h-1zM10 26h1v1h-1zM11 26h1v1h-1zM12 26h1v1h-1zM14 26h1v1h-1zM15 26h1v1h-1zM16 26h1v1h-1zM17 26h1v1h-1zM18 26h1v1h-1zM23 26h1v1h-1zM26 26h1v1h-1z"/>
-          <path d="M2 2h7.02v7.02H2zm1.17 1.17v4.68h4.68V3.17z"/>
-          <path d="M4 4h3v3H4z"/>
-          <path d="M2 20h7.02v7.02H2zm1.17 1.17v4.68h4.68v-4.68z"/>
-          <path d="M4 22h3v3H4z"/>
-          <path d="M20 2h7.02v7.02H20zm1.17 1.17v4.68h4.68V3.17z"/>
-          <path d="M22 4h3v3h-3z"/>
+        <svg
+          class="qr-code"
+          shape-rendering="geometricPrecision"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 29 29"
+        >
+          <path
+            d="M10 2h1v1h-1zM12 2h1v1h-1zM14 2h1v1h-1zM15 2h1v1h-1zM16 2h1v1h-1zM17 2h1v1h-1zM10 3h1v1h-1zM12 3h1v1h-1zM15 3h1v1h-1zM18 3h1v1h-1zM10 4h1v1h-1zM11 4h1v1h-1zM13 4h1v1h-1zM15 4h1v1h-1zM16 4h1v1h-1zM12 5h1v1h-1zM17 5h1v1h-1zM18 5h1v1h-1zM10 6h1v1h-1zM11 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM15 7h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM11 9h1v1h-1zM12 9h1v1h-1zM15 9h1v1h-1zM17 9h1v1h-1zM18 9h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM11 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM17 10h1v1h-1zM18 10h1v1h-1zM19 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM25 10h1v1h-1zM26 10h1v1h-1zM3 11h1v1h-1zM4 11h1v1h-1zM7 11h1v1h-1zM11 11h1v1h-1zM12 11h1v1h-1zM17 11h1v1h-1zM19 11h1v1h-1zM21 11h1v1h-1zM22 11h1v1h-1zM23 11h1v1h-1zM24 11h1v1h-1zM25 11h1v1h-1zM3 12h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM7 12h1v1h-1zM8 12h1v1h-1zM9 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM13 12h1v1h-1zM14 12h1v1h-1zM17 12h1v1h-1zM19 12h1v1h-1zM20 12h1v1h-1zM21 12h1v1h-1zM22 12h1v1h-1zM23 12h1v1h-1zM26 12h1v1h-1zM2 13h1v1h-1zM3 13h1v1h-1zM4 13h1v1h-1zM5 13h1v1h-1zM6 13h1v1h-1zM7 13h1v1h-1zM10 13h1v1h-1zM11 13h1v1h-1zM12 13h1v1h-1zM14 13h1v1h-1zM17 13h1v1h-1zM18 13h1v1h-1zM19 13h1v1h-1zM23 13h1v1h-1zM24 13h1v1h-1zM25 13h1v1h-1zM26 13h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM15 14h1v1h-1zM17 14h1v1h-1zM20 14h1v1h-1zM26 14h1v1h-1zM2 15h1v1h-1zM4 15h1v1h-1zM6 15h1v1h-1zM9 15h1v1h-1zM15 15h1v1h-1zM17 15h1v1h-1zM18 15h1v1h-1zM19 15h1v1h-1zM22 15h1v1h-1zM25 15h1v1h-1zM2 16h1v1h-1zM3 16h1v1h-1zM4 16h1v1h-1zM5 16h1v1h-1zM6 16h1v1h-1zM7 16h1v1h-1zM8 16h1v1h-1zM9 16h1v1h-1zM10 16h1v1h-1zM11 16h1v1h-1zM12 16h1v1h-1zM13 16h1v1h-1zM14 16h1v1h-1zM16 16h1v1h-1zM17 16h1v1h-1zM19 16h1v1h-1zM20 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM26 16h1v1h-1zM2 17h1v1h-1zM9 17h1v1h-1zM10 17h1v1h-1zM12 17h1v1h-1zM13 17h1v1h-1zM17 17h1v1h-1zM20 17h1v1h-1zM21 17h1v1h-1zM23 17h1v1h-1zM24 17h1v1h-1zM26 17h1v1h-1zM2 18h1v1h-1zM4 18h1v1h-1zM5 18h1v1h-1zM8 18h1v1h-1zM9 18h1v1h-1zM10 18h1v1h-1zM11 18h1v1h-1zM15 18h1v1h-1zM18 18h1v1h-1zM19 18h1v1h-1zM20 18h1v1h-1zM21 18h1v1h-1zM22 18h1v1h-1zM24 18h1v1h-1zM25 18h1v1h-1zM10 19h1v1h-1zM12 19h1v1h-1zM13 19h1v1h-1zM14 19h1v1h-1zM15 19h1v1h-1zM18 19h1v1h-1zM22 19h1v1h-1zM24 19h1v1h-1zM25 19h1v1h-1zM10 20h1v1h-1zM12 20h1v1h-1zM13 20h1v1h-1zM18 20h1v1h-1zM20 20h1v1h-1zM22 20h1v1h-1zM26 20h1v1h-1zM10 21h1v1h-1zM12 21h1v1h-1zM14 21h1v1h-1zM15 21h1v1h-1zM17 21h1v1h-1zM18 21h1v1h-1zM22 21h1v1h-1zM25 21h1v1h-1zM10 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM15 22h1v1h-1zM16 22h1v1h-1zM17 22h1v1h-1zM18 22h1v1h-1zM19 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM25 22h1v1h-1zM26 22h1v1h-1zM10 23h1v1h-1zM11 23h1v1h-1zM12 23h1v1h-1zM16 23h1v1h-1zM19 23h1v1h-1zM20 23h1v1h-1zM25 23h1v1h-1zM26 23h1v1h-1zM12 24h1v1h-1zM14 24h1v1h-1zM15 24h1v1h-1zM18 24h1v1h-1zM19 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM26 24h1v1h-1zM12 25h1v1h-1zM16 25h1v1h-1zM21 25h1v1h-1zM22 25h1v1h-1zM24 25h1v1h-1zM25 25h1v1h-1zM26 25h1v1h-1zM10 26h1v1h-1zM11 26h1v1h-1zM12 26h1v1h-1zM14 26h1v1h-1zM15 26h1v1h-1zM16 26h1v1h-1zM17 26h1v1h-1zM18 26h1v1h-1zM23 26h1v1h-1zM26 26h1v1h-1z"
+          />
+          <path d="M2 2h7.02v7.02H2zm1.17 1.17v4.68h4.68V3.17z" />
+          <path d="M4 4h3v3H4z" />
+          <path d="M2 20h7.02v7.02H2zm1.17 1.17v4.68h4.68v-4.68z" />
+          <path d="M4 22h3v3H4z" />
+          <path d="M20 2h7.02v7.02H20zm1.17 1.17v4.68h4.68V3.17z" />
+          <path d="M22 4h3v3h-3z" />
         </svg>
       </div>
 
@@ -182,8 +201,9 @@
     <!-- Grid Container -->
     <div id="grid-container" class="grid-container"></div>
 
-    <!-- Hand Tracking Camera -->
+    <!-- TEMPORARILY DISABLED: Hand Tracking Camera
     <div id="p5-container"></div>
+    -->
 
     <!-- Scene Control Buttons -->
     <div id="scene-controls" class="scene-controls">
@@ -192,7 +212,7 @@
         class="scene-control-btn"
         title="Add 6 Random Images"
       >
-        Random 6
+        Random
       </button>
       <button
         id="normalize-size-btn"
@@ -239,8 +259,14 @@
             </li>
           </ol>
           <div class="info-image-container">
-            <img src="original drawing.webp" alt="Training Data" class="info-image" />
-            <p class="info-caption">Training data Flux Lora, Illustrations by Oliver Wick</p>
+            <img
+              src="original drawing.webp"
+              alt="Training Data"
+              class="info-image"
+            />
+            <p class="info-caption">
+              Training data Flux Lora, Illustrations by Oliver Wick
+            </p>
           </div>
         </div>
         <div class="info-section info-disclaimer">
@@ -257,32 +283,54 @@
 
     <!-- Mobile Header -->
     <header id="mobile-header" class="mobile-header">
-      <img src="title_logo_v2.jpg" alt="Capture Basel" class="mobile-title-logo" />
+      <img
+        src="title_logo_v2.jpg"
+        alt="Capture Basel"
+        class="mobile-title-logo"
+      />
       <div class="mobile-header-buttons">
-        <button id="mobile-grid-toggle" class="mobile-grid-toggle" title="Grid Layout">
-          <svg class="grid-icon-2col active" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="2" width="7" height="7" fill="currentColor"/>
-            <rect x="11" y="2" width="7" height="7" fill="currentColor"/>
-            <rect x="2" y="11" width="7" height="7" fill="currentColor"/>
-            <rect x="11" y="11" width="7" height="7" fill="currentColor"/>
+        <button
+          id="mobile-grid-toggle"
+          class="mobile-grid-toggle"
+          title="Grid Layout"
+        >
+          <svg
+            class="grid-icon-2col active"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="2" y="2" width="7" height="7" fill="currentColor" />
+            <rect x="11" y="2" width="7" height="7" fill="currentColor" />
+            <rect x="2" y="11" width="7" height="7" fill="currentColor" />
+            <rect x="11" y="11" width="7" height="7" fill="currentColor" />
           </svg>
-          <svg class="grid-icon-4col" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="2" width="3" height="3" fill="currentColor"/>
-            <rect x="6.5" y="2" width="3" height="3" fill="currentColor"/>
-            <rect x="11" y="2" width="3" height="3" fill="currentColor"/>
-            <rect x="15.5" y="2" width="3" height="3" fill="currentColor"/>
-            <rect x="2" y="6.5" width="3" height="3" fill="currentColor"/>
-            <rect x="6.5" y="6.5" width="3" height="3" fill="currentColor"/>
-            <rect x="11" y="6.5" width="3" height="3" fill="currentColor"/>
-            <rect x="15.5" y="6.5" width="3" height="3" fill="currentColor"/>
-            <rect x="2" y="11" width="3" height="3" fill="currentColor"/>
-            <rect x="6.5" y="11" width="3" height="3" fill="currentColor"/>
-            <rect x="11" y="11" width="3" height="3" fill="currentColor"/>
-            <rect x="15.5" y="11" width="3" height="3" fill="currentColor"/>
-            <rect x="2" y="15.5" width="3" height="3" fill="currentColor"/>
-            <rect x="6.5" y="15.5" width="3" height="3" fill="currentColor"/>
-            <rect x="11" y="15.5" width="3" height="3" fill="currentColor"/>
-            <rect x="15.5" y="15.5" width="3" height="3" fill="currentColor"/>
+          <svg
+            class="grid-icon-4col"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="2" y="2" width="3" height="3" fill="currentColor" />
+            <rect x="6.5" y="2" width="3" height="3" fill="currentColor" />
+            <rect x="11" y="2" width="3" height="3" fill="currentColor" />
+            <rect x="15.5" y="2" width="3" height="3" fill="currentColor" />
+            <rect x="2" y="6.5" width="3" height="3" fill="currentColor" />
+            <rect x="6.5" y="6.5" width="3" height="3" fill="currentColor" />
+            <rect x="11" y="6.5" width="3" height="3" fill="currentColor" />
+            <rect x="15.5" y="6.5" width="3" height="3" fill="currentColor" />
+            <rect x="2" y="11" width="3" height="3" fill="currentColor" />
+            <rect x="6.5" y="11" width="3" height="3" fill="currentColor" />
+            <rect x="11" y="11" width="3" height="3" fill="currentColor" />
+            <rect x="15.5" y="11" width="3" height="3" fill="currentColor" />
+            <rect x="2" y="15.5" width="3" height="3" fill="currentColor" />
+            <rect x="6.5" y="15.5" width="3" height="3" fill="currentColor" />
+            <rect x="11" y="15.5" width="3" height="3" fill="currentColor" />
+            <rect x="15.5" y="15.5" width="3" height="3" fill="currentColor" />
           </svg>
         </button>
         <button id="mobile-info-btn" class="mobile-info-btn">i</button>
@@ -373,6 +421,7 @@
       </div>
     </div>
 
+    <!-- TEMPORARILY DISABLED: Hand Tracking Script
     <script>
       // Only load hand tracking on desktop (not mobile)
       if (window.innerWidth > 768) {
@@ -381,6 +430,7 @@
         document.body.appendChild(script);
       }
     </script>
+    -->
     <script src="app.js"></script>
   </body>
 </html>

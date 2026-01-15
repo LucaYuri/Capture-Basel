@@ -795,17 +795,17 @@ body.grid-mode .hands-indicator {
   position: fixed;
   top: 200px;
   right: 20px;
-  z-index: 100;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
 .scene-control-btn {
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--text-primary);
-  border: 1px solid var(--border-light);
+  padding: 10px 16px;
+  background: rgba(255, 75, 88, 0.6);
+  color: white;
+  border: none;
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
@@ -813,10 +813,12 @@ body.grid-mode .hands-indicator {
   font-family: inherit;
   box-shadow: var(--shadow-sm);
   min-width: 100px;
+  text-align: center;
+  border-radius: 0;
 }
 
 .scene-control-btn:hover {
-  background: white;
+  background: var(--primary-blue);
   box-shadow: var(--shadow-md);
   transform: translateY(-1px);
 }

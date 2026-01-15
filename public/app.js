@@ -23,10 +23,40 @@ let currentQuartier = null;
 let currentAbortController = null;
 let currentMode = "grid"; // 'scene' oder 'grid'
 
+// Inactivity Timer (3 minutes)
+let inactivityTimer = null;
+const INACTIVITY_TIMEOUT = 3 * 60 * 1000; // 3 minutes in milliseconds
+
 // Helper function to update progress image based on percentage (0-100)
 function updateProgressImage(imageElement, progress) {
   const frame = Math.min(8, Math.max(1, Math.ceil((progress / 100) * 8)));
   imageElement.src = `progressbar_${frame}.jpg`;
+}
+
+// Reset inactivity timer
+function resetInactivityTimer() {
+  // Clear existing timer
+  if (inactivityTimer) {
+    clearTimeout(inactivityTimer);
+  }
+
+  // Only set timer if we're in scene mode
+  if (currentMode === "scene") {
+    inactivityTimer = setTimeout(() => {
+      console.log("Inactivity timeout - switching to grid mode");
+      // Switch to grid mode
+      switchToGridMode();
+      // Update button state
+      document.querySelectorAll(".mode-switch-btn").forEach((btn) => {
+        if (btn.dataset.mode === "grid") {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+      currentMode = "grid";
+    }, INACTIVITY_TIMEOUT);
+  }
 }
 
 // Mode Switch Event Listeners
@@ -59,6 +89,12 @@ function switchToGridMode() {
   document.body.classList.add("grid-mode");
   document.body.classList.remove("scene-mode");
 
+  // Clear inactivity timer when switching to grid mode
+  if (inactivityTimer) {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = null;
+  }
+
   // Im Grid-Modus: Behalte aktive Quartiere für Multi-Select
   // Wenn nur eines aktiv war (vom Scene-Modus), deaktiviere alle für "alle anzeigen"
   if (activeQuartiers.size === 1) {
@@ -77,6 +113,9 @@ function switchToSceneMode() {
   document.body.classList.add("scene-mode");
   document.body.classList.remove("grid-mode");
 
+  // Start inactivity timer when switching to scene mode
+  resetInactivityTimer();
+
   // Im Scene-Modus: Single-Select - wähle das erste aktive Quartier oder das mit den meisten Bildern
   if (activeQuartiers.size > 0) {
     const firstActive = activeQuartiers.values().next().value;
@@ -85,6 +124,12 @@ function switchToSceneMode() {
   } else if (currentQuartier) {
     showQuartier(currentQuartier);
   }
+
+  // Automatically trigger random images when switching to scene mode
+  // Use setTimeout to ensure quartier is set first
+  setTimeout(() => {
+    addRandomImages();
+  }, 100);
 }
 
 // Populate Grid with all images
@@ -779,6 +824,16 @@ window.addEventListener("DOMContentLoaded", async () => {
   // Aktiviere Grid-Modus als Standard
   switchToGridMode();
 
+  // Add activity event listeners to reset inactivity timer
+  const activityEvents = ["mousedown", "mousemove", "keydown", "scroll", "touchstart", "click"];
+  activityEvents.forEach((event) => {
+    document.addEventListener(event, () => {
+      if (currentMode === "scene") {
+        resetInactivityTimer();
+      }
+    }, { passive: true });
+  });
+
   // Info Button Event Listeners
   const infoBtn = document.getElementById("info-btn");
   const mobileInfoBtn = document.getElementById("mobile-info-btn");
@@ -1200,13 +1255,13 @@ generateBtn.addEventListener("click", async () => {
   }
 });
 
-// Random 6 Images Button
-randomImagesBtn.addEventListener("click", () => {
-  console.log("Random button clicked!");
+// Random 6 Images Function (reusable)
+function addRandomImages() {
+  console.log("Adding random images...");
   console.log("Current mode:", currentMode);
 
   if (currentMode !== "scene") {
-    alert("Please switch to Scene Mode first!");
+    console.log("Not in scene mode, skipping random images");
     return;
   }
 
@@ -1214,7 +1269,7 @@ randomImagesBtn.addEventListener("click", () => {
   console.log("Current quartier:", currentQuartier);
 
   if (!currentQuartier) {
-    alert("Please select a quartier first!");
+    console.log("No quartier selected, skipping random images");
     return;
   }
 
@@ -1223,7 +1278,7 @@ randomImagesBtn.addEventListener("click", () => {
   console.log("Available images:", availableImages.length);
 
   if (availableImages.length === 0) {
-    alert("No images available in the selected quartier!");
+    console.log("No images available in the selected quartier");
     return;
   }
 
@@ -1246,31 +1301,42 @@ randomImagesBtn.addEventListener("click", () => {
   const selected = shuffled.slice(0, numImages);
   console.log("Selected images:", selected);
 
-  // Get window dimensions
+  // Get window dimensions - center focused placement
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
-  const margin = 150;
-  const minX = margin;
-  const maxX = windowWidth - margin;
-  const minY = margin;
-  const maxY = windowHeight - margin;
+  const centerX = windowWidth / 2;
+  const centerY = windowHeight / 2;
+  const rangeX = windowWidth * 0.3; // 30% of width from center
+  const rangeY = windowHeight * 0.3; // 30% of height from center
+  const minX = centerX - rangeX;
+  const maxX = centerX + rangeX;
+  const minY = centerY - rangeY;
+  const maxY = centerY + rangeY;
 
-  // Add selected images to scene
+  // Add selected images to scene with random positions and sizes
   selected.forEach((imgData, index) => {
     const x = minX + Math.random() * (maxX - minX);
     const y = minY + Math.random() * (maxY - minY);
-    console.log(`Creating image ${index + 1}:`, imgData.url, "at", x, y);
+    // Random scale between 0.3 and 3.0 for extreme size differences
+    const randomScale = 0.3 + Math.random() * 2.7;
+    console.log(`Creating image ${index + 1}:`, imgData.url, "at", x, y, "scale:", randomScale);
 
     createDraggableImage(imgData.url, imgData.caption, quartierNum, {
       x,
       y,
-      scale: 1,
+      scale: randomScale,
       zIndex: imageZIndex++,
     });
   });
 
   // NICHT speichern - das würde alle anderen Bilder überschreiben!
   // saveImagePositions();
+}
+
+// Random 6 Images Button
+randomImagesBtn.addEventListener("click", () => {
+  console.log("Random button clicked!");
+  addRandomImages();
 });
 
 // Normalize Size Button
