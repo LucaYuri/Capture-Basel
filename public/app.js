@@ -137,20 +137,25 @@ function populateGrid() {
   const gridContainer = document.getElementById("grid-container");
   gridContainer.innerHTML = ""; // Clear existing
 
-  // Get all image containers and convert to array
-  const allImages = Array.from(document.querySelectorAll(".image-container"));
+  // Collect all images from quartierImages array (source of truth)
+  const allImagesData = [];
+  for (let quartierId = 1; quartierId <= 20; quartierId++) {
+    if (quartierImages[quartierId]) {
+      quartierImages[quartierId].forEach((imgData) => {
+        allImagesData.push({
+          url: imgData.url,
+          caption: imgData.caption,
+          quartierId: quartierId,
+        });
+      });
+    }
+  }
 
-  // Sort by filename (which contains timestamp) to show newest first
-  // Format: generated-YY-MM-DD-HH-MM-SS.png
-  allImages.sort((a, b) => {
-    const imgA = a.querySelector("img");
-    const imgB = b.querySelector("img");
-    if (!imgA || !imgB) return 0;
+  // Sort by filename (newest first)
+  allImagesData.sort((a, b) => {
+    const filenameA = a.url.split("/").pop();
+    const filenameB = b.url.split("/").pop();
 
-    const filenameA = imgA.src.split("/").pop();
-    const filenameB = imgB.src.split("/").pop();
-
-    // Extract timestamp from filename
     const matchA = filenameA.match(
       /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
     );
@@ -162,189 +167,183 @@ function populateGrid() {
     if (!matchA) return 1;
     if (!matchB) return -1;
 
-    // Compare timestamps as strings (YY-MM-DD-HH-MM-SS format sorts correctly)
     const timeA = matchA[0].replace("generated-", "");
     const timeB = matchB[0].replace("generated-", "");
 
-    // Newest first: B > A returns negative (B comes before A)
-    return timeB.localeCompare(timeA);
+    return timeB.localeCompare(timeA); // Newest first
   });
 
-  allImages.forEach((container) => {
-    const img = container.querySelector("img");
-    const caption = container.querySelector(".caption");
+  // Create grid items from sorted data
+  allImagesData.forEach((imgData) => {
+    const quartierId = imgData.quartierId;
+    const quartierName = quartierIdToName[quartierId] || "Unbekannt";
 
-    if (img && caption) {
-      const quartierId = parseInt(container.dataset.quartier);
-      const quartierName = quartierIdToName[quartierId] || "Unbekannt";
+    // Extract date/time from filename
+    const imageFilename = imgData.url.split("/").pop();
+    const match = imageFilename.match(
+      /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+    );
+    let dateTimeStr = "Unbekannt";
+    if (match) {
+      const [_, year, month, day, hour, minute, second] = match;
+      dateTimeStr = `${day}.${month}.20${year} ${hour}:${minute}:${second}`;
+    }
 
-      // Extrahiere Datum/Uhrzeit aus dem Dateinamen (z.B. generated-26-01-04-20-04-24.png)
-      const imageFilename = img.src.split("/").pop();
-      const match = imageFilename.match(
-        /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
-      );
-      let dateTimeStr = "Unbekannt";
-      if (match) {
-        const [_, year, month, day, hour, minute, second] = match;
-        dateTimeStr = `${day}.${month}.20${year} ${hour}:${minute}:${second}`;
+    // Create grid item with flip card structure
+    const gridItem = document.createElement("div");
+    gridItem.className = "grid-item";
+    gridItem.dataset.quartier = quartierId;
+
+    const flipCard = document.createElement("div");
+    flipCard.className = "flip-card";
+
+    const flipCardInner = document.createElement("div");
+    flipCardInner.className = "flip-card-inner";
+
+    // FRONT SIDE
+    const flipCardFront = document.createElement("div");
+    flipCardFront.className = "flip-card-front";
+
+    const gridImg = document.createElement("img");
+    gridImg.src = imgData.url;
+    gridImg.alt = imgData.caption;
+
+    const captionContainer = document.createElement("div");
+    captionContainer.className = "grid-item-caption-container";
+
+    const gridCaption = document.createElement("div");
+    gridCaption.className = "grid-item-caption";
+    gridCaption.textContent = imgData.caption;
+
+    captionContainer.appendChild(gridCaption);
+
+    flipCardFront.appendChild(gridImg);
+    flipCardFront.appendChild(captionContainer);
+
+    // BACK SIDE
+    const flipCardBack = document.createElement("div");
+    flipCardBack.className = "flip-card-back";
+
+    const imageUrlRelative = imgData.url.replace(window.location.origin, "");
+
+    flipCardBack.innerHTML = `
+      <div class="card-info">
+        <div class="info-value">${quartierName}</div>
+        <div class="info-value">${dateTimeStr}</div>
+      </div>
+      <div class="card-buttons">
+        <button class="download-btn" data-src="${imgData.url}" data-filename="${imageFilename}">Download</button>
+        <button class="delete-btn" data-src="${imageUrlRelative}" data-quartier="${quartierId}">&times;</button>
+      </div>
+    `;
+
+    // Download button click handler
+    const downloadBtn = flipCardBack.querySelector(".download-btn");
+    downloadBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const imgSrc = e.target.dataset.src;
+      const filename = e.target.dataset.filename;
+
+      // Create temporary link and trigger download
+      const link = document.createElement("a");
+      link.href = imgSrc;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+
+    // Delete button click handler
+    const deleteBtn = flipCardBack.querySelector(".delete-btn");
+    deleteBtn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+
+      if (!confirm("Bild wirklich löschen?")) {
+        return;
       }
 
-      // Create grid item with flip card structure
-      const gridItem = document.createElement("div");
-      gridItem.className = "grid-item";
-      gridItem.dataset.quartier = quartierId;
+      const imgSrc = e.target.dataset.src;
+      const qId = parseInt(e.target.dataset.quartier);
 
-      const flipCard = document.createElement("div");
-      flipCard.className = "flip-card";
+      try {
+        // Delete from server
+        const response = await fetch("/api/delete-image", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ imageUrl: imgSrc }),
+        });
 
-      const flipCardInner = document.createElement("div");
-      flipCardInner.className = "flip-card-inner";
-
-      // FRONT SIDE
-      const flipCardFront = document.createElement("div");
-      flipCardFront.className = "flip-card-front";
-
-      const gridImg = document.createElement("img");
-      gridImg.src = img.src;
-      gridImg.alt = caption.textContent;
-
-      const captionContainer = document.createElement("div");
-      captionContainer.className = "grid-item-caption-container";
-
-      const gridCaption = document.createElement("div");
-      gridCaption.className = "grid-item-caption";
-      gridCaption.textContent = caption.textContent;
-
-      captionContainer.appendChild(gridCaption);
-
-      flipCardFront.appendChild(gridImg);
-      flipCardFront.appendChild(captionContainer);
-
-      // BACK SIDE
-      const flipCardBack = document.createElement("div");
-      flipCardBack.className = "flip-card-back";
-
-      const imageUrlRelative = img.src.replace(window.location.origin, "");
-
-      flipCardBack.innerHTML = `
-        <div class="card-info">
-          <div class="info-value">${quartierName}</div>
-          <div class="info-value">${dateTimeStr}</div>
-        </div>
-        <div class="card-buttons">
-          <button class="download-btn" data-src="${img.src}" data-filename="${imageFilename}">Download</button>
-          <button class="delete-btn" data-src="${imageUrlRelative}" data-quartier="${quartierId}">&times;</button>
-        </div>
-      `;
-
-      // Download button click handler
-      const downloadBtn = flipCardBack.querySelector(".download-btn");
-      downloadBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const imgSrc = e.target.dataset.src;
-        const filename = e.target.dataset.filename;
-
-        // Create temporary link and trigger download
-        const link = document.createElement("a");
-        link.href = imgSrc;
-        link.download = filename;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-
-      // Delete button click handler
-      const deleteBtn = flipCardBack.querySelector(".delete-btn");
-      deleteBtn.addEventListener("click", async (e) => {
-        e.stopPropagation();
-
-        if (!confirm("Bild wirklich löschen?")) {
-          return;
-        }
-
-        const imgSrc = e.target.dataset.src;
-        const qId = parseInt(e.target.dataset.quartier);
-
-        try {
-          // Delete from server
-          const response = await fetch("/api/delete-image", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ imageUrl: imgSrc }),
-          });
-
-          if (response.ok) {
-            // Remove from quartierImages array
-            const index = quartierImages[qId].findIndex(
-              (img) => img.url === imgSrc
-            );
-            if (index > -1) {
-              quartierImages[qId].splice(index, 1);
-            }
-
-            // Remove grid item from DOM
-            gridItem.remove();
-
-            // Update quartier counts
-            updateQuartierCounts();
-
-            // Save updated positions to keep desktop/mobile in sync
-            savePositions();
-
-            console.log("Image deleted:", imgSrc);
-          } else {
-            alert("Fehler beim Löschen des Bildes");
+        if (response.ok) {
+          // Remove from quartierImages array
+          const index = quartierImages[qId].findIndex(
+            (img) => img.url === imgSrc
+          );
+          if (index > -1) {
+            quartierImages[qId].splice(index, 1);
           }
-        } catch (error) {
-          console.error("Delete error:", error);
+
+          // Remove grid item from DOM
+          gridItem.remove();
+
+          // Update quartier counts
+          updateQuartierCounts();
+
+          // Save updated positions to keep desktop/mobile in sync
+          savePositions();
+
+          console.log("Image deleted:", imgSrc);
+        } else {
           alert("Fehler beim Löschen des Bildes");
         }
-      });
+      } catch (error) {
+        console.error("Delete error:", error);
+        alert("Fehler beim Löschen des Bildes");
+      }
+    });
 
-      let autoFlipTimeout = null;
+    let autoFlipTimeout = null;
 
-      // Toggle flip on front card click
-      flipCardFront.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const isFlipped = flipCard.classList.contains("flipped");
+    // Toggle flip on front card click
+    flipCardFront.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isFlipped = flipCard.classList.contains("flipped");
 
-        if (!isFlipped) {
-          // Flip to back
-          flipCard.classList.add("flipped");
+      if (!isFlipped) {
+        // Flip to back
+        flipCard.classList.add("flipped");
 
-          // Auto-flip back after 2 seconds
-          autoFlipTimeout = setTimeout(() => {
-            flipCard.classList.remove("flipped");
-          }, 2000);
-        } else {
-          // Manual flip back
+        // Auto-flip back after 2 seconds
+        autoFlipTimeout = setTimeout(() => {
           flipCard.classList.remove("flipped");
-          if (autoFlipTimeout) {
-            clearTimeout(autoFlipTimeout);
-          }
-        }
-      });
-
-      // Toggle flip when clicking back side
-      flipCardBack.addEventListener("click", (e) => {
-        e.stopPropagation();
+        }, 2000);
+      } else {
+        // Manual flip back
         flipCard.classList.remove("flipped");
         if (autoFlipTimeout) {
           clearTimeout(autoFlipTimeout);
         }
-      });
+      }
+    });
 
-      flipCardInner.appendChild(flipCardFront);
-      flipCardInner.appendChild(flipCardBack);
-      flipCard.appendChild(flipCardInner);
+    // Toggle flip when clicking back side
+    flipCardBack.addEventListener("click", (e) => {
+      e.stopPropagation();
+      flipCard.classList.remove("flipped");
+      if (autoFlipTimeout) {
+        clearTimeout(autoFlipTimeout);
+      }
+    });
 
-      // Apply random tilt to card
-      const randomRotation = (Math.random() * 8 - 4).toFixed(2);
-      flipCard.style.transform = `rotate(${randomRotation}deg)`;
+    flipCardInner.appendChild(flipCardFront);
+    flipCardInner.appendChild(flipCardBack);
+    flipCard.appendChild(flipCardInner);
 
-      gridItem.appendChild(flipCard);
-      gridContainer.appendChild(gridItem);
-    }
+    // Apply random tilt to card
+    const randomRotation = (Math.random() * 8 - 4).toFixed(2);
+    flipCard.style.transform = `rotate(${randomRotation}deg)`;
+
+    gridItem.appendChild(flipCard);
+    gridContainer.appendChild(gridItem);
   });
 }
 
