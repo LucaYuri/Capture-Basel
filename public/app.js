@@ -1,7 +1,7 @@
 const imageUpload = document.getElementById("image-upload");
 const uploadPreview = document.getElementById("upload-preview");
 const uploadPreviewCombined = document.querySelector(
-  ".upload-preview-combined"
+  ".upload-preview-combined",
 );
 const generateBtn = document.getElementById("generate-btn");
 const cancelBtn = document.getElementById("cancel-btn");
@@ -164,10 +164,10 @@ function populateGrid() {
     const filenameB = b.url.split("/").pop();
 
     const matchA = filenameA.match(
-      /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+      /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/,
     );
     const matchB = filenameB.match(
-      /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+      /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/,
     );
 
     if (!matchA && !matchB) return 0;
@@ -188,7 +188,7 @@ function populateGrid() {
     // Extract date/time from filename
     const imageFilename = imgData.url.split("/").pop();
     const match = imageFilename.match(
-      /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+      /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/,
     );
     let dateTimeStr = "Unbekannt";
     if (match) {
@@ -274,12 +274,12 @@ function populateGrid() {
       if (!confirm("Bild wirklich löschen?")) {
         return;
       }
-
+      // h
       const imgSrc = e.target.dataset.src;
       const qId = parseInt(e.target.dataset.quartier);
 
       try {
-        // Delete from server
+        //** DELETE FROM BUCKET
         const response = await fetch("/api/delete-image", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -287,21 +287,18 @@ function populateGrid() {
         });
 
         if (response.ok) {
-          // Remove from quartierImages array
+          //REMOVE DISTRICT FROM quartierImages
           const index = quartierImages[qId].findIndex(
-            (img) => img.url === imgSrc
+            (img) => img.url === imgSrc,
           );
           if (index > -1) {
             quartierImages[qId].splice(index, 1);
           }
-
-          // Remove grid item from DOM
+          //pause
           gridItem.remove();
 
-          // Update quartier counts
           updateQuartierCounts();
 
-          // Save updated positions to keep desktop/mobile in sync
           savePositions();
 
           console.log("Image deleted:", imgSrc);
@@ -316,21 +313,23 @@ function populateGrid() {
 
     let autoFlipTimeout = null;
 
-    // Toggle flip on front card click
+    //flipCard.classList.remove("flipped"); bug report *44 fixes
+
+    //** TOOGLE FLIP (niri)
     flipCardFront.addEventListener("click", (e) => {
       e.stopPropagation();
       const isFlipped = flipCard.classList.contains("flipped");
 
       if (!isFlipped) {
-        // Flip to back
         flipCard.classList.add("flipped");
 
-        // Auto-flip back after 2 seconds
+        //FLIP BACK 2 seoncs
         autoFlipTimeout = setTimeout(() => {
           flipCard.classList.remove("flipped");
         }, 2000);
       } else {
-        // Manual flip back
+        //autoFlipTimeout TRUE flip back
+        //*44
         flipCard.classList.remove("flipped");
         if (autoFlipTimeout) {
           clearTimeout(autoFlipTimeout);
@@ -338,7 +337,7 @@ function populateGrid() {
       }
     });
 
-    // Toggle flip when clicking back side
+    // CLICK BACKSIDE
     flipCardBack.addEventListener("click", (e) => {
       e.stopPropagation();
       flipCard.classList.remove("flipped");
@@ -346,12 +345,12 @@ function populateGrid() {
         clearTimeout(autoFlipTimeout);
       }
     });
-
+    // *20
     flipCardInner.appendChild(flipCardFront);
     flipCardInner.appendChild(flipCardBack);
     flipCard.appendChild(flipCardInner);
 
-    // Apply random tilt to card
+    // RANDOM TILT *4
     const randomRotation = (Math.random() * 8 - 4).toFixed(2);
     flipCard.style.transform = `rotate(${randomRotation}deg)`;
 
@@ -360,7 +359,6 @@ function populateGrid() {
   });
 }
 
-// Filter Grid nach ausgewählten Quartieren
 function filterGridByQuartiers() {
   const gridContainer = document.getElementById("grid-container");
   const gridItems = gridContainer.querySelectorAll(".grid-item");
@@ -368,11 +366,9 @@ function filterGridByQuartiers() {
   gridItems.forEach((item) => {
     const quartierId = parseInt(item.dataset.quartier);
 
-    // Wenn keine Quartiere ausgewählt sind, zeige alle
     if (activeQuartiers.size === 0) {
       item.style.display = "";
     } else {
-      // Zeige nur Items von aktiven Quartieren
       item.style.display = activeQuartiers.has(quartierId) ? "" : "none";
     }
   });
@@ -482,7 +478,7 @@ function addImageToQuartier(quartierId, imageData) {
   // Füge das neue Bild hinzu (keine Limitierung mehr)
   images.push(imageData);
   console.log(
-    `✅ Added image to Quartier ${quartierId}. Current count: ${images.length}`
+    `✅ Added image to Quartier ${quartierId}. Current count: ${images.length}`,
   );
 }
 
@@ -562,7 +558,7 @@ async function savePositions() {
       console.error(
         "❌ Failed to save positions:",
         response.status,
-        response.statusText
+        response.statusText,
       );
     }
   } catch (error) {
@@ -586,7 +582,7 @@ function createDraggableImage(
   caption,
   quartierId,
   savedPosition = null,
-  gps = null
+  gps = null,
 ) {
   const container = document.createElement("div");
   container.className = "image-container";
@@ -747,7 +743,9 @@ document.querySelectorAll(".quartier-toggle").forEach((button) => {
         activeQuartiers.clear();
 
         // Update quartier name display to show "All Quartiers"
-        const quartierNameDisplay = document.getElementById("current-quartier-name");
+        const quartierNameDisplay = document.getElementById(
+          "current-quartier-name",
+        );
         if (quartierNameDisplay) {
           quartierNameDisplay.textContent = "Alle Quartiere";
           gsap.from(quartierNameDisplay, {
@@ -780,7 +778,7 @@ async function loadSavedPositions() {
       console.error(
         "❌ Failed to load positions:",
         response.status,
-        response.statusText
+        response.statusText,
       );
       return;
     }
@@ -798,7 +796,7 @@ async function loadSavedPositions() {
           savedImage.caption,
           "at",
           savedImage.x,
-          savedImage.y
+          savedImage.y,
         );
 
         // Erstelle Bild mit gespeicherter Position
@@ -806,7 +804,7 @@ async function loadSavedPositions() {
           savedImage.imageUrl,
           savedImage.caption,
           savedImage.quartierId,
-          savedImage
+          savedImage,
         );
 
         // Füge zum Quartier-Array hinzu
@@ -841,7 +839,7 @@ async function loadSavedPositions() {
           quartierWithMostImages,
           "with",
           maxCount,
-          "images"
+          "images",
         );
         showQuartier(quartierWithMostImages);
       }
@@ -868,13 +866,24 @@ window.addEventListener("DOMContentLoaded", async () => {
   switchToGridMode();
 
   // Add activity event listeners to reset inactivity timer
-  const activityEvents = ["mousedown", "mousemove", "keydown", "scroll", "touchstart", "click"];
+  const activityEvents = [
+    "mousedown",
+    "mousemove",
+    "keydown",
+    "scroll",
+    "touchstart",
+    "click",
+  ];
   activityEvents.forEach((event) => {
-    document.addEventListener(event, () => {
-      if (currentMode === "scene") {
-        resetInactivityTimer();
-      }
-    }, { passive: true });
+    document.addEventListener(
+      event,
+      () => {
+        if (currentMode === "scene") {
+          resetInactivityTimer();
+        }
+      },
+      { passive: true },
+    );
   });
 
   // Info Button Event Listeners
@@ -966,7 +975,7 @@ function showQuartier(quartierId) {
 
   // Aktiviere den aktuellen Toggle-Button
   const activeButton = document.querySelector(
-    `.quartier-toggle[data-quartier="${quartierId}"]`
+    `.quartier-toggle[data-quartier="${quartierId}"]`,
   );
   if (activeButton) {
     activeButton.classList.add("active");
@@ -1030,7 +1039,7 @@ function displayQuartierImages(quartierId) {
     });
 
     console.log(
-      `📺 Scene Mode: Showing ${imagesToShow.length} of ${images.length} images for Quartier ${quartierId}`
+      `📺 Scene Mode: Showing ${imagesToShow.length} of ${images.length} images for Quartier ${quartierId}`,
     );
   }
 }
@@ -1174,7 +1183,7 @@ generateBtn.addEventListener("click", async () => {
                     "🔍 Mapping name to ID:",
                     data.quartier.name,
                     "->",
-                    quartierId
+                    quartierId,
                   );
                 } else if (data.quartier.label) {
                   quartierId = quartierNameToId[data.quartier.label];
@@ -1182,19 +1191,19 @@ generateBtn.addEventListener("click", async () => {
                     "🔍 Mapping label to ID:",
                     data.quartier.label,
                     "->",
-                    quartierId
+                    quartierId,
                   );
                 }
 
                 // Fallback auf Quartier 20 (Ausserhalb Basel)
                 if (!quartierId || quartierId < 1 || quartierId > 20) {
                   console.warn(
-                    "⚠️ Could not map quartier name, using fallback 20"
+                    "⚠️ Could not map quartier name, using fallback 20",
                   );
                   console.warn("   Name:", data.quartier.name);
                   console.warn(
                     "   Available mappings:",
-                    Object.keys(quartierNameToId)
+                    Object.keys(quartierNameToId),
                   );
                   quartierId = 20;
                 }
@@ -1202,7 +1211,7 @@ generateBtn.addEventListener("click", async () => {
                 console.log("🎯 FINAL QUARTIER ID:", quartierId);
                 console.log(
                   "📁 Current quartierImages array:",
-                  quartierImages[quartierId]
+                  quartierImages[quartierId],
                 );
 
                 // Erstelle image-container Element
@@ -1211,7 +1220,7 @@ generateBtn.addEventListener("click", async () => {
                   data.detectedObject,
                   quartierId,
                   null, // savedPosition
-                  data.gps || null // GPS
+                  data.gps || null, // GPS
                 );
 
                 // Füge Container zum Quartier hinzu (mit FIFO-Limitierung)
@@ -1223,13 +1232,13 @@ generateBtn.addEventListener("click", async () => {
 
                 // Starte Pulsier-Animation für den Toggle-Button
                 const quartierButton = document.querySelector(
-                  `.quartier-toggle[data-quartier="${quartierId}"]`
+                  `.quartier-toggle[data-quartier="${quartierId}"]`,
                 );
                 if (quartierButton) {
                   quartierButton.classList.add("pulse");
                   console.log(
                     "💫 Added pulse animation to Quartier",
-                    quartierId
+                    quartierId,
                   );
                   setTimeout(() => {
                     quartierButton.classList.remove("pulse");
@@ -1389,7 +1398,15 @@ function addRandomImages() {
     const y = minY + Math.random() * (maxY - minY);
     // Random scale between 0.3 and 3.0 for extreme size differences
     const randomScale = 0.3 + Math.random() * 2.7;
-    console.log(`Creating image ${index + 1}:`, imgData.url, "at", x, y, "scale:", randomScale);
+    console.log(
+      `Creating image ${index + 1}:`,
+      imgData.url,
+      "at",
+      x,
+      y,
+      "scale:",
+      randomScale,
+    );
 
     createDraggableImage(imgData.url, imgData.caption, imgData.quartierId, {
       x,
@@ -1447,7 +1464,7 @@ normalizeSizeBtn.addEventListener("click", () => {
 // Apply random tilt to all buttons on page load
 function applyRandomTiltToButtons() {
   const buttons = document.querySelectorAll(
-    "button, .generate-btn, .upload-preview-combined"
+    "button, .generate-btn, .upload-preview-combined",
   );
 
   buttons.forEach((button) => {
@@ -1489,11 +1506,11 @@ if (isMobile) {
   const mobileUploadPreview = document.getElementById("mobile-upload-preview");
   const mobileGenerateBtn = document.getElementById("mobile-generate-btn");
   const mobileBottomProgress = document.getElementById(
-    "mobile-bottom-progress"
+    "mobile-bottom-progress",
   );
   const mobileProgressImage = document.getElementById("mobile-progress-image");
   const mobileBottomProgressText = document.getElementById(
-    "mobile-bottom-progress-text"
+    "mobile-bottom-progress-text",
   );
   const mobileInfoBtn = document.getElementById("mobile-info-btn");
   const mobileGridToggle = document.getElementById("mobile-grid-toggle");
@@ -1600,10 +1617,10 @@ if (isMobile) {
 
       // Extract timestamp from filename
       const matchA = filenameA.match(
-        /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+        /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/,
       );
       const matchB = filenameB.match(
-        /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+        /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/,
       );
 
       if (!matchA && !matchB) return 0;
@@ -1627,7 +1644,7 @@ if (isMobile) {
       // Extract date from filename
       const imageFilename = imgData.url.split("/").pop();
       const match = imageFilename.match(
-        /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/
+        /generated-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/,
       );
       let dateTimeStr = "Unbekannt";
       if (match) {
@@ -1715,7 +1732,7 @@ if (isMobile) {
 
           if (response.ok) {
             const index = quartierImages[qId].findIndex(
-              (img) => img.url === imgSrc
+              (img) => img.url === imgSrc,
             );
             if (index > -1) {
               quartierImages[qId].splice(index, 1);
@@ -1828,7 +1845,7 @@ if (isMobile) {
   mobileGenerateBtn.addEventListener("click", async () => {
     console.log(
       "📱 Generate button clicked. uploadedImageFile:",
-      uploadedImageFile
+      uploadedImageFile,
     );
 
     if (!uploadedImageFile) {
@@ -1934,7 +1951,7 @@ if (isMobile) {
                   data.detectedObject,
                   quartierId,
                   null,
-                  data.gps || null
+                  data.gps || null,
                 );
 
                 // Add to quartierImages
@@ -2028,7 +2045,7 @@ function startRandomWobble() {
     // Get all grid items (desktop and mobile)
     const desktopItems = Array.from(document.querySelectorAll(".grid-item"));
     const mobileItems = Array.from(
-      document.querySelectorAll(".mobile-grid-item")
+      document.querySelectorAll(".mobile-grid-item"),
     );
     const allItems = isMobile ? mobileItems : desktopItems;
 
