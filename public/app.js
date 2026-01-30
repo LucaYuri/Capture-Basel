@@ -739,8 +739,33 @@ document.querySelectorAll(".quartier-toggle").forEach((button) => {
       // Grid mit gefilterten Quartieren aktualisieren
       filterGridByQuartiers();
     } else {
-      // Scene-Modus: Single-Select
-      showQuartier(quartierId);
+      // Scene-Modus: Toggle to deselect
+      if (button.classList.contains("active")) {
+        // Deselect current quartier
+        button.classList.remove("active");
+        currentQuartier = null;
+        activeQuartiers.clear();
+
+        // Update quartier name display to show "All Quartiers"
+        const quartierNameDisplay = document.getElementById("current-quartier-name");
+        if (quartierNameDisplay) {
+          quartierNameDisplay.textContent = "Alle Quartiere";
+          gsap.from(quartierNameDisplay, {
+            scale: 0.95,
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        }
+
+        // Show random images from all quartiers
+        setTimeout(() => {
+          addRandomImages();
+        }, 100);
+      } else {
+        // Select new quartier
+        showQuartier(quartierId);
+      }
     }
   });
 });
@@ -1293,17 +1318,37 @@ function addRandomImages() {
   // Get selected quartier
   console.log("Current quartier:", currentQuartier);
 
+  let availableImages = [];
+
+  // If no quartier selected, use ALL images from ALL quartiers
   if (!currentQuartier) {
-    console.log("No quartier selected, skipping random images");
-    return;
+    console.log("No quartier selected, using images from ALL quartiers");
+    for (let i = 1; i <= 20; i++) {
+      if (quartierImages[i] && quartierImages[i].length > 0) {
+        // Add quartier info to each image for later use
+        quartierImages[i].forEach((img) => {
+          availableImages.push({
+            url: img.url,
+            caption: img.caption,
+            quartierId: i,
+          });
+        });
+      }
+    }
+  } else {
+    // Use images from selected quartier only
+    const quartierNum = currentQuartier;
+    availableImages = quartierImages[quartierNum].map((img) => ({
+      url: img.url,
+      caption: img.caption,
+      quartierId: quartierNum,
+    }));
   }
 
-  const quartierNum = currentQuartier;
-  const availableImages = quartierImages[quartierNum];
   console.log("Available images:", availableImages.length);
 
   if (availableImages.length === 0) {
-    console.log("No images available in the selected quartier");
+    console.log("No images available");
     return;
   }
 
@@ -1320,8 +1365,8 @@ function addRandomImages() {
     });
   }
 
-  // Get 6 random images (or less if not enough available)
-  const numImages = Math.min(6, availableImages.length);
+  // Get 8 random images (or less if not enough available)
+  const numImages = Math.min(8, availableImages.length);
   const shuffled = [...availableImages].sort(() => Math.random() - 0.5);
   const selected = shuffled.slice(0, numImages);
   console.log("Selected images:", selected);
@@ -1331,8 +1376,8 @@ function addRandomImages() {
   const windowHeight = window.innerHeight;
   const centerX = windowWidth / 2;
   const centerY = windowHeight / 2;
-  const rangeX = windowWidth * 0.3; // 30% of width from center
-  const rangeY = windowHeight * 0.3; // 30% of height from center
+  const rangeX = windowWidth * 0.45; // 45% of width from center
+  const rangeY = windowHeight * 0.45; // 45% of height from center
   const minX = centerX - rangeX;
   const maxX = centerX + rangeX;
   const minY = centerY - rangeY;
@@ -1346,7 +1391,7 @@ function addRandomImages() {
     const randomScale = 0.3 + Math.random() * 2.7;
     console.log(`Creating image ${index + 1}:`, imgData.url, "at", x, y, "scale:", randomScale);
 
-    createDraggableImage(imgData.url, imgData.caption, quartierNum, {
+    createDraggableImage(imgData.url, imgData.caption, imgData.quartierId, {
       x,
       y,
       scale: randomScale,
