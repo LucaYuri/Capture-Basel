@@ -535,7 +535,7 @@ body {
   position: absolute;
   cursor: grab;
   mix-blend-mode: multiply;
-  transition: transform 0.3s ease;
+  /* transition removed - interferiert mit 1:1 dragging */
   z-index: 10;
 }
 

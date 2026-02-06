@@ -629,16 +629,36 @@ function createDraggableImage(
   // Zum Body hinzufügen
   document.body.appendChild(container);
 
-  // GSAP Draggable ohne Inertia für direktes Folgen der Maus
+  // GSAP Draggable ohne jegliches Smoothing/Easing - direktes 1:1 mit Maus
+  let isDragging = false;
   const draggableInstance = Draggable.create(container, {
     type: "x,y",
     inertia: false,
+    edgeResistance: 1,
+    dragResistance: 0,
+    throwResistance: 0,
+    overshootTolerance: 0,
+    allowEventDefault: false,
+    // Kritisch: Force kein Smoothing
+    force3D: false,
+    zIndexBoost: false,
+    // Verwende onDrag callback für sofortige Updates
     onPress: function () {
       // Bringe Element nach vorne beim Greifen
       container.style.zIndex = imageZIndex++;
       container.dataset.zIndex = container.style.zIndex;
+      isDragging = true;
+      // Kill alle laufenden GSAP Animationen auf diesem Element
+      gsap.killTweensOf(container);
+    },
+    onDrag: function () {
+      // Während des Draggings: Stelle sicher dass keine anderen Animationen laufen
+      if (gsap.isTweening(container)) {
+        gsap.killTweensOf(container);
+      }
     },
     onDragEnd: function () {
+      isDragging = false;
       // Speichere Position nach dem Drag
       debouncedSave();
     },
@@ -694,7 +714,9 @@ function createDraggableImage(
   });
 
   // Hover-Effekt mit GSAP (da Draggable transform überschreibt)
+  // Deaktiviert während des Draggings um Interferenzen zu vermeiden
   container.addEventListener("mouseenter", () => {
+    if (isDragging) return;
     const scale = parseFloat(container.dataset.scale) || 1;
     gsap.to(container, {
       scale: scale * 1.08,
@@ -703,6 +725,7 @@ function createDraggableImage(
     });
   });
   container.addEventListener("mouseleave", () => {
+    if (isDragging) return;
     const scale = parseFloat(container.dataset.scale) || 1;
     gsap.to(container, {
       scale: scale,
@@ -1392,28 +1415,36 @@ function addRandomImages() {
   const minY = centerY - rangeY;
   const maxY = centerY + rangeY;
 
-  // Add selected images to scene with random positions and sizes
+  // Add selected images to scene with staggered animation
   selected.forEach((imgData, index) => {
     const x = minX + Math.random() * (maxX - minX);
     const y = minY + Math.random() * (maxY - minY);
     // Random scale between 0.3 and 3.0 for extreme size differences
     const randomScale = 0.3 + Math.random() * 2.7;
-    console.log(
-      `Creating image ${index + 1}:`,
-      imgData.url,
-      "at",
-      x,
-      y,
-      "scale:",
-      randomScale,
-    );
 
-    createDraggableImage(imgData.url, imgData.caption, imgData.quartierId, {
-      x,
-      y,
-      scale: randomScale,
-      zIndex: imageZIndex++,
-    });
+    // Delay each image slightly for staggered appearance
+    setTimeout(() => {
+      const container = createDraggableImage(imgData.url, imgData.caption, imgData.quartierId, {
+        x,
+        y,
+        scale: randomScale,
+        zIndex: imageZIndex++,
+      });
+
+      // Start invisible and small
+      gsap.set(container, {
+        opacity: 0,
+        scale: 0,
+      });
+
+      // Animate in quickly with bounce
+      gsap.to(container, {
+        opacity: 1,
+        scale: randomScale,
+        duration: 0.3,
+        ease: "back.out(1.7)",
+      });
+    }, index * 50); // 50ms delay between each image (fast)
   });
 
   // NICHT speichern - das würde alle anderen Bilder überschreiben!

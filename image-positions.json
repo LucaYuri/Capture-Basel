@@ -1,98 +1,89 @@
 {
   "images": [
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-58-46.png",
-      "caption": "character",
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-14-15-01-45.png",
+      "caption": "statue",
       "quartierId": 20,
-      "x": 858.166015625,
-      "y": 971.6309814453125,
-      "scale": 2.4793876459333672,
-      "zIndex": 2661
+      "x": 1063.47998046875,
+      "y": 934.9760131835938,
+      "scale": 1.2304167739861114,
+      "zIndex": 3633
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-54-38.png",
-      "caption": "camper",
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-12-22.png",
+      "caption": "man",
       "quartierId": 20,
-      "x": 1001.3400268554688,
-      "y": 229.30999755859375,
-      "scale": 1.6580998705728498,
-      "zIndex": 2671
+      "x": 1053.6500244140625,
+      "y": 349.9670104980469,
+      "scale": 1.0855179093678844,
+      "zIndex": 3645
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-37-51.png",
-      "caption": "person",
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-15-13-36-34.png",
+      "caption": "face",
       "quartierId": 20,
-      "x": 598.7449951171875,
-      "y": 555.302001953125,
-      "scale": 1.4339478835438162,
-      "zIndex": 2672
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-19-29-59.png",
-      "caption": "drive",
-      "quartierId": 20,
-      "x": 163.53500366210938,
-      "y": 196.13699340820312,
-      "scale": 2.624374517421818,
-      "zIndex": 2664
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-41-44.png",
-      "caption": "woman",
-      "quartierId": 20,
-      "x": 723.4500122070312,
-      "y": 133.68299865722656,
-      "scale": 1.285544936545875,
-      "zIndex": 2670
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-14-24-22.png",
-      "caption": "object",
-      "quartierId": 20,
-      "x": 2257.570068359375,
-      "y": 545.6519775390625,
-      "scale": 2.3237002399743507,
-      "zIndex": 2666
+      "x": 482.1730041503906,
+      "y": 247.74600219726562,
+      "scale": 1.7580267038613684,
+      "zIndex": 3644
     },
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-56-59.png",
       "caption": "cat",
       "quartierId": 20,
-      "x": 2001.9599609375,
-      "y": 93.41999816894531,
-      "scale": 0.839664431397473,
-      "zIndex": 2667
+      "x": 996.6610107421875,
+      "y": 971.0789794921875,
+      "scale": 0.4060595534261069,
+      "zIndex": 3636
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-15-10-24-23.png",
-      "caption": "fountain",
-      "quartierId": 2,
-      "x": 434.1180114746094,
-      "y": 110.06999969482422,
-      "scale": 1.250077424020188,
-      "zIndex": 2674
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-38-50.png",
+      "caption": "box",
+      "quartierId": 20,
+      "x": 1586.8399658203125,
+      "y": 291.7139892578125,
+      "scale": 3.2930949366416753,
+      "zIndex": 3648
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-05-12.png",
+      "caption": "clothing",
+      "quartierId": 20,
+      "x": 880.9219970703125,
+      "y": 548.02099609375,
+      "scale": 1.1748346446973916,
+      "zIndex": 3646
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-36-36.png",
+      "caption": "meal",
+      "quartierId": 20,
+      "x": 457.91400146484375,
+      "y": 823.7440185546875,
+      "scale": 1.6021464653497743,
+      "zIndex": 3639
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-15-25-53.png",
+      "caption": "hand",
+      "quartierId": 20,
+      "x": 1082.6700439453125,
+      "y": -25.106599807739258,
+      "scale": 2.416197820650849,
+      "zIndex": 3642
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-59-27.png",
+      "caption": "dog",
+      "quartierId": 1,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
     },
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-38-51.png",
       "caption": "camcorder",
-      "quartierId": 1,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-12-44-56.png",
-      "caption": "fountain",
-      "quartierId": 1,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-10-05-05.png",
-      "caption": "dog",
       "quartierId": 1,
       "x": 0,
       "y": 0,
@@ -111,6 +102,24 @@
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-29-54.png",
       "caption": "opener",
+      "quartierId": 1,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-12-44-56.png",
+      "caption": "fountain",
+      "quartierId": 1,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-10-05-05.png",
+      "caption": "dog",
       "quartierId": 1,
       "x": 0,
       "y": 0,
@@ -165,15 +174,6 @@
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-51-31.png",
       "caption": "onion",
-      "quartierId": 1,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-59-27.png",
-      "caption": "dog",
       "quartierId": 1,
       "x": 0,
       "y": 0,
@@ -271,15 +271,6 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-11-07.png",
-      "caption": "fountain",
-      "quartierId": 1,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-12-58.png",
       "caption": "fountain",
       "quartierId": 1,
@@ -298,6 +289,15 @@
       "zIndex": 1000
     },
     {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-15-10-24-23.png",
+      "caption": "fountain",
+      "quartierId": 2,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-15-10-21-51.png",
       "caption": "cat",
       "quartierId": 2,
@@ -307,8 +307,35 @@
       "zIndex": 1000
     },
     {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-22-49-42.png",
+      "caption": "person",
+      "quartierId": 3,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-32-15.png",
       "caption": "sculpture",
+      "quartierId": 3,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-02-06-10-20-10.png",
+      "caption": "tower",
+      "quartierId": 3,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-30-09-21-09.png",
+      "caption": "castle",
       "quartierId": 3,
       "x": 0,
       "y": 0,
@@ -325,16 +352,7 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-22-49-42.png",
-      "caption": "person",
-      "quartierId": 3,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-30-09-21-09.png",
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-30-09-37-58.png",
       "caption": "castle",
       "quartierId": 3,
       "x": 0,
@@ -379,6 +397,24 @@
       "zIndex": 1000
     },
     {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-14-17-52.png",
+      "caption": "train",
+      "quartierId": 6,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-12-42-01.png",
+      "caption": "crane",
+      "quartierId": 6,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-50-07.png",
       "caption": "tracks",
       "quartierId": 6,
@@ -417,24 +453,6 @@
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-36-17.png",
       "caption": "food",
-      "quartierId": 6,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-12-42-01.png",
-      "caption": "crane",
-      "quartierId": 6,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-14-17-52.png",
-      "caption": "train",
       "quartierId": 6,
       "x": 0,
       "y": 0,
@@ -685,8 +703,377 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-18-13-31-23.png",
-      "caption": "characters",
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-06-55.png",
+      "caption": "mouse",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-14-14-54-52.png",
+      "caption": "graffiti",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-22-56.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-14-46-45.png",
+      "caption": "mouse",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-14-14-57-15.png",
+      "caption": "people",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-41-44.png",
+      "caption": "woman",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-07-30-14.png",
+      "caption": "projection",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-19-15-56-03.png",
+      "caption": "cat",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-17-09-37.png",
+      "caption": "buildings",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-02-36.png",
+      "caption": "people",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-19-30-42.png",
+      "caption": "camper",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-37-07.png",
+      "caption": "book",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-14-50.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-06-43.png",
+      "caption": "face",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-00-55.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-44-01.png",
+      "caption": "toothpaste",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-30-31.png",
+      "caption": "object",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-07-29-06.png",
+      "caption": "woman",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-58-46.png",
+      "caption": "character",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-15-21-39-37.png",
+      "caption": "couple",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-12-51-33.png",
+      "caption": "tower",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-15-43-56.png",
+      "caption": "building",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-40-05.png",
+      "caption": "microwave",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-56-00.png",
+      "caption": "flashdrive",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-40-36.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-14-25-24.png",
+      "caption": "symbol",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-15-42-38.png",
+      "caption": "building",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-44-47.png",
+      "caption": "object",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-12-17.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-57-40.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-12-14-47.png",
+      "caption": "woman",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-14-24-22.png",
+      "caption": "object",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-24-53.png",
+      "caption": "donkey",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-22-10-55-38.png",
+      "caption": "reptile",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-18-13-27-23.png",
+      "caption": "figure",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-04-27.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-48-36.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-44-24.png",
+      "caption": "object",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-11-30-21.png",
+      "caption": "building",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-54-38.png",
+      "caption": "camper",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-37-51.png",
+      "caption": "person",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-19-29-59.png",
+      "caption": "drive",
       "quartierId": 20,
       "x": 0,
       "y": 0,
@@ -721,35 +1108,8 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-24-53.png",
-      "caption": "donkey",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-44-24.png",
-      "caption": "object",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-18-13-29-02.png",
       "caption": "creatures",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-00-55.png",
-      "caption": "person",
       "quartierId": 20,
       "x": 0,
       "y": 0,
@@ -766,78 +1126,6 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-19-15-56-03.png",
-      "caption": "cat",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-30-31.png",
-      "caption": "object",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-06-43.png",
-      "caption": "face",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-02-36.png",
-      "caption": "people",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-14-15-01-45.png",
-      "caption": "statue",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-40-36.png",
-      "caption": "person",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-05-12.png",
-      "caption": "clothing",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-44-01.png",
-      "caption": "toothpaste",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-17-14-07.png",
       "caption": "cat",
       "quartierId": 20,
@@ -847,80 +1135,8 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-09-56-00.png",
-      "caption": "flashdrive",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-14-25-24.png",
-      "caption": "symbol",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-15-21-39-37.png",
-      "caption": "couple",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-14-46-45.png",
-      "caption": "mouse",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-07-30-14.png",
-      "caption": "projection",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-22-12-59.png",
       "caption": "bouquet",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-14-50.png",
-      "caption": "person",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-15-42-38.png",
-      "caption": "building",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-48-36.png",
-      "caption": "person",
       "quartierId": 20,
       "x": 0,
       "y": 0,
@@ -955,15 +1171,6 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-12-17.png",
-      "caption": "person",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-59-16.png",
       "caption": "ducks",
       "quartierId": 20,
@@ -982,53 +1189,8 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-44-47.png",
-      "caption": "object",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-06-55.png",
-      "caption": "mouse",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-15-43-56.png",
-      "caption": "building",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-07-29-06.png",
-      "caption": "woman",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-48-15.png",
       "caption": "people",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-11-30-21.png",
-      "caption": "building",
       "quartierId": 20,
       "x": 0,
       "y": 0,
@@ -1054,15 +1216,6 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-36-36.png",
-      "caption": "meal",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-00-18.png",
       "caption": "person",
       "quartierId": 20,
@@ -1081,42 +1234,6 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-14-14-57-15.png",
-      "caption": "people",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-17-09-37.png",
-      "caption": "buildings",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-14-14-54-52.png",
-      "caption": "graffiti",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-04-27.png",
-      "caption": "person",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-15-09-42-39.png",
       "caption": "headset",
       "quartierId": 20,
@@ -1126,62 +1243,8 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-40-05.png",
-      "caption": "microwave",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-14-14-59-03.png",
       "caption": "poster",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-12-51-33.png",
-      "caption": "tower",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-12-14-47.png",
-      "caption": "woman",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-19-30-42.png",
-      "caption": "camper",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-37-07.png",
-      "caption": "book",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-15-13-36-34.png",
-      "caption": "face",
       "quartierId": 20,
       "x": 0,
       "y": 0,
@@ -1207,53 +1270,8 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-15-25-53.png",
-      "caption": "hand",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-38-50.png",
-      "caption": "box",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-57-40.png",
-      "caption": "person",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-08-08.png",
       "caption": "tart",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-12-22.png",
-      "caption": "man",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-22-56.png",
-      "caption": "person",
       "quartierId": 20,
       "x": 0,
       "y": 0,
@@ -1270,62 +1288,8 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-19-37-31.png",
-      "caption": "feet",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-19-39-08.png",
       "caption": "feet",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-18-13-27-23.png",
-      "caption": "figure",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-18-13-28-15.png",
-      "caption": "figure",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-18-13-29-41.png",
-      "caption": "characters",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-18-13-30-30.png",
-      "caption": "characters",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-22-10-55-38.png",
-      "caption": "reptile",
       "quartierId": 20,
       "x": 0,
       "y": 0,
