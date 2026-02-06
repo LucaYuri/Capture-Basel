@@ -1,85 +1,76 @@
 {
   "images": [
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-14-15-01-45.png",
-      "caption": "statue",
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-10-57-53.png",
+      "caption": "eyes",
       "quartierId": 20,
-      "x": 1063.47998046875,
-      "y": 934.9760131835938,
-      "scale": 1.2304167739861114,
-      "zIndex": 3633
+      "x": 1792.3800048828125,
+      "y": 179.52999877929688,
+      "scale": 1.9452402508117974,
+      "zIndex": 4327
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-12-22.png",
-      "caption": "man",
-      "quartierId": 20,
-      "x": 1053.6500244140625,
-      "y": 349.9670104980469,
-      "scale": 1.0855179093678844,
-      "zIndex": 3645
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-56-15.png",
+      "caption": "luggage",
+      "quartierId": 7,
+      "x": 1173.72998046875,
+      "y": 248.40199279785156,
+      "scale": 1.1696339764676458,
+      "zIndex": 4328
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-15-13-36-34.png",
-      "caption": "face",
-      "quartierId": 20,
-      "x": 482.1730041503906,
-      "y": 247.74600219726562,
-      "scale": 1.7580267038613684,
-      "zIndex": 3644
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-56-59.png",
-      "caption": "cat",
-      "quartierId": 20,
-      "x": 996.6610107421875,
-      "y": 971.0789794921875,
-      "scale": 0.4060595534261069,
-      "zIndex": 3636
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-38-50.png",
-      "caption": "box",
-      "quartierId": 20,
-      "x": 1586.8399658203125,
-      "y": 291.7139892578125,
-      "scale": 3.2930949366416753,
-      "zIndex": 3648
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-05-12.png",
-      "caption": "clothing",
-      "quartierId": 20,
-      "x": 880.9219970703125,
-      "y": 548.02099609375,
-      "scale": 1.1748346446973916,
-      "zIndex": 3646
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-36-36.png",
-      "caption": "meal",
-      "quartierId": 20,
-      "x": 457.91400146484375,
-      "y": 823.7440185546875,
-      "scale": 1.6021464653497743,
-      "zIndex": 3639
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-15-25-53.png",
-      "caption": "hand",
-      "quartierId": 20,
-      "x": 1082.6700439453125,
-      "y": -25.106599807739258,
-      "scale": 2.416197820650849,
-      "zIndex": 3642
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-07-18.png",
+      "caption": "scooter",
+      "quartierId": 8,
+      "x": 841.656982421875,
+      "y": 606.7860107421875,
+      "scale": 3.4471907529025487,
+      "zIndex": 4336
     },
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-59-27.png",
       "caption": "dog",
       "quartierId": 1,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
+      "x": 413.27899169921875,
+      "y": 237.71400451660156,
+      "scale": 1.4127622131043613,
+      "zIndex": 4330
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-29-54.png",
+      "caption": "opener",
+      "quartierId": 1,
+      "x": 1232.050048828125,
+      "y": 279.8819885253906,
+      "scale": 2.0154622411094416,
+      "zIndex": 4337
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-37-07.png",
+      "caption": "book",
+      "quartierId": 20,
+      "x": 1493.8399658203125,
+      "y": 843.5640258789062,
+      "scale": 0.9138848480858763,
+      "zIndex": 4332
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-14-21-13.png",
+      "caption": "machine",
+      "quartierId": 9,
+      "x": 1353.8900146484375,
+      "y": 972.4130249023438,
+      "scale": 1.8793986630049884,
+      "zIndex": 4333
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-12-40-44.png",
+      "caption": "train",
+      "quartierId": 8,
+      "x": 1821.510009765625,
+      "y": 490.72601318359375,
+      "scale": 0.3962564935254895,
+      "zIndex": 4334
     },
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-38-51.png",
@@ -93,15 +84,6 @@
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-12-43-47.png",
       "caption": "chairs",
-      "quartierId": 1,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-29-54.png",
-      "caption": "opener",
       "quartierId": 1,
       "x": 0,
       "y": 0,
@@ -487,15 +469,6 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-56-15.png",
-      "caption": "luggage",
-      "quartierId": 7,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-15-10-00-48.png",
       "caption": "cat",
       "quartierId": 7,
@@ -517,15 +490,6 @@
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-04-35.png",
       "caption": "bicycle",
       "quartierId": 7,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-12-40-44.png",
-      "caption": "train",
-      "quartierId": 8,
       "x": 0,
       "y": 0,
       "scale": 1,
@@ -559,26 +523,8 @@
       "zIndex": 1000
     },
     {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-07-18.png",
-      "caption": "scooter",
-      "quartierId": 8,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-14-19-05.png",
       "caption": "building",
-      "quartierId": 9,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-14-21-13.png",
-      "caption": "machine",
       "quartierId": 9,
       "x": 0,
       "y": 0,
@@ -703,6 +649,78 @@
       "zIndex": 1000
     },
     {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-14-15-01-45.png",
+      "caption": "statue",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-18-12-22.png",
+      "caption": "man",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-15-13-36-34.png",
+      "caption": "face",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-20-56-59.png",
+      "caption": "cat",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-16-38-50.png",
+      "caption": "box",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-05-12.png",
+      "caption": "clothing",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-36-36.png",
+      "caption": "meal",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
+      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-15-25-53.png",
+      "caption": "hand",
+      "quartierId": 20,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "zIndex": 1000
+    },
+    {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-13-10-06-55.png",
       "caption": "mouse",
       "quartierId": 20,
@@ -795,15 +813,6 @@
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-19-30-42.png",
       "caption": "camper",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-12-21-37-07.png",
-      "caption": "book",
       "quartierId": 20,
       "x": 0,
       "y": 0,
@@ -1245,15 +1254,6 @@
     {
       "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-14-14-59-03.png",
       "caption": "poster",
-      "quartierId": 20,
-      "x": 0,
-      "y": 0,
-      "scale": 1,
-      "zIndex": 1000
-    },
-    {
-      "imageUrl": "https://pub-ba16214ba4aa42a8a9e834c8cac95a17.r2.dev/generated-26-01-16-10-57-53.png",
-      "caption": "eyes",
       "quartierId": 20,
       "x": 0,
       "y": 0,

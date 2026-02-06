@@ -1398,7 +1398,7 @@ function addRandomImages() {
   }
 
   // Get 8 random images (or less if not enough available)
-  const numImages = Math.min(8, availableImages.length);
+  const numImages = Math.min(7, availableImages.length);
   const shuffled = [...availableImages].sort(() => Math.random() - 0.5);
   const selected = shuffled.slice(0, numImages);
   console.log("Selected images:", selected);
@@ -1424,12 +1424,17 @@ function addRandomImages() {
 
     // Delay each image slightly for staggered appearance
     setTimeout(() => {
-      const container = createDraggableImage(imgData.url, imgData.caption, imgData.quartierId, {
-        x,
-        y,
-        scale: randomScale,
-        zIndex: imageZIndex++,
-      });
+      const container = createDraggableImage(
+        imgData.url,
+        imgData.caption,
+        imgData.quartierId,
+        {
+          x,
+          y,
+          scale: randomScale,
+          zIndex: imageZIndex++,
+        },
+      );
 
       // Start invisible and small
       gsap.set(container, {
