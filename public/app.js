@@ -1385,8 +1385,8 @@ function addRandomImages() {
   const windowHeight = window.innerHeight;
   const centerX = windowWidth / 2;
   const centerY = windowHeight / 2;
-  const rangeX = windowWidth * 0.45; // 45% of width from center
-  const rangeY = windowHeight * 0.45; // 45% of height from center
+  const rangeX = windowWidth * 0.35; // 45% of width from center
+  const rangeY = windowHeight * 0.35; // 45% of height from center
   const minX = centerX - rangeX;
   const maxX = centerX + rangeX;
   const minY = centerY - rangeY;
